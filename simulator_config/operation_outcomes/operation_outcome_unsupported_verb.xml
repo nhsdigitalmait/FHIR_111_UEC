@@ -1,0 +1,7 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+    <issue>
+        <severity value="error" />
+        <code value="processing" />
+        <diagnostics value="The HTTP verb used is unsuported - currently only $validate requests using POST"/>
+    </issue>
+</OperationOutcome>

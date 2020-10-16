@@ -1,0 +1,7 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+    <issue>
+        <severity value="error" />
+        <code value="processing" />
+        <diagnostics value="The TKW Test Harness supports POST create subscription, GET subscription and DELETE subscription against a limited set of NHS Numbers - see relavant documentation"/>
+    </issue>
+</OperationOutcome>

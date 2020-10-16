@@ -1,0 +1,18 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="invalid"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="BAD_REQUEST"/>
+				<display value="Bad Request"/>
+			</coding>
+		</details>
+		<diagnostics value="Malformed request syntax. NEMS Delete command invalid syntax."/>
+	</issue>
+</OperationOutcome>

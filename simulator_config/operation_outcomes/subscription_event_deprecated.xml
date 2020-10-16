@@ -1,0 +1,14 @@
+<OperationOutcome>
+   <issue> 
+      <severity value="information"/> 
+      <code value="informational"/> 
+      <details>
+         <coding> 
+            <system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/> 
+            <code value="DEPRECATED"/> 
+            <display value="The operation being performed has been deprecated"/> 
+         </coding> 
+      </details> 
+      <diagnostics value="Deprecation of the Newborn Hearing (newborn-hearing-1) event type will occur on 22/06/2019, for more information go to https://developer.nhs.uk/apis/ems-beta/overview_supported_events.html"/>
+   </issue> 
+</OperationOutcome>

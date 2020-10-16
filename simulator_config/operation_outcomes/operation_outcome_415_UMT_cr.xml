@@ -1,0 +1,18 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="http://fhir.nhs.net/StructureDefinition/spine-operationoutcome-1-0"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="invalid"/>
+		<details>
+			<coding>
+				<system value="http://fhir.nhs.net/ValueSet/spine-response-code-1-0"/>
+				<code value="UNSUPPORTED_MEDIA_TYPE"/>
+				<display value="Unsupported Media Type"/>
+			</coding>
+		</details>
+		<diagnostics value="Unsupported Media Type"/>
+	</issue>
+</OperationOutcome>

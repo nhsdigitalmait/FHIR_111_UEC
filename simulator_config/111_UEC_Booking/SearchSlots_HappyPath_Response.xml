@@ -1,0 +1,172 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="a56382a1-dce2-483a-8426-65b727b66809"/>
+   <meta>
+      <lastUpdated value="2019-05-09T09:26:12.010+00:00"/>
+   </meta>
+   <type value="searchset"/>
+   <total value="8"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot?_format=json&amp;_include=Slot%3Aschedule&amp;_include=Schedule%3Aactor%3APractitioner&amp;_include=Schedule%3Aactor%3APractitionerRole&amp;_include=Schedule%3Aactor%3AHealthcareService&amp;_include=HealthcareService.location&amp;schedule.actor%3Ahealthcareservice=918999198999&amp;start=ge2019-05-09T10%3A00%3A00%2000%3A00&amp;start=le2019-05-09T10%3A30%3A00%2000%3A00&amp;status=free"/>
+   </link>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot005"/>
+      <resource>
+         <Slot xmlns="http://hl7.org/fhir">
+            <id value="slot005"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"/>
+            </meta>
+            <identifier>
+               <system value="https://tools.ietf.org/html/rfc4122"/>
+               <value value="5a889965-3db4-4c29-8003-676c247a763e"/>
+            </identifier>
+            <schedule>
+               <reference value="Schedule/sched1111"/>
+            </schedule>
+            <status value="free"/>
+            <start value="2019-05-09T10:00:00.000+00:00"/>
+            <end value="2019-05-09T10:15:00.000+00:00"/>
+         </Slot>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot006"/>
+      <resource>
+         <Slot xmlns="http://hl7.org/fhir">
+            <id value="slot006"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"/>
+            </meta>
+            <identifier>
+               <system value="https://tools.ietf.org/html/rfc4122"/>
+               <value value="d939f0e0-d434-4962-a327-7ed52fde2b2e"/>
+            </identifier>
+            <schedule>
+               <reference value="Schedule/sched1111"/>
+            </schedule>
+            <status value="free"/>
+            <start value="2019-05-09T10:15:00.000+00:00"/>
+            <end value="2019-05-09T10:30:00.000+00:00"/>
+         </Slot>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot007"/>
+      <resource>
+         <Slot xmlns="http://hl7.org/fhir">
+            <id value="slot007"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"/>
+            </meta>
+            <identifier>
+               <system value="https://tools.ietf.org/html/rfc4122"/>
+               <value value="50360c34-c1e0-42dd-b965-8e4dd79ed902"/>
+            </identifier>
+            <schedule>
+               <reference value="Schedule/sched1111"/>
+            </schedule>
+            <status value="free"/>
+            <start value="2019-05-09T10:30:00.000+00:00"/>
+            <end value="2019-05-09T10:45:00.000+00:00"/>
+         </Slot>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Schedule/sched1111"/>
+      <resource>
+         <Schedule xmlns="http://hl7.org/fhir">
+            <id value="sched1111"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Schedule-1"/>
+            </meta>
+            <identifier>
+               <system value="https://system.supplier.co.uk/MyDiary/Numbering"/>
+               <value value="1015432"/>
+            </identifier>
+            <actor>
+               <reference value="HealthcareService/918999198999"/>
+            </actor>
+            <actor>
+               <reference value="Practitioner/ABCD123456"/>
+            </actor>
+         </Schedule>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/HealthcareService/918999198999"/>
+      <resource>
+         <HealthcareService xmlns="http://hl7.org/fhir">
+            <id value="918999198999"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-HealthcareService-1"/>
+            </meta>
+            <identifier>
+               <system value="https://system.supplier.co.uk/My/Services"/>
+               <value value="357"/>
+            </identifier>
+            <providedBy>
+               <reference value="https://directory.spineservices.nhs.uk/STU3/Organization/RR8"/>
+            </providedBy>
+            <location>
+               <reference value="Location/loc2222"/>
+            </location>
+            <name value="Service One"/>
+         </HealthcareService>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Practitioner/ABCD123456"/>
+      <resource>
+         <Practitioner xmlns="http://hl7.org/fhir">
+            <id value="ABCD123456"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
+            </meta>
+            <identifier>
+               <system value="https://fhir.nhs.uk/Id/sds-user-id"/>
+               <value value="ABCD123456"/>
+            </identifier>
+            <identifier>
+               <system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+               <value value="R0260"/>
+            </identifier>
+            <name>
+               <family value="Webber"/>
+               <given value="Libbie"/>
+               <prefix value="Dr"/>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/PractitionerRole/R0260"/>
+      <resource>
+         <PractitionerRole xmlns="http://hl7.org/fhir">
+            <id value="R0260"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
+                  <code value="R0260"/>
+                  <display value="General Medical Practitioner"/>
+               </coding>
+            </code>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Location/loc1111"/>
+      <resource>
+         <Location xmlns="http://hl7.org/fhir">
+            <id value="loc1111"/>
+            <meta>
+               <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
+            </meta>
+            <name value="Location One"/>
+         </Location>
+      </resource>
+   </entry>
+</Bundle>

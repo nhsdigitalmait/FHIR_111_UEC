@@ -1,0 +1,18 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="invalid"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="INVALID_NHS_NUMBER"/>
+				<display value="Invalid NHS number"/>
+			</coding>
+		</details>
+		<diagnostics value="The NHS number does not conform to the NHS Number format: 9464250569."/>
+	</issue>
+</OperationOutcome>

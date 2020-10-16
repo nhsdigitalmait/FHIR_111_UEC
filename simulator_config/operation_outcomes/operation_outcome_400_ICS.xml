@@ -1,0 +1,18 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="code-invalid"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="INVALID_CODE_SYSTEM"/>
+				<display value="Invalid code system"/>
+			</coding>
+		</details>
+		<diagnostics value="Invalid code system"/>
+	</issue>
+</OperationOutcome>

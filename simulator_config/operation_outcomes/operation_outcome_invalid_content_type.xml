@@ -1,0 +1,7 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+    <issue>
+        <severity value="error" />
+        <code value="processing" />
+        <diagnostics value="Invalid Content-Type. STU3 only. Content-Type HTTP Header must be application/fhir+xml or application/fhir+json"/>
+    </issue>
+</OperationOutcome>

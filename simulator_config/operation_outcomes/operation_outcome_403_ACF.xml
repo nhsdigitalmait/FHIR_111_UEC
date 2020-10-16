@@ -1,0 +1,18 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="forbidden"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="ASID_CHECK_FAILED"/>
+				<display value="The sender or receiver’s ASID is not authorised for this interaction"/>
+			</coding>
+		</details>
+		<diagnostics value="The sender or receiver’s ASID is not authorised for this interaction"/>
+	</issue>
+</OperationOutcome>

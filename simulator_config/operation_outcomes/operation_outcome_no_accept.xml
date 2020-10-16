@@ -1,0 +1,7 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+    <issue>
+        <severity value="error" />
+        <code value="processing" />
+        <diagnostics value="Invalid or empty Accept HTTP Header. STU3 only. Accept HTTP Header must be application/fhir+xml or application/fhir+json"/>
+    </issue>
+</OperationOutcome>
