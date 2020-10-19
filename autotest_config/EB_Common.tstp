@@ -1,0 +1,138 @@
+#
+# Care Connect Emergency Booking EB_Common tstp file
+#
+SCRIPT EB_Common
+
+# NB this references the *internal* autotest simulator rules applied when listening for async messages not the rule set autotest applies which are referenced in the main properties file
+SIMULATOR __TKWROOT__/config/GP_CONNECT/simulator_config/test_tks_rule_forwarder_config.txt
+VALIDATOR __TKWROOT__/config/FHIR_111_UEC/validator_config/provider_tester_validator.conf
+STOP WHEN COMPLETE
+
+# generic test names - cant be used with auto populated descriptions from a spreadsheet
+# tests which define an extractor cannot be reused unless all the extractor references are the same
+BEGIN TESTS
+OperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
+InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
+ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting CHAIN SYNC response_is_bundle_extracting TEXT "Response contains a root fhir:Bundle element"
+
+END TESTS
+
+BEGIN MESSAGES
+# supply this for HTTP GET requests
+empty_file USING empty_file_template WITH slots
+
+END MESSAGES
+
+BEGIN TEMPLATES
+# for GET
+empty_file_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/emptyfile.txt
+END TEMPLATES
+
+BEGIN PROPERTYSETS
+webservices
+	SET tks.HttpTransport.listenport 4000
+	SET tks.HttpTransport.listenaddr  127.0.0.1
+	SET tks.tls.truststore __TRUSTSTORE__
+	SET tks.tls.keystore __KEYSTORE__
+	SET tks.sendtls __SEND_TLS__
+	SET tks.fhir.version Dstu3
+	SET tks.HttpTransport.suppress.close Y
+	SET tks.transmitter.send.chunksize 150
+	SET tks.autotest.stoponfail No
+get
+	SET tks.transmitter.http.method GET
+post
+	SET tks.transmitter.http.method POST
+put
+	SET tks.transmitter.http.method PUT
+END PROPERTYSETS
+
+BEGIN HTTPHEADERS
+credentials
+	Ssp-From "__FROM_ASID__"
+	Ssp-To "__TO_ASID__"
+	Ssp-TraceID function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getuuid
+
+getmetadata_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:metadata"
+search_slots_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+book_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+read_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:appointment"
+update_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+
+JWT_metadata
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template.fhir3.txt practitionerid __PATIENT_2__ secret true
+JWT_search_slots
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template_search_for_slots.txt practitionerid __PATIENT_2__ secret true
+
+xml_content
+	Content-type "application/fhir+xml"
+xml_accept
+	Accept "application/fhir+xml"
+
+json_content
+	Content-type "application/fhir+json"
+json_accept
+	Accept "application/fhir+json"
+
+content_zip
+	Content-Encoding "gzip"
+accept_gzip
+	Accept-Encoding "gzip"
+END HTTPHEADERS
+
+BEGIN EXTRACTORS
+slots_free_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots_free.cfg
+END EXTRACTORS
+
+BEGIN DATASOURCES
+slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots.tdv
+END DATASOURCES
+
+BEGIN PASSFAIL
+#
+# Response checks
+#
+ok httpok
+response_is_bundle synchronousxpath /fhir:Bundle exists
+response_is_bundle_extracting synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free_extractor
+type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
+operation_outcome synchronousxpath /fhir:OperationOutcome exists
+invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
+#
+# http status code checks
+#
+httpstatuscheck201 httpstatuscheck 201
+httpstatuschecknot200 not ( httpok )
+httpstatuscheck400 httpstatuscheck 400
+httpstatuscheck404 httpstatuscheck 404
+httpstatuscheck422 httpstatuscheck 422
+#
+# http header checks
+#
+httpheaderchecknonzerocontent httpheadercheck Content-Length doesnotmatch "^0$"
+httpheadercheckzerocontent httpheadercheck Content-Length matches "^0$"
+httpheadercheckcontentlengthexists httpheadercheck Content-Length exists
+httpheadercheckcontentlengthdoesnotexist httpheadercheck Content-Length doesnotexist
+httpheadercheckcontentlengthcheck httpheadercheck Content-Length check
+httpheadercheckcontenttypeisxml  httpheadercheck Content-Type matches "^application/fhir\+xml.*$"
+httpheadercheckcontenttypeisjson  httpheadercheck Content-Type matches "^application/fhir\+json.*$"
+httpheadercheckchunking  httpheadercheck X-was-Transfer-Encoding matches  "^.*chunked.*$"
+
+END PASSFAIL
+
+#
+# These are evaluated at runtime when the script is run by TKW in autotest mode
+#
+BEGIN SUBSTITUTION_TAGS
+__TO_ASID__ Literal "918999198993"
+__FROM_ASID__  Literal "200000000359"
+# Healthcare Service
+__HCS__  Literal "918999198999"
+__APPOINTMENT_ID__ Literal "1"
+END SUBSTITUTION_TAGS

@@ -1,0 +1,183 @@
+SCRIPT 111_uec_local
+# Generated automatically on: Mon Oct 19 17:13:06 BST 2020
+# Merged Files:
+# ./EB_Common.tstp
+# ./EB_SearchForFreeSlots.tstp
+# ./EB_BookAppointment.tstp
+# ./EB_Capability.tstp
+# ./EB_CancelAppointment.tstp
+
+SIMULATOR __TKWROOT__/config/GP_CONNECT/simulator_config/test_tks_rule_forwarder_config.txt
+
+VALIDATOR __TKWROOT__/config/FHIR_111_UEC/validator_config/provider_tester_validator.conf
+
+STOP WHEN COMPLETE
+
+BEGIN SCHEDULES
+SFFSWithValidParameters_parameter_json TESTS SFFSWithValidParameters_parameter_json ResponseIsJson ResponseIsBundle
+SFFSWithValidParameters_header_json TESTS SFFSWithValidParameters_header_json ResponseIsJson ResponseIsBundle
+SFFSWithValidParameters_parameter_xml TESTS SFFSWithValidParameters_parameter_xml ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate
+SFFSWithValidParameters_header_xml TESTS SFFSWithValidParameters_header_xml ResponseIsXml ResponseIsBundle
+SFFSWithValidParameters_3_days TESTS SFFSWithValidParameters_3_days ResponseIsBundle 
+SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIsBundle SFFSPractitionersReturned SFFSPractitionerRolesReturned SFFSOrgsReturned SFFSHealthcareOrgsReturned
+SFFSWithInvalidDateRangeError_l1_days TESTS SFFSWithInvalidDateRangeError_l1_days InvalidParameter
+BookAppointment TESTS BookAppointment_test LocationIsReturned AppointmentIsBooked
+BookAppointmentBusySlot TESTS BookAppointment_busy_slot_test
+Capability TESTS CapabilityTest ResponseIsCapabilityStatement
+ReadAppointment TESTS ReadAppointment_test ResponseIsAppointment
+CancelAppointment TESTS CancelAppointment_test
+END SCHEDULES
+
+BEGIN TESTS
+AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
+BookAppointment_busy_slot_test SEND_TKW book_appointment_busy_slot TO __TO_ENDPOINT__/fhir/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422 SCAL P29"
+BookAppointment_test SEND_TKW book_appointment TO __TO_ENDPOINT__/fhir/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 201"
+CancelAppointment_test SEND_TKW cancel_appointment TO __TO_ENDPOINT__/fhir/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+put WITH_HTTPHEADERS credentials+update_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+CapabilityTest SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
+LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
+OperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
+ReadAppointment_test SEND_TKW read_appointment TO __TO_ENDPOINT__/fhir/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+read_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+ResponseIsAppointment CHAIN SYNC response_is_appt_extracting TEXT "Response contains a root fhir:Appointment element"
+ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting CHAIN SYNC response_is_bundle_extracting TEXT "Response contains a root fhir:Bundle element"
+ResponseIsCapabilityStatement CHAIN SYNC response_is_capability_statement TEXT "Response must be a CapabilityStatement"
+ResponseIsJson CHAIN SYNC httpheadercheckcontenttypeisjson TEXT "Content-type header must start with application/fhir+json"
+ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Content-type header must start with application/fhir+xml"
+SFFSHealthcareOrgsReturned CHAIN SYNC healthcare_returned TEXT "Referenced HealthcareService must be returned (SCAL Requirement P22)"
+SFFSOrgsReturned CHAIN SYNC orgs_returned TEXT "Referenced organizations must be returned (SCAL Requirement P21)"
+SFFSPractitionerRolesReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioner roles must be returned (SCAL Requirement P20)"
+SFFSPractitionersReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioners must be returned (SCAL Requirement P19)"
+SFFSSlotsStatusFree CHAIN SYNC slots_status_free TEXT "All slot records should have a slot status of 'free' (SCAL Requirement P18)"
+SFFSSlotsTooEarly CHAIN SYNC slots_too_early TEXT "No slots that start before the search start should be returned"
+SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the search end should be returned"
+SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__TODAYl1__T00%3A00%3A00%2B01%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_content+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422"
+SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_header_json SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+json_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_header_xml SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_parameter_json SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_parameter_xml SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy&_format=xml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+END TESTS
+
+BEGIN MESSAGES
+book_appointment USING book_appt_template WITH slots ID firstFreeSlot
+book_appointment_busy_slot USING book_appt_template WITH slots ID firstBusySlot
+cancel_appointment USING cancel_appt_template WITH slots ID firstFreeSlot
+empty_file USING empty_file_template WITH slots
+read_appointment USING empty_file_template WITH appts ID appt
+END MESSAGES
+
+BEGIN TEMPLATES
+book_appt_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/book_appt.xml
+cancel_appt_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/book_appt.xml
+empty_file_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/emptyfile.txt
+END TEMPLATES
+
+BEGIN PROPERTYSETS
+get
+	SET tks.transmitter.http.method GET
+post
+	SET tks.transmitter.http.method POST
+put
+	SET tks.transmitter.http.method PUT
+webservices
+	SET tks.HttpTransport.listenport 4000
+	SET tks.HttpTransport.listenaddr  127.0.0.1
+	SET tks.tls.truststore __TRUSTSTORE__
+	SET tks.tls.keystore __KEYSTORE__
+	SET tks.sendtls __SEND_TLS__
+	SET tks.fhir.version Dstu3
+	SET tks.HttpTransport.suppress.close Y
+	SET tks.transmitter.send.chunksize 150
+	SET tks.autotest.stoponfail No
+END PROPERTYSETS
+
+BEGIN HTTPHEADERS
+JWT_metadata
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template.fhir3.txt practitionerid __PATIENT_2__ secret true
+JWT_search_slots
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template_search_for_slots.txt practitionerid __PATIENT_2__ secret true
+accept_gzip
+	Accept-Encoding "gzip"
+book_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+content_zip
+	Content-Encoding "gzip"
+credentials
+	Ssp-From "__FROM_ASID__"
+	Ssp-To "__TO_ASID__"
+	Ssp-TraceID function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getuuid
+getmetadata_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:metadata"
+json_accept
+	Accept "application/fhir+json"
+json_content
+	Content-type "application/fhir+json"
+read_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:appointment"
+search_slots_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+update_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+xml_accept
+	Accept "application/fhir+xml"
+xml_content
+	Content-type "application/fhir+xml"
+END HTTPHEADERS
+
+BEGIN DATASOURCES
+appts circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/appts.tdv
+slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots.tdv
+END DATASOURCES
+
+BEGIN EXTRACTORS
+appt_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/appts.cfg
+slots_free_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots_free.cfg
+END EXTRACTORS
+
+BEGIN PASSFAIL
+appt_is_booked  synchronousxpath /fhir:Appointment/fhir:status/@value matches "^booked$"
+capability_format_json synchronousxpath /fhir:CapabilityStatement/fhir:format[matches(@value,'^.*json.*$')]/@value matches "^(application/fhir\+json|json)$"
+capability_format_xml synchronousxpath /fhir:CapabilityStatement/fhir:format[matches(@value,'^.*xml.*$')]/@value matches "^(application/fhir\+xml|xml)$"
+capability_software_name synchronousxpath /fhir:CapabilityStatement/fhir:software/fhir:name exists
+capability_software_version synchronousxpath /fhir:CapabilityStatement/fhir:software/fhir:version exists
+healthcare_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule/fhir:actor/fhir:reference/@value[starts-with(.,'HealthcareService/')] return /fhir:Bundle/fhir:entry/fhir:resource/fhir:HealthcareService[fhir:id/@value=substring($r,19)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+httpheadercheckchunking  httpheadercheck X-was-Transfer-Encoding matches  "^.*chunked.*$"
+httpheadercheckcontentlengthcheck httpheadercheck Content-Length check
+httpheadercheckcontentlengthdoesnotexist httpheadercheck Content-Length doesnotexist
+httpheadercheckcontentlengthexists httpheadercheck Content-Length exists
+httpheadercheckcontenttypeisjson  httpheadercheck Content-Type matches "^application/fhir\+json.*$"
+httpheadercheckcontenttypeisxml  httpheadercheck Content-Type matches "^application/fhir\+xml.*$"
+httpheaderchecknonzerocontent httpheadercheck Content-Length doesnotmatch "^0$"
+httpheadercheckzerocontent httpheadercheck Content-Length matches "^0$"
+httpstatuscheck201 httpstatuscheck 201
+httpstatuscheck400 httpstatuscheck 400
+httpstatuscheck404 httpstatuscheck 404
+httpstatuscheck422 httpstatuscheck 422
+httpstatuschecknot200 not ( httpok )
+invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
+location_is_returned httpheadercheck Location exists
+ok httpok
+operation_outcome synchronousxpath /fhir:OperationOutcome exists
+orgs_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:HealthcareService/fhir:providedBy/fhir:reference/@value return /fhir:Bundle/fhir:entry/fhir:resource/fhir:Organization[fhir:id/@value=substring($r,58)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+practitioners_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule/fhir:actor/fhir:reference/@value[starts-with(.,'Practitioner/')] return /fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner[fhir:id/@value=substring($r,14)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+practitioners_roles_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner/fhir:identifier[fhir:system/@value='https://fhir.nhs.uk/Id/sds-role-profile-id']/fhir:value/@value return /fhir:Bundle/fhir:entry/fhir:resource/fhir:PractitionerRole[fhir:id/@value=$r]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner)) matches "^true$"
+response_is_appt_extracting synchronousxpath /fhir:Appointment exists EXTRACTOR appt_extractor
+response_is_bundle synchronousxpath /fhir:Bundle exists
+response_is_bundle_extracting synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free_extractor
+response_is_capability_statement synchronousxpath /fhir:CapabilityStatement exists
+slots_status_free synchronousxpath boolean(count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:status[@value='free']) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot)) matches "^true$"
+slots_too_early synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[. < '2020-10-09T00:00:00.000+00:00']) matches "^0$"
+slots_too_late synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[ . > '2020-10-17T00:00:00.000+00:00']) matches "^0$"
+type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
+END PASSFAIL
+
+BEGIN SUBSTITUTION_TAGS
+__APPOINTMENT_ID__ Literal "1"
+__END_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "4" "0" "true"
+__FROM_ASID__  Literal "200000000359"
+__HCS__  Literal "918999198999"
+__START_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "1" "0" "true"
+__TO_ASID__ Literal "918999198993"
+END SUBSTITUTION_TAGS
+
