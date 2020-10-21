@@ -7,9 +7,10 @@
 #TSTP=EB_Common.tstp EB_CancelAppointment.tstp
 TSTP=EB_Common.tstp EB_SearchForFreeSlots.tstp EB_BookAppointment.tstp EB_Capability.tstp EB_CancelAppointment.tstp
 
-MERGEDTSTPFILE=$(TKWROOT)/config/FHIR_111_UEC/autotest_config/mergedfile.tstp
-MERGEDTSTFILE=$(TKWROOT)/contrib/TKWAutotestManager/tst/mergedfile.tst
-AUTOTESTS=$(TKWROOT)/contrib/TKWAutotestManager/auto_tests
+ROOT=$(TKWROOT)/config/FHIR_111_UEC/autotest_config
+MERGEDTSTPFILE=$(ROOT)/mergedfile.tstp
+MERGEDTSTFILE=$(ROOT)/tst/mergedfile.tst
+AUTOTESTS=$(ROOT)/auto_tests
 
 all: local
 

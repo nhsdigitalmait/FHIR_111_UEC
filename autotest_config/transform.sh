@@ -6,7 +6,8 @@
 #
 
 from_ep=http://127.0.0.1
-tst=$TKWROOT/contrib/TKWAutotestManager/tst
+tst=$TKWROOT/config/FHIR_111_UEC/autotest_config/tst
+
 
 if [[ "$1" != "" ]]
 then
@@ -135,8 +136,6 @@ do
 	read -n 1 -p "Press any key to continue..."
 	echo
 
-	cd $tst
-	./run_gp_connect.sh $tst/$prefix'.tst'
-	cd -
+	./run_tst.sh $tst/$prefix'.tst'
 done
 
