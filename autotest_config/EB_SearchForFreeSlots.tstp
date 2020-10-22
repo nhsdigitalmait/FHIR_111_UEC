@@ -63,7 +63,7 @@ ResponseIsJson CHAIN SYNC httpheadercheckcontenttypeisjson TEXT "Content-type he
 ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Content-type header must start with application/fhir+xml"
 #
 # Errors Invalid dates
-SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__TODAYl1__T00%3A00%3A00%2B01%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_content+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422"
+SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/Slot?schedule.actor.healthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__START_SLOT_TIME1L__&status=free&_include=Slot%3Aschedule&_include=Schedule:actor:Practitioner&_include=Schedule:actor:PractitionerRole&_include=Schedule:actor:HealthcareService&_include=HealthcareService.location&include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_content+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422"
 #
 # SCAL entries
 # P10 Validate slots request - The provider system must validate that where an incoming request for Slots specifies a HealthcareService, that it is a valid value recognised and delivered by the system.
@@ -89,8 +89,8 @@ END TESTS
 
 BEGIN PASSFAIL
 #SCAL P11 count of slots earlier than start, count of slots later then end, these values will need to be edited when the test is run
-slots_too_early synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[. < '2020-10-09T00:00:00.000+00:00']) matches "^0$"
-slots_too_late synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[ . > '2020-10-17T00:00:00.000+00:00']) matches "^0$"
+slots_too_early synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[. < '__TODAY1__']) matches "^0$"
+slots_too_late synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[ . > '__TODAY4__']) matches "^0$"
 
 # SCAL P18 Every returned slot must have a status of free (if free was specified)
 slots_status_free synchronousxpath boolean(count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:status[@value='free']) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot)) matches "^true$"
@@ -108,6 +108,9 @@ END PASSFAIL
 #
 BEGIN SUBSTITUTION_TAGS
 # Europe/London sets the DST flag correctly, true => URL encode the result, unfortunately at present these values cannot be used in the slots_too_early/late tests
+# NB despite the XXX the timezone string set is Z not +00:00. This is as per javadoc
+# see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html   ISO8601
 __START_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "1" "0" "true"
+__START_SLOT_TIME1L__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "-1" "0" "true"
 __END_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "4" "0" "true"
 END SUBSTITUTION_TAGS

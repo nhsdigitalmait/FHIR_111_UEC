@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # take the 111 Emergency Booking tstp files and perform substitutions to generate tst files in the correct location
+# then run the tst file
 #
 #   usage $0 <endpoint_label> <tst filename>
 #
@@ -33,12 +34,11 @@ fromasid=200000000376
 
 from_ep_port=4000
 
-today=`date +%Y-%m-%d`
-today8=`date +%Y-%m-%d --date='+ 8 days'`
-today14=`date +%Y-%m-%d --date='+ 14 days'`
-today15=`date +%Y-%m-%d --date='+ 15 days'`
-today31=`date +%Y-%m-%d --date='+ 31 days'`
-todayl1=`date +%Y-%m-%d --date='- 1 days'`
+date_format=+%Y-%m-%dT%H:%M:%S%:z
+today=`date $date_format`
+today1=`date $date_format --date='+ 1 days'`
+today4=`date $date_format --date='+ 4 days'`
+todayl1=`date $date_format --date='- 1 days'`
 
 case $dest in
 	int)
@@ -98,6 +98,8 @@ esac
 for f in $2
 do
 	prefix=`basename $f .tstp`
+	prefix=$prefix'_'`date +%Y%m%d%H%M%S`
+
 	echo Writing transformed $f to $tst/$prefix'.tst'
 
 # __TO_URL__ is the whole thing in normal tstp files but it excludes the context path here
@@ -125,11 +127,8 @@ do
 	    -e s!__TRUSTSTORE__!$truststore!g \
 	    -e s!__KEYSTORE__!$keystore!g \
 	    -e s!__SEND_TLS__!$sendtls!g \
-	    -e s!__TODAY__!$today!g \
-	    -e s!__TODAY8__!$today8!g \
-	    -e s!__TODAY14__!$today14!g \
-	    -e s!__TODAY15__!$today15!g \
-	    -e s!__TODAY31__!$today31!g \
+	    -e s!__TODAY1__!$today1!g \
+	    -e s!__TODAY4__!$today4!g \
 	    -e s!__TODAYl1__!$todayl1!g \
 		< $f  > $tst/$prefix'.tst'
 
@@ -137,5 +136,9 @@ do
 	echo
 
 	./run_tst.sh $tst/$prefix'.tst'
+
+	# copy the tst file to the latest autotests folder
+	latest_autotest_folder=`ls -t auto_tests | head -n 1`
+	cp $tst/$prefix'.tst' auto_tests/$latest_autotest_folder/
 done
 
