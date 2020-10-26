@@ -1,0 +1,11 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="invalid"/>
+		<diagnostics value="One or more conditions given in the request header fields evaluated to false when tested on the server"/>
+	</issue>
+</OperationOutcome>
