@@ -1,0 +1,12 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="__MESSAGEID__"/>
+   <meta>
+      <lastUpdated value="__TIMESTAMP__"/>
+   </meta>
+   <type value="searchset"/>
+   <total value="0"/>
+   <link>
+      <relation value="self"/>
+      <url value="https://__HOST____FULL_CONTEXT_PATH__"/>
+   </link>
+</Bundle>

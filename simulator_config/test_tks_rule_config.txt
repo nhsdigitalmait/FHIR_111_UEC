@@ -6,44 +6,35 @@ BEGIN RESPONSES
 
 #NEW
 #Search
-notFound_Response						TKW_ROOT/config/FHIR_111_UEC/simulator_config/successful_responses/NotFound_Trigger_NEMS.xml "200 OK"
-Conversion_Error_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_200_IVP.xml "400 Bad Request"
-HTTP_From_MISSING_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_From.xml "400 Missing Or Invalid Header"
-HTTP_To_MISSING_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_To.xml "400 Missing Or Invalid Header"
-HTTP_Authorization_MISSING_Response			TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_Auth.xml "400 Missing Or Invalid Header"
+notFound_Response						/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/successful_responses/NotFound_Trigger_NEMS.xml "200 OK"
+Conversion_Error_Response					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_200_IVP.xml "400 Bad Request"
+HTTP_From_MISSING_Response					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_From.xml "400 Missing Or Invalid Header"
+HTTP_To_MISSING_Response					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_To.xml "400 Missing Or Invalid Header"
+HTTP_Authorization_MISSING_Response			/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_Auth.xml "400 Missing Or Invalid Header"
 
 #PreExistingServerResponses
-operation_outcome_all_other_requests					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_all_other_requests.xml 404
-operation_outcome_unsupported_verb_404					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_unsupported_verb.xml 404
-Operation_Outcome_400					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_IP.xml "400 Bad Request"
-Operation_Outcome_404					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_404_NRF.xml "404 Not Found"
-Operation_Outcome_500					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_500_ISE.xml "500 Internal Server Error"
-
+operation_outcome_all_other_requests					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_all_other_requests.xml 404
+operation_outcome_unsupported_verb_404					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_unsupported_verb.xml 404
+Operation_Outcome_400					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_IP.xml "400 Bad Request"
+Operation_Outcome_403					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_403_AD.xml "403 Forbidden"
+Operation_Outcome_404					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_404_NRF.xml "404 Not Found"
+Operation_Outcome_405					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_405_NS.xml "405 Method Not Allowed"
+Operation_Outcome_409					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_409.xml "409 Conflict" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
+Operation_Outcome_412 					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_412.xml	"412 Precondition Failed" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
+Operation_Outcome_415					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_415_UMT.xml "415 Unsupported Media Type"
+Operation_Outcome_422_IP					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_IP.xml "422 Unprocessable Entity"
+Operation_Outcome_422_IR					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_IR.xml "422 Unprocessable Entity"
+Operation_Outcome_422_RNF					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_RNF.xml "422 Unprocessable Entity"
+Operation_Outcome_500					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_500_ISE.xml "500 Internal Server Error"
+Operation_Outcome_502					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_502_BG.xml "502 Bad Gateway"
+Operation_Outcome_504					/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_504_GT.xml "504 Gateway Timeout"
 #NHS 111 UEC Booking
 
-SearchSlots_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_Response.xml 200 
+SearchSlots_HappyPath_Response	/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_Response.xml 200 
+SearchSlots_HappyPath_NoSlots_Response	/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_NoSlots_Response.xml 200 
 
-
-
-#####ReasonableAdjustments####
-#RARecord_Read_Fail	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/RARecord_Read_Fail.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Read_Flag_Response_0	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Read_Flag_Response_0.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Read_Flag_Response_1	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Read_Flag_Response_1.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Read_Flag_Response_2	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Read_Flag_Response_2.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Consent_Read_1	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Consent_Read_1.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#ConditionList_Read	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/ConditionList_Read.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#ConditionList_Read_Multiple	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/ConditionList_Read_Multiple.xml 200 WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Create_Consent_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Create_Consent_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Consent/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#Create_Flag_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Create_Consent_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Consent/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#duplicate_record_response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/duplicate_record_response.xml "422 DUPLICATE_REJECTED" 
-#Create_List_Condition_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Create_List_Condition_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Consent/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#Create_List_Condition_Existing_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Create_List_Condition_Existing_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Consent/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#Not_Modified_response class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse	"304 Not modified" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#No_If-Match_response class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse	"412 Precondition Failed" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-#Update_Flag_response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Update_Flag_response.xml "200 OK" WITH_HTTP_HEADERS ( Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#Update_Consent_response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/ReasonableAdjustments/Update_Consent_Response.xml "200 OK" WITH_HTTP_HEADERS ( Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-#Concurrent_Update_response	class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse	"409 Conflict" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
-################################
+BookAppointment_HappyPath_Response	class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+CancelAppointment_HappyPath_Response	/home/riro/TKW-5.0.5/TKW/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 
 do_process	NONE	0
 END RESPONSES
@@ -52,21 +43,13 @@ BEGIN SUBSTITUTIONS
 __MESSAGEID__	uuid
 __VERSIONID__	uuid
 __TIMESTAMP__	ISO8601datetime
-__REQUESTMESSAGEID__	Xpath /*/fhir:id/@value
-__LISTREQUESTMESSAGEID__	Xpath /fhir:List/fhir:contained[1]/fhir:Condition/fhir:id/@value
-__LISTREQUESTMESSAGEID2__	Xpath /fhir:List/fhir:contained[3]/fhir:Condition/fhir:id/@value
-__REQUESTVERSIONID__	Xpath /fhir:List/fhir:contained[1]/fhir:Condition/fhir:meta/fhir:versionId/@value
-__REQUESTVERSIONID2__	Xpath /fhir:List/fhir:contained[3]/fhir:Condition/fhir:meta/fhir:versionId/@value
-__REQUESTLASTUPDATEDTIMESTAMP__	Xpath /fhir:List/fhir:contained[1]/fhir:Condition/fhir:meta/fhir:lastUpdated/@value
-__REQUESTLASTUPDATEDTIMESTAMP2__	Xpath /fhir:List/fhir:contained[3]/fhir:Condition/fhir:meta/fhir:lastUpdated/@value
-__REQUESTPROVENANCEID__	Xpath /fhir:List/fhir:contained[2]/fhir:Provenance/fhir:id/@value
-__REQUESTPROVENANCEID2__	Xpath /fhir:List/fhir:contained[4]/fhir:Provenance/fhir:id/@value
-__REQUESTTIMESTAMP__	Xpath /fhir:List/fhir:date/@value
-__REQUESTDELETEDVERSIONTIMESTAMP__	Xpath /fhir:List/fhir:entry/fhir:date/@value
-__REQUESTDELETEDPROVENANCETIMESTAMP__	Xpath /fhir:List/fhir:entry/fhir:date/@value
-__RFC822TIMESTAMP__	RFC822datetime
-__NHSNUMBER_CONTEXT_PATH__ reg_exp context_path "^.*patient=([0-9]{10}).*$" "$1"
-__NHSNUMBER_VALUE__ 	Xpath /fhir:Consent/fhir:patient/fhir:reference/@value
+__TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 1 0"
+__DAY_AFTER_TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 2 0"
+__CANCEL_SLOT_START_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:start/@value
+__CANCEL_SLOT_END_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:end/@value
+__CANCEL_START_TIME__	Xpath /fhir:Appointment/fhir:start/@value
+__CANCEL_END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
+__CANCEL_CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
 __FULL_CONTEXT_PATH__ reg_exp context_path "." "$0"
 __HOST__ reg_exp http_header Host "." "$0"
 
@@ -76,12 +59,11 @@ END SUBSTITUTIONS
 # all the "match/contains" rules apply to the content by default to use eg the context path it must be specified as context_path
 BEGIN EXPRESSIONS
 
-HTTP_From_MISSING				http_header fromASID notmatches ^.+$
-HTTP_To_MISSING					http_header toASID notmatches ^.+$
+Ssp_From_MISSING				http_header Ssp-from notmatches ^.+$
+HEALTHCARESERVICE_MISSING		context_path notcontains schedule.actor:healthcareservice
+SLOT_MISSING					xpathnotmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value ^.+$
 HTTP_Authorization_MISSING		http_header Authorization notmatches ^.+$
-Conversion_Error				xpathequals boolean(//fhirconversionfailure) true
-Conversion_Error				xpathequals boolean(//fhirconversionfailure) true
-#Errors via DocumentReference ID
+
 #PreExistingServer expresions
 EMPTY_CONTENT					matches ^$
 # must be before parameters check since coversion from json wont happen IF content-type is wrong
@@ -97,20 +79,33 @@ INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json
 
 #CONTEXT PATH CHECKS
 SLOT						context_path matches ^.*\/STU3\/Slot.*$
-HEALTHCARESERVICE		context_path matches ^.*schedule.actor:healthcareservice=999999999999.*$
+HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor:healthcareservice=999999999999.*$
+HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor:healthcareservice=999999999998.*$
+HEALTHCARESERVICE999999999997		context_path matches ^.*schedule.actor:healthcareservice=999999999997.*$
+HEALTHCARESERVICE999999999996		context_path matches ^.*schedule.actor:healthcareservice=999999999996.*$
+HEALTHCARESERVICE999999999995		context_path matches ^.*schedule.actor:healthcareservice=999999999995.*$
+HEALTHCARESERVICE999999999994		context_path matches ^.*schedule.actor:healthcareservice=999999999994.*$
+
+APPOINTMENT							context_path matches ^.*\/STU3\/Appointment.*$
+SLOT005								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot005
+SLOT006								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot006
+SLOT007								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot007
+SLOT008								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot008
+SLOT009								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot009
+SLOT010								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot010
+SLOT011								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot011
+SLOT012								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot012
+SLOT013								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot013
+SLOT014								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot014
+SLOT015								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot015
+SLOT016								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot016
+SLOT017								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot017
+SLOT018								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot018
+SLOT019								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot019
 
 #HTTP HEADER CHECKS
 #QUESTION - is the GUID Upper or Lower case? 3cb63c23-2d28-49c5-ad57-033fcbba71c7
-TRACEID033fcbba71c7			http_header Ssp-TraceID matches ^.*3[cC][bB]63[cC]23-2[dD]28-49[cC]5-[aA][dD]57-033[fF][cC][bB][bB][aA]71[cC]7.*$
-
-#####ReasonableAdjustments####
-#PATIENT9446362881_CP		context_path matches ^.*patient=9446362881.*$
-#IFNONEMATCH					http_header If-None-Match matches ^.+$
-#IFMODIFIEDSINCE				http_header If-Modified-Since matches ^.+$
-#IFMATCH						http_header If-Match matches ^.+$
-#PATIENT9450597316			xpathmatches /fhir:Consent/fhir:patient/fhir:reference/@value demographics.spineservices.nhs.uk/STU3/Patient/9450597316
-###############
-
+#TRACEID033fcbba71c7			http_header Ssp-TraceID matches ^.*3[cC][bB]63[cC]23-2[dD]28-49[cC]5-[aA][dD]57-033[fF][cC][bB][bB][aA]71[cC]7.*$
 
 passthrough	Always
 dontpassthrough	Never
@@ -119,6 +114,24 @@ END EXPRESSIONS
 
 BEGIN RULE
 POST
+IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400				ELSE	NEXT
+IF 	SLOT_MISSING			THEN	Operation_Outcome_400				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_IP			ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT007	THEN	Operation_Outcome_422_IR			ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT008	THEN	Operation_Outcome_400				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_403				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_405				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT010	THEN	Operation_Outcome_500				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT011	THEN	Operation_Outcome_415				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT012	THEN	Operation_Outcome_502				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT013	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT014	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT015	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT016	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT017	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT018	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT019 THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
 
@@ -127,12 +140,29 @@ END RULE
 
 BEGIN RULE
 GET
-IF	SLOT	AND	HEALTHCARESERVICE	AND	TRACEID033fcbba71c7	THEN	SearchSlots_HappyPath_Response	ELSE	NEXT
+IF 	Ssp_From_MISSING							THEN	Operation_Outcome_400					ELSE	NEXT
+IF 	HEALTHCARESERVICE_MISSING					THEN	Operation_Outcome_400					ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999999	THEN	SearchSlots_HappyPath_Response			ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999998	THEN	SearchSlots_HappyPath_NoSlots_Response	ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999997	THEN	Operation_Outcome_400					ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999996	THEN	Operation_Outcome_403					ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999995	THEN	Operation_Outcome_500					ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405					ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
 
 BEGIN RULE
 PUT
+IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400					ELSE	NEXT
+IF 	SLOT_MISSING			THEN	Operation_Outcome_400					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT005 THEN	CancelAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT013 THEN	Operation_Outcome_422_RNF				ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT014 THEN	Operation_Outcome_409					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT015 THEN	Operation_Outcome_412					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT016 THEN	Operation_Outcome_400					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_403					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT018 THEN	Operation_Outcome_500					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT019 THEN	Operation_Outcome_504					ELSE	NEXT
 IF passthrough THEN operation_outcome_unsupported_verb_404
 END RULE
 

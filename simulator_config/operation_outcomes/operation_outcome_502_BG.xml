@@ -1,0 +1,11 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
+	<issue>
+		<severity value="error"/>
+		<code value="transient"/>
+		<diagnostics value="Bad Gateway - A downstream server is offline."/>
+	</issue>
+</OperationOutcome>
