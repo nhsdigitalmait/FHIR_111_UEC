@@ -9,10 +9,10 @@ BookAppointmentBusySlot TESTS BookAppointment_busy_slot_test
 END SCHEDULES
 
 BEGIN TESTS
-BookAppointment_test SEND_TKW book_appointment TO __TO_ENDPOINT__/fhir/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 201"
+BookAppointment_test SEND_TKW book_appointment TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 201"
 LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
 AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
-BookAppointment_busy_slot_test SEND_TKW book_appointment_busy_slot TO __TO_ENDPOINT__/fhir/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422 SCAL P29"
+BookAppointment_busy_slot_test SEND_TKW book_appointment_busy_slot TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422 SCAL P29"
 END TESTS
 
 BEGIN MESSAGES
