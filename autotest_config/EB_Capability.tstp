@@ -1,0 +1,22 @@
+#
+# Care Connect emergency booking EB_Capability tstp file
+#
+SCRIPT EB_Capability
+
+BEGIN SCHEDULES
+Capability TESTS CapabilityTest ResponseIsCapabilityStatement
+END SCHEDULES
+
+BEGIN TESTS
+CapabilityTest SEND_TKW empty_file TO __TO_ENDPOINT__/fhir/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+ResponseIsCapabilityStatement CHAIN SYNC response_is_capability_statement TEXT "Response must be a CapabilityStatement"
+END TESTS
+
+BEGIN PASSFAIL
+response_is_capability_statement synchronousxpath /fhir:CapabilityStatement exists
+capability_format_xml synchronousxpath /fhir:CapabilityStatement/fhir:format[matches(@value,'^.*xml.*$')]/@value matches "^(application/fhir\+xml|xml)$"
+capability_format_json synchronousxpath /fhir:CapabilityStatement/fhir:format[matches(@value,'^.*json.*$')]/@value matches "^(application/fhir\+json|json)$"
+
+capability_software_name synchronousxpath /fhir:CapabilityStatement/fhir:software/fhir:name exists
+capability_software_version synchronousxpath /fhir:CapabilityStatement/fhir:software/fhir:version exists
+END PASSFAIL

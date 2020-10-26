@@ -1,0 +1,114 @@
+<Appointment xmlns="http://hl7.org/fhir">
+   <meta>
+      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"></profile>
+   </meta>
+   <contained>
+      <DocumentReference xmlns="http://hl7.org/fhir">
+         <id value="123"></id>
+         <meta>
+            <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1"></profile>
+         </meta>
+         <identifier>
+            <system value="https://tools.ietf.org/html/rfc4122"></system>
+            <value value="6b9c59dd-675b-4026-98db-f608ef501e6e"></value>
+         </identifier>
+         <status value="current"></status>
+         <type>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17"></system>
+               <code value="POCD_MT200001GB02"></code>
+               <display value="Integrated Urgent Care Report"></display>
+            </coding>
+         </type>
+         <indexed value="2018-12-20T09:43:41+11:00"></indexed>
+         <content>
+            <attachment>
+               <contentType value="application/hl7-v3+xml"></contentType>
+               <language value="en"></language>
+            </attachment>
+         </content>
+      </DocumentReference>
+   </contained>
+   <contained>
+      <Slot xmlns="http://hl7.org/fhir">
+         <id value="__SLOT_ID__"></id>
+         <identifier>
+            <system value="__IDENTIFIER_SYSTEM__"></system>
+            <value value="__IDENTIFIER_VALUE__"></value>
+         </identifier>
+         <schedule>
+            <reference value="Schedule/__SCHEDULE__"></reference>
+         </schedule>
+         <status value="busy"></status>
+         <start value="__START_DATE__"></start>
+         <end value="__END_DATE__"></end>
+      </Slot>
+   </contained>
+   <contained>
+      <Patient xmlns="http://hl7.org/fhir">
+         <id value="P1"></id>
+         <meta>
+            <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"></profile>
+         </meta>
+         <identifier>
+            <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"></system>
+                     <code value="01"></code>
+                     <display value="Number present and verified"></display>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <use value="official"></use>
+            <system value="https://fhir.nhs.uk/Id/nhs-number"></system>
+            <value value="1234554321"></value>
+         </identifier>
+         <name>
+            <use value="official"></use>
+            <family value="Chalmers"></family>
+            <given value="Peter"></given>
+            <prefix value="Mr"></prefix>
+         </name>
+         <telecom>
+            <system value="phone"></system>
+            <value value="01234 567 890"></value>
+            <use value="home"></use>
+            <rank value="1"></rank>
+         </telecom>
+         <gender value="male"></gender>
+         <birthDate value="1974-12-25"></birthDate>
+         <address>
+            <use value="home"></use>
+            <text value="123 High Street, Leeds LS1 4HR"></text>
+            <line value="123 High Street"></line>
+            <line value="Leeds"></line>
+            <city value="Leeds"></city>
+            <postalCode value="LS1 4HR"></postalCode>
+         </address>
+      </Patient>
+   </contained>
+   <status value="booked"></status>
+   <description value="Reason for calling"></description>
+   <supportingInformation>
+      <reference value="#123"></reference>
+   </supportingInformation>
+   <start value="__START_DATE__"></start>
+   <end value="__END_DATE__"></end>
+   <slot>
+      <reference value="#__SLOT_ID__"></reference>
+   </slot>
+   <created value="2019-01-17T14:32:22.579+00:00"></created>
+   <participant>
+      <actor>
+         <reference value="#P1"></reference>
+         <identifier>
+            <use value="official"></use>
+            <system value="https://fhir.nhs.uk/Id/nhs-number"></system>
+            <value value="1234554321"></value>
+         </identifier>
+         <display value="Peter James Chalmers"></display>
+      </actor>
+      <status value="accepted"></status>
+   </participant>
+</Appointment>
