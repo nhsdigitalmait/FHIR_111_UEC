@@ -34,7 +34,7 @@ fromasid=200000000376
 
 from_ep_port=4000
 
-date_format=+%Y-%m-%dT%H:%M:%S%:z
+date_format=+%Y-%m-%dT00:00:00%:z
 today=`date $date_format`
 today1=`date $date_format --date='+ 1 days'`
 today4=`date $date_format --date='+ 4 days'`
@@ -61,11 +61,18 @@ case $dest in
 	sendtls=Yes
 	;;
 
+	local.nginx)
+	# to local 
+	toasid=200000000359
+	fromasid=200000000359
+	to_ep=http://127.0.0.1/STU3
+	;;
+
 	local)
 	# to local 
 	toasid=200000000359
 	fromasid=200000000359
-	to_ep=http://127.0.0.1/A20047/STU3/1/appointments
+	to_ep=http://127.0.0.1:4434/STU3
 	;;
 
 	xkcd)
@@ -86,7 +93,7 @@ case $dest in
 	;;
 
 	*)
-	echo "Unrecongnised endpoint $1"
+	echo "Unrecognised endpoint $1"
 	read -n 1 -p "Press any key to exit..."
 	echo
 	exit
@@ -140,5 +147,7 @@ do
 	# copy the tst file to the latest autotests folder
 	latest_autotest_folder=`ls -t auto_tests | head -n 1`
 	cp $tst/$prefix'.tst' auto_tests/$latest_autotest_folder/
+	# copy a statically named version for ease of debugging
+	cp $tst/$prefix'.tst' tst/mergedfile.tst
 done
 

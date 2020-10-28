@@ -11,11 +11,13 @@ STOP WHEN COMPLETE
 # generic test names - cant be used with auto populated descriptions from a spreadsheet
 # tests which define an extractor cannot be reused unless all the extractor references are the same
 BEGIN TESTS
+# valid date ranges
+SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 OperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
+AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
 ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting CHAIN SYNC response_is_bundle_extracting TEXT "Response contains a root fhir:Bundle element"
-
 END TESTS
 
 BEGIN MESSAGES
@@ -65,10 +67,15 @@ read_appt_interactionid
 update_appt_interactionid
 	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
 
+# The endpoint repurposes the unused __NHS_NUMBER__ tag in the template, we may need to generalise this later if more tags are required
 JWT_metadata
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template.fhir3.txt practitionerid __PATIENT_2__ secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template_metadata.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
 JWT_search_slots
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/contrib/TKWAutotestManager/tstp/WebServices/host/GP_CONNECT/jwt_templates/gp_connect_jwt_template_search_for_slots.txt practitionerid __PATIENT_2__ secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+JWT_book_cancel
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.book_cancel.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+JWT_invalid_aud
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 notanendpoint secret true
 
 xml_content
 	Content-type "application/fhir+xml"
@@ -103,13 +110,17 @@ response_is_bundle synchronousxpath /fhir:Bundle exists
 response_is_bundle_extracting synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free_extractor
 type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
 operation_outcome synchronousxpath /fhir:OperationOutcome exists
+
 invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
+# 403
+access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
 #
 # http status code checks
 #
 httpstatuscheck201 httpstatuscheck 201
 httpstatuschecknot200 not ( httpok )
 httpstatuscheck400 httpstatuscheck 400
+httpstatuscheck403 httpstatuscheck 403
 httpstatuscheck404 httpstatuscheck 404
 httpstatuscheck422 httpstatuscheck 422
 #
@@ -132,7 +143,17 @@ END PASSFAIL
 BEGIN SUBSTITUTION_TAGS
 __TO_ASID__ Literal "918999198993"
 __FROM_ASID__  Literal "200000000359"
-# Healthcare Service
-__HCS__  Literal "918999198999"
+
+# Healthcare Service happy path
+__HCS__  Literal "999999999999"
+# Healthcare Service http 400
+__HCS_400__  Literal "999999999997"
+# Healthcare Service http 403
+__HCS_403__  Literal "999999999996"
+# Healthcare Service http 500
+__HCS_500__  Literal "999999999995"
+# Healthcare Service http 403
+__HCS_405__  Literal "999999999994"
+
 __APPOINTMENT_ID__ Literal "1"
 END SUBSTITUTION_TAGS

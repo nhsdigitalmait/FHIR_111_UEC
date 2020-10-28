@@ -50,7 +50,7 @@ __CANCEL_SLOT_END_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:e
 __CANCEL_START_TIME__	Xpath /fhir:Appointment/fhir:start/@value
 __CANCEL_END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
 __CANCEL_CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
-__FULL_CONTEXT_PATH__ reg_exp context_path "." "$0"
+__FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
 
 
@@ -60,7 +60,7 @@ END SUBSTITUTIONS
 BEGIN EXPRESSIONS
 
 Ssp_From_MISSING				http_header Ssp-from notmatches ^.+$
-HEALTHCARESERVICE_MISSING		context_path notcontains schedule.actor:healthcareservice
+HEALTHCARESERVICE_MISSING		context_path notcontains schedule.actor%2Bhealthcareservice
 SLOT_MISSING					xpathnotmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value ^.+$
 HTTP_Authorization_MISSING		http_header Authorization notmatches ^.+$
 
@@ -79,12 +79,12 @@ INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json
 
 #CONTEXT PATH CHECKS
 SLOT						context_path matches ^.*\/STU3\/Slot.*$
-HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor:healthcareservice=999999999999.*$
-HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor:healthcareservice=999999999998.*$
-HEALTHCARESERVICE999999999997		context_path matches ^.*schedule.actor:healthcareservice=999999999997.*$
-HEALTHCARESERVICE999999999996		context_path matches ^.*schedule.actor:healthcareservice=999999999996.*$
-HEALTHCARESERVICE999999999995		context_path matches ^.*schedule.actor:healthcareservice=999999999995.*$
-HEALTHCARESERVICE999999999994		context_path matches ^.*schedule.actor:healthcareservice=999999999994.*$
+HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999999.*$
+HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999998.*$
+HEALTHCARESERVICE999999999997		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999997.*$
+HEALTHCARESERVICE999999999996		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999996.*$
+HEALTHCARESERVICE999999999995		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999995.*$
+HEALTHCARESERVICE999999999994		context_path matches ^.*schedule.actor%2Bhealthcareservice=999999999994.*$
 
 APPOINTMENT							context_path matches ^.*\/STU3\/Appointment.*$
 SLOT005								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot005

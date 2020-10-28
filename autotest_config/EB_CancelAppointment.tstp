@@ -9,8 +9,8 @@ CancelAppointment TESTS CancelAppointment_test LastModifiedHeaderIsPresent ETagH
 END SCHEDULES
 
 BEGIN TESTS
-ReadAppointment_test SEND_TKW read_appointment TO __TO_ENDPOINT__/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+read_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
-CancelAppointment_test SEND_TKW cancel_appointment TO __TO_ENDPOINT__/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+put WITH_HTTPHEADERS credentials+update_appt_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200 SCAL P33"
+ReadAppointment_test SEND_TKW read_appointment TO __TO_ENDPOINT__/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+read_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 200"
+CancelAppointment_test SEND_TKW cancel_appointment TO __TO_ENDPOINT__/Appointment/__APPOINTMENT_ID__ FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+put WITH_HTTPHEADERS credentials+update_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 200 SCAL P33"
 ResponseIsAppointment CHAIN SYNC response_is_appt_extracting TEXT "Response contains a root fhir:Appointment element"
 LastModifiedHeaderIsPresent CHAIN SYNC last_modified_header_is_present TEXT "Response contains a Last-Modified Header SCAL P33"
 ETagHeaderIsPresent CHAIN SYNC etag_header_is_present TEXT "Response contains an ETag Header SCAL P33"
