@@ -1,0 +1,91 @@
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+   <version value="This gets set from the java"></version>
+   <name value="GP Connect"></name>
+   <status value="active"></status>
+   <date value="2019-11-05"></date>
+   <publisher value="Not provided"></publisher>
+   <contact>
+      <name value="NHS Digital"></name>
+   </contact>
+   <description value="This server implements the GP Connect API version This gets set from the java"></description>
+   <copyright value="Copyright NHS Digital 2016-19"></copyright>
+   <kind value="capability"></kind>
+   <software>
+      <name value="HAPI FHIR Server"></name>
+      <version value="3.0.0"></version>
+      <releaseDate value="2017-09-27T00:00:00+01:00"></releaseDate>
+   </software>
+   <fhirVersion value="3.0.1"></fhirVersion>
+   <acceptUnknown value="both"></acceptUnknown>
+   <format value="application/fhir+json"></format>
+   <format value="application/fhir+xml"></format>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-PractitionerRole-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-AllergyIntolerance-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationStatement-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-List-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-StructuredRecord-Bundle-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-OperationOutcome-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Immunization-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-ProblemHeader-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Encounter-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-DiagnosticReport-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Specimen-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-ProcedureRequest-1"></reference>
+   </profile>
+   <profile>
+      <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-ReferralRequest-1"></reference>
+   </profile>
+   <rest>
+      <mode value="server"></mode>
+      <security>
+         <cors value="true"></cors>
+      </security>
+      <operation>
+         <name value="gpc.getstructuredrecord"></name>
+         <definition>
+            <reference value="https://fhir.nhs.uk/STU3/OperationDefinition/GPConnect-GetStructuredRecord-Operation-1"></reference>
+         </definition>
+      </operation>
+   </rest>
+</CapabilityStatement>
