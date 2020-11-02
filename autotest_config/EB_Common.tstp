@@ -1,4 +1,4 @@
-#
+#1
 # Care Connect Emergency Booking EB_Common tstp file
 #
 SCRIPT EB_Common
@@ -13,22 +13,56 @@ STOP WHEN COMPLETE
 BEGIN TESTS
 # valid date ranges
 SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
 OperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
 AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
 ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
-ResponseIsBundleExtracting CHAIN SYNC response_is_bundle_extracting TEXT "Response contains a root fhir:Bundle element"
+
+ResponseIsBundleExtracting5 CHAIN SYNC response_is_bundle_extracting5 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting6 CHAIN SYNC response_is_bundle_extracting6 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting7 CHAIN SYNC response_is_bundle_extracting7 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting8 CHAIN SYNC response_is_bundle_extracting8 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting9 CHAIN SYNC response_is_bundle_extracting9 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting10 CHAIN SYNC response_is_bundle_extracting10 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting11 CHAIN SYNC response_is_bundle_extracting11 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting12 CHAIN SYNC response_is_bundle_extracting12 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting13 CHAIN SYNC response_is_bundle_extracting13 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting14 CHAIN SYNC response_is_bundle_extracting14 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting15 CHAIN SYNC response_is_bundle_extracting15 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting16 CHAIN SYNC response_is_bundle_extracting16 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting17 CHAIN SYNC response_is_bundle_extracting17 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting18 CHAIN SYNC response_is_bundle_extracting18 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting19 CHAIN SYNC response_is_bundle_extracting19 TEXT "Response contains a root fhir:Bundle element"
 END TESTS
 
 BEGIN MESSAGES
 # supply this for HTTP GET requests
 empty_file USING empty_file_template WITH slots
+empty_file5 USING empty_file_template WITH slots5
+empty_file6 USING empty_file_template WITH slots6
+empty_file7 USING empty_file_template WITH slots7
+empty_file8 USING empty_file_template WITH slots8
+empty_file9 USING empty_file_template WITH slots9
+empty_file10 USING empty_file_template WITH slots10
+empty_file11 USING empty_file_template WITH slots11
+empty_file12 USING empty_file_template WITH slots12
+empty_file13 USING empty_file_template WITH slots13
+empty_file14 USING empty_file_template WITH slots14
+empty_file15 USING empty_file_template WITH slots15
+empty_file16 USING empty_file_template WITH slots16
+empty_file17 USING empty_file_template WITH slots17
+empty_file18 USING empty_file_template WITH slots18
+empty_file19 USING empty_file_template WITH slots19
 
 END MESSAGES
 
 BEGIN TEMPLATES
 # for GET
 empty_file_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/emptyfile.txt
+book_appt_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/book_appt.xml
 END TEMPLATES
 
 BEGIN PROPERTYSETS
@@ -94,11 +128,40 @@ accept_gzip
 END HTTPHEADERS
 
 BEGIN EXTRACTORS
-slots_free_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots_free.cfg
+slots_free5_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free5.cfg
+slots_free6_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free6.cfg
+slots_free7_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free7.cfg
+slots_free8_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free8.cfg
+slots_free9_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free9.cfg
+slots_free10_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free10.cfg
+slots_free11_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free11.cfg
+slots_free12_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free12.cfg
+slots_free13_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free13.cfg
+slots_free14_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free14.cfg
+slots_free15_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free15.cfg
+slots_free16_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free16.cfg
+slots_free17_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free17.cfg
+slots_free18_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free18.cfg
+slots_free19_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free19.cfg
 END EXTRACTORS
 
 BEGIN DATASOURCES
 slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots.tdv
+slots5 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_5.tdv
+slots6 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_6.tdv
+slots7 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_7.tdv
+slots8 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_8.tdv
+slots9 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_9.tdv
+slots10 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_10.tdv
+slots11 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_11.tdv
+slots12 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_12.tdv
+slots13 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_13.tdv
+slots14 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_14.tdv
+slots15 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_15.tdv
+slots16 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_16.tdv
+slots17 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_17.tdv
+slots18 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_18.tdv
+slots19 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_19.tdv
 END DATASOURCES
 
 BEGIN PASSFAIL
@@ -107,22 +170,49 @@ BEGIN PASSFAIL
 #
 ok httpok
 response_is_bundle synchronousxpath /fhir:Bundle exists
-response_is_bundle_extracting synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free_extractor
+
+response_is_bundle_extracting5 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free5_extractor
+response_is_bundle_extracting6 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free6_extractor
+response_is_bundle_extracting7 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free7_extractor
+response_is_bundle_extracting8 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free8_extractor
+response_is_bundle_extracting9 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free9_extractor
+response_is_bundle_extracting10 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free10_extractor
+response_is_bundle_extracting11 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free11_extractor
+response_is_bundle_extracting12 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free12_extractor
+response_is_bundle_extracting13 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free13_extractor
+response_is_bundle_extracting14 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free14_extractor
+response_is_bundle_extracting15 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free15_extractor
+response_is_bundle_extracting16 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free16_extractor
+response_is_bundle_extracting17 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free17_extractor
+response_is_bundle_extracting18 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free18_extractor
+response_is_bundle_extracting19 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free19_extractor
+
 type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
 operation_outcome synchronousxpath /fhir:OperationOutcome exists
 
 invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
 # 403
 access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
+# 405 wrong method
+wrong_method synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^WRONG_METHOD$"
 #
 # http status code checks
 #
 httpstatuscheck201 httpstatuscheck 201
 httpstatuschecknot200 not ( httpok )
+
 httpstatuscheck400 httpstatuscheck 400
 httpstatuscheck403 httpstatuscheck 403
 httpstatuscheck404 httpstatuscheck 404
+httpstatuscheck405 httpstatuscheck 405
+httpstatuscheck409 httpstatuscheck 409
+httpstatuscheck412 httpstatuscheck 412
+httpstatuscheck415 httpstatuscheck 415
 httpstatuscheck422 httpstatuscheck 422
+
+httpstatuscheck500 httpstatuscheck 500
+httpstatuscheck502 httpstatuscheck 502
+httpstatuscheck504 httpstatuscheck 504
 #
 # http header checks
 #
@@ -146,14 +236,40 @@ __FROM_ASID__  Literal "200000000359"
 
 # Healthcare Service happy path
 __HCS__  Literal "999999999999"
-# Healthcare Service http 400
+
+# Healthcare Service happy path - no slots
+__HCS_NO_SLOTS__  Literal "999999999998"
+
+# Healthcare Service http 400 Invalid
 __HCS_400__  Literal "999999999997"
-# Healthcare Service http 403
+
+# Healthcare Service http 403 Forbidden
 __HCS_403__  Literal "999999999996"
-# Healthcare Service http 500
+
+# Healthcare Service http 500 Server Error
 __HCS_500__  Literal "999999999995"
-# Healthcare Service http 403
+
+# Healthcare Service http 405 Wrong Method
 __HCS_405__  Literal "999999999994"
+
+# Book
+__SLOT_BOOK_ALREADY_BOOKED__ Literal "slot006"
+__SLOT_BOOK_FAILED_VALIDATION__ Literal "slot007"
+__SLOT_BOOK_INVALID__ Literal "slot008"
+__SLOT_BOOK_FORBIDDEN__ Literal "slot009"
+__SLOT_BOOK_SERVER_ERROR__ Literal "slot0010"
+__SLOT_BOOK_UNSUPPORTED_MEDIA_TYPE__ Literal "Slot011"
+__SLOT_BOOK_BAD_GATEWAY__ Literal "slot012"
+
+# Cancel
+__APPT_CANCEL_DIFFERENCES_DETECTED__ Literal "slot013"
+__APPT_CANCEL_VERSION_CONFLICT__ Literal "slot014"
+__APPT_CANCEL_IF_MATCH_HEADER_MISSING__ Literal "slot015"
+__APPT_CANCEL_SERVER_ERROR__ Literal "slot016"
+# TODO this is tagged as unsupported media type in the spreadsheet
+__APPT_CANCEL_NO_VALID_JWT__ Literal "slot017"
+__APPT_CANCEL_BAD_GATEWAY__ Literal "slot018"
+__APPT_CANCEL_GATEWAY_TIMEOUT__ Literal "slot019"
 
 __APPOINTMENT_ID__ Literal "1"
 END SUBSTITUTION_TAGS
