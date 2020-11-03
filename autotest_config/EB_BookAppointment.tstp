@@ -5,36 +5,21 @@ SCRIPT EB_BookAppointment
 
 BEGIN SCHEDULES
 # valid date ranges this tests populates the firstFreeSlot row of slots.tdv
-SFFSWithValidParameters_3_days_5 TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5
-BookAppointment TESTS BookAppointment_test LocationIsReturned AppointmentIsBooked
-#
-SFFSWithValidParameters_3_days_6 TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6
-BookAppointment_SlotAlreadyBooked TESTS BookAppointment_SlotAlreadyBooked
-#
-SFFSWithValidParameters_3_days_7 TESTS SFFSWithValidParameters_3_days_7 ResponseIsBundleExtracting7
-BookAppointment_FailedValidation TESTS BookAppointment_FailedValidation
-#
-SFFSWithValidParameters_3_days_8 TESTS SFFSWithValidParameters_3_days_8 ResponseIsBundleExtracting8
-BookAppointment_Invalid TESTS BookAppointment_Invalid
-#
-SFFSWithValidParameters_3_days_9 TESTS SFFSWithValidParameters_3_days_9 ResponseIsBundleExtracting9
-BookAppointment_Forbidden TESTS BookAppointment_Forbidden
-#
-SFFSWithValidParameters_3_days_10 TESTS SFFSWithValidParameters_3_days_10 ResponseIsBundleExtracting10
-BookAppointment_ServerError TESTS BookAppointment_ServerError
-#
-SFFSWithValidParameters_3_days_11 TESTS SFFSWithValidParameters_3_days_11 ResponseIsBundleExtracting11
-BookAppointment_UnsupportedMediaType TESTS BookAppointment_UnsupportedMediaType
-#
-SFFSWithValidParameters_3_days_12 TESTS SFFSWithValidParameters_3_days_12 ResponseIsBundleExtracting12
-BookAppointment_BadGateway TESTS BookAppointment_BadGateway
+BookAppointment TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment_test LocationIsReturned AppointmentIsBooked
+
+# need to book the slot then rebook it, or search for a busy slot and rebook it
+BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked
+BookAppointment_FailedValidation TESTS SFFSWithValidParameters_3_days_7 ResponseIsBundleExtracting7 BookAppointment_FailedValidation
+BookAppointment_Invalid TESTS SFFSWithValidParameters_3_days_8 ResponseIsBundleExtracting8 BookAppointment_Invalid
+BookAppointment_Forbidden TESTS SFFSWithValidParameters_3_days_9 ResponseIsBundleExtracting9 BookAppointment_Forbidden
+BookAppointment_ServerError TESTS SFFSWithValidParameters_3_days_10 ResponseIsBundleExtracting10 BookAppointment_ServerError
+BookAppointment_UnsupportedMediaType TESTS SFFSWithValidParameters_3_days_11 ResponseIsBundleExtracting11 BookAppointment_UnsupportedMediaType
+BookAppointment_BadGateway TESTS SFFSWithValidParameters_3_days_12 ResponseIsBundleExtracting12 BookAppointment_BadGateway
 END SCHEDULES
 
 BEGIN TESTS
-# happy path
-BookAppointment_test SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 201"
 # slot already booked scenario 15
-BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_busy_slot TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 422 SCAL P29"
+BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_slot6 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 422 SCAL P29"
 # failed validation 16
 BookAppointment_FailedValidation SEND_TKW book_appointment_slot7 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 422"
 # request body is invalid or unsupported scenario 17
@@ -56,13 +41,11 @@ SFFSWithValidParameters_3_days_10 SEND_TKW empty_file10 TO __TO_ENDPOINT__/Slot?
 SFFSWithValidParameters_3_days_11 SEND_TKW empty_file11 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 SFFSWithValidParameters_3_days_12 SEND_TKW empty_file12 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
-LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
-AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
 END TESTS
 
 BEGIN MESSAGES
 book_appointment_slot5 USING book_appt_template WITH slots5 ID s5
-book_appointment_busy_slot USING book_appt_template WITH slots6 ID s6
+book_appointment_slot6 USING book_appt_template WITH slots6 ID s6
 book_appointment_slot7 USING book_appt_template WITH slots7 ID s7
 book_appointment_slot8 USING book_appt_template WITH slots8 ID s8
 book_appointment_slot9 USING book_appt_template WITH slots9 ID s9
@@ -70,8 +53,3 @@ book_appointment_slot10 USING book_appt_template WITH slots10 ID s10
 book_appointment_slot11 USING book_appt_template WITH slots11 ID s11
 book_appointment_slot12 USING book_appt_template WITH slots12 ID s12
 END MESSAGES
-
-BEGIN PASSFAIL
-location_is_returned httpheadercheck Location exists
-appt_is_booked  synchronousxpath /fhir:Appointment/fhir:status/@value matches "^booked$"
-END PASSFAIL
