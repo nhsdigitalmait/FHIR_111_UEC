@@ -4,8 +4,8 @@
 SCRIPT EB_BookAppointment
 
 BEGIN SCHEDULES
-# valid date ranges this tests populates the firstFreeSlot row of slots.tdv
-BookAppointment TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment_test LocationIsReturned AppointmentIsBooked
+# valid date ranges this tests populates the slot 5 tdv including the etag from the successful book
+BookAppointment_HappyPath TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment ResponseIsEmptyPayloadExtracting5 LocationIsReturned AppointmentIsBooked
 
 # need to book the slot then rebook it, or search for a busy slot and rebook it
 BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked
