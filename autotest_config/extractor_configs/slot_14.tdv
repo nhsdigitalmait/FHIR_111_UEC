@@ -1,2 +1,2 @@
 __ID__	__COMMENT__	__SLOT_ID__	__IDENTIFIER_SYSTEM__	__IDENTIFIER_VALUE__	__SCHEDULE__	__STATUS__	__START_DATE__	__END_DATE__	__CONTENT_LENGTH__	__ETAG__	__LOCATION__	__LAST_MODIFIED__
-s14	cancelVersionConflictSlot	slot014	https://tools.ietf.org/html/rfc4122	32bbfb15-ed32-4831-8b32-f3da34b08d5d	sched1111	free	2020-11-06T14:45:00.000+00:00	2020-11-06T15:00:00.000+00:00	_	_	_	_
+s14	cancelVersionConflictSlot	slot014	https://tools.ietf.org/html/rfc4122	32bbfb15-ed32-4831-8b32-f3da34b08d5d	sched1111	free	2020-11-08T14:45:00.000+00:00	2020-11-08T15:00:00.000+00:00	0	W/"f6f6ac03-a661-46b3-9554-b358e551afa7"	https://clinicals.spineservices.nhs.uk/STU3/Appointment/af65b4f7-3ed5-48fa-8f6f-09a23c49f678/_history/f6f6ac03-a661-46b3-9554-b358e551afa7	2020-11-06T11:21:50Z

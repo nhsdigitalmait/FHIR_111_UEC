@@ -1,2 +1,2 @@
 __ID__	__COMMENT__	__SLOT_ID__	__IDENTIFIER_SYSTEM__	__IDENTIFIER_VALUE__	__SCHEDULE__	__STATUS__	__START_DATE__	__END_DATE__	__CONTENT_LENGTH__	__ETAG__	__LOCATION__	__LAST_MODIFIED__
-s19	cancelGatewayTimeoutSlot	slot019	https://tools.ietf.org/html/rfc4122	1bd2b96c-f1b5-412c-a415-c4d5a543528e	sched1111	free	2020-11-06T16:30:00.000+00:00	2020-11-06T16:45:00.000+00:00	_	_	_	_
+s19	cancelGatewayTimeoutSlot	slot019	https://tools.ietf.org/html/rfc4122	1bd2b96c-f1b5-412c-a415-c4d5a543528e	sched1111	free	2020-11-08T16:30:00.000+00:00	2020-11-08T16:45:00.000+00:00	0	W/"98dc70d2-5d34-4d48-b8d5-91ddd3ada8fc"	https://clinicals.spineservices.nhs.uk/STU3/Appointment/d861ddc8-78a3-4276-b875-74eca4573ac2/_history/98dc70d2-5d34-4d48-b8d5-91ddd3ada8fc	2020-11-06T11:22:43Z

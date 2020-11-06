@@ -1,5 +1,6 @@
 # Emergency Booking Search for free slots test script
 #
+# slot numbers refer to test scenario identifiers not actual slot numbers
 #
 SCRIPT EB_SearchForFreeSlots
 #
@@ -44,14 +45,14 @@ SFFSWithInvalidDateRangeError_l1_days TESTS SFFSWithInvalidDateRangeError_l1_day
 SearchSlots_NoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
 
 # scenario 3
-SearchSlots_Invalid TESTS SFFSWithInvalidQuery OperationOutcome AccessDenied
+SearchSlots_Invalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome AccessDenied
 
 # scenario 4
 # SCAL P3 Invalid aud endpoint
-SearchSlots_Forbidden TESTS SFFSWithInvalidJWTaud OperationOutcome AccessDenied SFFSWithInvalidJWTScope OperationOutcome AccessDenied
+SearchSlots_Forbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome AccessDenied
 #
 # scenario 6
-SearchSlots_WrongMethod TESTS SFFSWithWrongMethod OperationOutcome AccessDenied
+SearchSlots_WrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome AccessDenied
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
 

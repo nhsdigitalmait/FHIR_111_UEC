@@ -1,5 +1,6 @@
-#1
+#
 # Care Connect Emergency Booking EB_Common tstp file
+# slot numbers refer to test scenario identifiers not actual slot numbers
 #
 SCRIPT EB_Common
 
@@ -19,13 +20,17 @@ SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?sc
 # happy path
 BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 201"
 
-OperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
+ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
 AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
+
+ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
+
 ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
 
-ResponseIsBundleExtracting5 CHAIN SYNC response_is_bundle_extracting5 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsEmptyPayloadExtracting5 CHAIN SYNC response_is_empty_payload_extracting5 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting5 CHAIN SYNC response_is_bundle_extracting5 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting6 CHAIN SYNC response_is_bundle_extracting6 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting7 CHAIN SYNC response_is_bundle_extracting7 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting8 CHAIN SYNC response_is_bundle_extracting8 TEXT "Response contains a root fhir:Bundle element"
@@ -33,16 +38,34 @@ ResponseIsBundleExtracting9 CHAIN SYNC response_is_bundle_extracting9 TEXT "Resp
 ResponseIsBundleExtracting10 CHAIN SYNC response_is_bundle_extracting10 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting11 CHAIN SYNC response_is_bundle_extracting11 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsBundleExtracting12 CHAIN SYNC response_is_bundle_extracting12 TEXT "Response contains a root fhir:Bundle element"
+
 ResponseIsBundleExtracting13 CHAIN SYNC response_is_bundle_extracting13 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting13 CHAIN SYNC response_is_empty_payload_extracting13 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting14 CHAIN SYNC response_is_bundle_extracting14 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting14 CHAIN SYNC response_is_empty_payload_extracting14 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting15 CHAIN SYNC response_is_bundle_extracting15 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting15 CHAIN SYNC response_is_empty_payload_extracting15 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting16 CHAIN SYNC response_is_bundle_extracting16 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting16 CHAIN SYNC response_is_empty_payload_extracting16 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting17 CHAIN SYNC response_is_bundle_extracting17 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting17 CHAIN SYNC response_is_empty_payload_extracting17 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting18 CHAIN SYNC response_is_bundle_extracting18 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting18 CHAIN SYNC response_is_empty_payload_extracting18 TEXT "Response payload is empty"
+
 ResponseIsBundleExtracting19 CHAIN SYNC response_is_bundle_extracting19 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting19 CHAIN SYNC response_is_empty_payload_extracting19 TEXT "Response payload is empty"
 
 LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
 AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
+
+
+# Most of the operation outcome checks will be satisified bythe validation
+#OperationOutcomeHasId CHAIN SYNC outcome_has_id TEXT "Operation outcome id is mandatory. SCAL P37"
 END TESTS
 
 BEGIN MESSAGES
@@ -179,7 +202,17 @@ ok httpok
 response_is_bundle synchronousxpath /fhir:Bundle exists
 
 response_is_bundle_extracting5 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free5_extractor
+response_is_appt_extracting5 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free5_extractor
+
 response_is_empty_payload_extracting5 synchronousxpath / doesnotexist EXTRACTOR slots_free5_extractor
+response_is_empty_payload_extracting13 synchronousxpath / doesnotexist EXTRACTOR slots_free13_extractor
+response_is_empty_payload_extracting14 synchronousxpath / doesnotexist EXTRACTOR slots_free14_extractor
+response_is_empty_payload_extracting15 synchronousxpath / doesnotexist EXTRACTOR slots_free15_extractor
+response_is_empty_payload_extracting16 synchronousxpath / doesnotexist EXTRACTOR slots_free16_extractor
+response_is_empty_payload_extracting17 synchronousxpath / doesnotexist EXTRACTOR slots_free17_extractor
+response_is_empty_payload_extracting18 synchronousxpath / doesnotexist EXTRACTOR slots_free18_extractor
+response_is_empty_payload_extracting19 synchronousxpath / doesnotexist EXTRACTOR slots_free19_extractor
+
 response_is_bundle_extracting6 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free6_extractor
 response_is_bundle_extracting7 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free7_extractor
 response_is_bundle_extracting8 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free8_extractor

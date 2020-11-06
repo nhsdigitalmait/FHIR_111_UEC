@@ -1,2 +1,2 @@
 __ID__	__COMMENT__	__SLOT_ID__	__IDENTIFIER_SYSTEM__	__IDENTIFIER_VALUE__	__SCHEDULE__	__STATUS__	__START_DATE__	__END_DATE__	__CONTENT_LENGTH__	__ETAG__	__LOCATION__	__LAST_MODIFIED__
-s17	cancelNoValidJWTSlot	slot017	https://tools.ietf.org/html/rfc4122	c263e2a0-b309-4472-b879-20fe8edebe9b	sched1111	free	2020-11-06T15:45:00.000+00:00	2020-11-06T16:00:00.000+00:00	_	_	_	_
+s17	cancelNoValidJWTSlot	slot017	https://tools.ietf.org/html/rfc4122	c263e2a0-b309-4472-b879-20fe8edebe9b	sched1111	free	2020-11-08T15:45:00.000+00:00	2020-11-08T16:00:00.000+00:00	0	W/"901cd4d9-4c0f-4ff2-9a84-3b6ef9c62105"	https://clinicals.spineservices.nhs.uk/STU3/Appointment/a669a8c6-1d48-422b-9312-14943252d50f/_history/901cd4d9-4c0f-4ff2-9a84-3b6ef9c62105	2020-11-06T11:22:23Z

@@ -1,5 +1,6 @@
 #
 # Care Connect emergency booking EB_Capability tstp file
+# slot numbers refer to test scenario identifiers not actual slot numbers
 #
 SCRIPT EB_Capability
 
