@@ -54,7 +54,7 @@ END TESTS
 
 BEGIN PASSFAIL
 appt_has_id synchronousxpath /fhir:Appointment/fhir:id/@value exists
-location_is_well_formed http_header Location matches "^http://.+/Appointment/.+$"
+location_is_well_formed httpheadercheck Location matches "^http://.+/Appointment/.+$"
 
 severity_is_error synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:severity/@value matches "^error$"
 code_is_processing_failure synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^(processing|Processing Failure)$"
