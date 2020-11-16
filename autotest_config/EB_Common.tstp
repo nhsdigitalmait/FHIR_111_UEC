@@ -18,7 +18,7 @@ SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?sched
 SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
 # happy path
-BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 201"
+BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 201"
 
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
