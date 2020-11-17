@@ -111,5 +111,5 @@
       </actor>
       <status value="accepted"></status>
   </participant>
-  <id value="__LOCATION__"/>
+  <id value="__APPT_ID__"/>
 </Appointment>
