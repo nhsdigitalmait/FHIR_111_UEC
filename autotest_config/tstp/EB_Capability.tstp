@@ -9,7 +9,7 @@ Capability TESTS CapabilityTest ResponseIsCapabilityStatement
 END SCHEDULES
 
 BEGIN TESTS
-CapabilityTest SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata TEXT "HTTP Response must be HTTP 200"
+CapabilityTest SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept TEXT "HTTP Response must be HTTP 200"
 ResponseIsCapabilityStatement CHAIN SYNC response_is_capability_statement TEXT "Response must be a CapabilityStatement"
 END TESTS
 

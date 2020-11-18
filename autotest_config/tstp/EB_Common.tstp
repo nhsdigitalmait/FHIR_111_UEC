@@ -18,7 +18,7 @@ SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?sched
 SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
 # happy path
-BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 201"
+BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 201"
 
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
@@ -69,7 +69,9 @@ AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be b
 END TESTS
 
 BEGIN MESSAGES
+#
 # supply this for HTTP GET requests
+#
 empty_file USING empty_file_template WITH slots
 empty_file5 USING empty_file_template WITH slots5
 empty_file6 USING empty_file_template WITH slots6
@@ -87,6 +89,7 @@ empty_file17 USING empty_file_template WITH slots17
 empty_file18 USING empty_file_template WITH slots18
 empty_file19 USING empty_file_template WITH slots19
 
+book_appointment_slot5 USING book_appt_template WITH slots5 ID s5
 END MESSAGES
 
 BEGIN TEMPLATES
@@ -141,6 +144,8 @@ JWT_book_cancel
 JWT_invalid_aud
 	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 notanendpoint secret true
 
+unsupported_content
+	Content-type "application/xml"
 xml_content
 	Content-type "application/fhir+xml"
 xml_accept
@@ -176,7 +181,8 @@ slots_free19_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_c
 END EXTRACTORS
 
 BEGIN DATASOURCES
-slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/slots.tdv
+# do we actually need this datasource?
+slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots.tdv
 slots5 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_5.tdv
 slots6 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_6.tdv
 slots7 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_7.tdv
