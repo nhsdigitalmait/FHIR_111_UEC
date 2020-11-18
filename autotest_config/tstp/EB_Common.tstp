@@ -281,9 +281,6 @@ END PASSFAIL
 # These are evaluated at runtime when the script is run by TKW in autotest mode
 #
 BEGIN SUBSTITUTION_TAGS
-__TO_ASID__ Literal "918999198993"
-__FROM_ASID__  Literal "200000000359"
-
 # Healthcare Service happy path
 __HCS__  Literal "999999999999"
 
@@ -301,25 +298,4 @@ __HCS_500__  Literal "999999999995"
 
 # Healthcare Service http 405 Wrong Method
 __HCS_405__  Literal "999999999994"
-
-# Book
-__SLOT_BOOK_ALREADY_BOOKED__ Literal "slot006"
-__SLOT_BOOK_FAILED_VALIDATION__ Literal "slot007"
-__SLOT_BOOK_INVALID__ Literal "slot008"
-__SLOT_BOOK_FORBIDDEN__ Literal "slot009"
-__SLOT_BOOK_SERVER_ERROR__ Literal "slot0010"
-__SLOT_BOOK_UNSUPPORTED_MEDIA_TYPE__ Literal "Slot011"
-__SLOT_BOOK_BAD_GATEWAY__ Literal "slot012"
-
-# Cancel
-__APPT_CANCEL_DIFFERENCES_DETECTED__ Literal "slot013"
-__APPT_CANCEL_VERSION_CONFLICT__ Literal "slot014"
-__APPT_CANCEL_IF_MATCH_HEADER_MISSING__ Literal "slot015"
-__APPT_CANCEL_SERVER_ERROR__ Literal "slot016"
-# TODO this is tagged as unsupported media type in the spreadsheet
-__APPT_CANCEL_NO_VALID_JWT__ Literal "slot017"
-__APPT_CANCEL_BAD_GATEWAY__ Literal "slot018"
-__APPT_CANCEL_GATEWAY_TIMEOUT__ Literal "slot019"
-
-__APPOINTMENT_ID__ Literal "1"
 END SUBSTITUTION_TAGS

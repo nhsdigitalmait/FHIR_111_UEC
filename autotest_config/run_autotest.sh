@@ -1,6 +1,14 @@
 #!/bin/bash
 #  Script for TKWATM test script generation and execution for Emergency Booking
 #
+#  usage ./run_autotest.sh <A|S|B|C|> 
+#  A => Capability
+#  S => Search for free slots
+#  B => Book appointment
+#  C => Cancel appointment
+#  No Parameter => All
+#
+#
 TSTP_FILES=EB_Common.tstp
 
 case "$1" in
@@ -25,12 +33,11 @@ case "$1" in
 	;;
 esac
 
-ENVIRONMENT=local
+ENVIRONMENT=local   # acts as a label for an endpoint config in endpoint_configs
 SCRIPT_NAME=111_uec
 
 ROOT=$TKWROOT/config/FHIR_111_UEC/autotest_config
 MERGED_TSTP_FILE=$ROOT/mergedfile.tstp
-AUTOTESTS=$ROOT/auto_tests
 TSTP_FOLDER=./tstp/
 
 #   <input folder> <output tst file> <script file name> <input tstp file>+
@@ -39,5 +46,5 @@ java -cp $TKWROOT/TKWAutotestManager.jar TKWAutotestManager.TestFileMerger $TSTP
 # change title of script
 sed -i $MERGED_TSTP_FILE -r -e 's/SCRIPT .+/SCRIPT '$SCRIPT_NAME'_'$ENVIRONMENT'/'
 
-# transform the merged file to resolve substitution tags and run the script
+# transform the merged file into a tst file to resolve substitution tags and then runs the script
 ./transform.sh $ENVIRONMENT $MERGED_TSTP_FILE

@@ -14,25 +14,18 @@ if [[ "$1" != "" ]]
 then
 	dest=$1
 else
-	#dest=int
-	#dest=answer
 	dest=local
-	#dest=ingleborough
 fi
 
+# defaults
+toasid=200000000359
+fromasid=200000000359
 sendtls=No
-
-# Answer Demonstrator and default
-truststore=$tst/amazon.jks
-# not really a keystore but not used anyway
-keystore=$tst/amazon.jks
-
-# ingleborough
-toasid=200000000375
-# whernside
-fromasid=200000000376
-
+truststore=NONE
+keystore=NONE
 from_ep_port=4000
+
+#============================================================================================================
 
 date_format=+%Y-%m-%dT00:00:00%:z
 today=`date $date_format`
@@ -40,67 +33,15 @@ today1=`date $date_format --date='+ 1 days'`
 today4=`date $date_format --date='+ 4 days'`
 todayl1=`date $date_format --date='- 1 days'`
 
-case $dest in
-	int)
-	# to int
-	to_ep=https://proxy.int.spine2.ncrs.nhs.uk
-
-	truststore=$HOME/Documents/SSP/whernside/SSP_whernside_20170719/certs/trust.jks
-	keystore=$HOME/Documents/certs/INT_Certs/whernside_ssp/rhm-whernside.cfh-nic.nhs.uk.jks
-
-	sendtls=Yes
-	;;
-
-	ingleborough)
-	# direct to ingleborough
-	to_ep=https://rhm-ingleborough.cfh-nic.nhs.uk
-
-	truststore=$HOME/Documents/SSP/whernside/SSP_whernside_20170719/certs/trust.jks
-	keystore=$HOME/Documents/certs/INT_Certs/whernside_ssp/rhm-whernside.cfh-nic.nhs.uk.jks
-
-	sendtls=Yes
-	;;
-
-	local.nginx)
-	# to local 
-	toasid=200000000359
-	fromasid=200000000359
-	to_ep=http://127.0.0.1/STU3
-	;;
-
-	local)
-	# to local 
-	toasid=200000000359
-	fromasid=200000000359
-	to_ep=http://127.0.0.1:4434/STU3
-	;;
-
-	xkcd)
-	# to xkcd 
-	toasid=200000000359
-	fromasid=200000000359
-	to_ep=http://xkcd:19191
-	;;
-
-	xkcd_secure)
-	# to xkcd
-	toasid=200000000359
-	fromasid=200000000359
-	to_ep=https://xkcd:19192
-	truststore=$HOME/Documents/OpenTest/OpenTestCerts_3/opentest.jks
-	keystore=$HOME/Documents/OpenTest/OpenTestCerts_3/vpn-client-1003.opentest.hscic.gov.uk.jks
-	sendtls=Yes
-	;;
-
-	*)
-	echo "Unrecognised endpoint $1"
+if [[ -e endpoint_configs/$dest.sh ]]
+then
+	. endpoint_configs/$dest.sh
+else
+	echo "Unrecognised endpoint $dest"
 	read -n 1 -p "Press any key to exit..."
 	echo
 	exit
-	;;
-
-esac
-
+fi
 
 for f in $2
 do
@@ -125,9 +66,9 @@ do
 #		< $f  > $tst/$prefix".tst"
 
 # these need preserving they are handled by substitution tags
-#	    -e s!__FROM_ASID__!$fromasid!g \
-#	    -e s!__TO_ASID__!$toasid!g \
 	sed -e s!__TKWROOT__!$TKWROOT!g \
+	    -e s!__FROM_ASID__!$fromasid!g \
+	    -e s!__TO_ASID__!$toasid!g \
 	    -e s!__TO_ENDPOINT__!$to_ep!g \
 	    -e s!__FROM_ENDPOINT__!$from_ep!g \
 	    -e s!__FROM_ENDPOINT_PORT__!$from_ep_port!g \

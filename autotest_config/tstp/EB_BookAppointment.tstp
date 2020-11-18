@@ -29,16 +29,25 @@ OutcomeDiagnosticsIsSlotNoLongerAvailable CHAIN SYNC diagnostics_is_slot_no_long
 #
 # slot already booked scenario 15
 BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_slot6 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422 SCAL P29"
-# failed validation 16
+
+# failed validation 16 If the request fails because the request body failed validation against the relevant profiles
+# TODO need to make this request invalid in some way whats the difference between this and scenario 17
 BookAppointment_FailedValidation SEND_TKW book_appointment_slot7 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422"
+#
 # request body is invalid or unsupported scenario 17
+# TODO need to make this request invalid in some way whats the difference between this and scenario 16
 BookAppointment_Invalid SEND_TKW book_appointment_slot8 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck400 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 400"
+#
 # no valid jwt or invalid jwt scenario 18
+# TODO This jwt is actually ok at present
 BookAppointment_Forbidden SEND_TKW book_appointment_slot9 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 403"
+#
 # server error scenario 19
 BookAppointment_ServerError SEND_TKW book_appointment_slot10 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck500 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 500"
-# unsupported media type 20
+#
+# unsupported media type 20 - content type is application/xml
 BookAppointment_UnsupportedMediaType SEND_TKW book_appointment_slot11 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck415 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+unsupported_content+xml_accept TEXT "HTTP Response must be HTTP 415"
+#
 # bad gateway scenario 21
 BookAppointment_BadGateway SEND_TKW book_appointment_slot12 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck502 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 502"
 
