@@ -1,0 +1,81 @@
+#
+# Care Connect emergency booking EB_BookAppointment tstp file
+# slot numbers refer to test scenario identifiers not actual slot numbers
+#
+SCRIPT EB_BookAppointment
+
+BEGIN SCHEDULES
+# valid date ranges this tests populates the slot 5 tdv including the etag from the successful book
+BookAppointment_HappyPath TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment ResponseIsAppointmentExtracting5 LocationIsReturned AppointmentIsBooked AppointmentHasId LocationIsWellFormed
+
+# need to book the slot then rebook it, or search for a busy slot and rebook it
+BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked ResponseIsOperationOutcome OutcomeSeverityIsError OutcomeCodeIsProcessingFailure OutcomeDiagnosticsIsSlotNoLongerAvailable
+BookAppointment_FailedValidation TESTS SFFSWithValidParameters_3_days_7 ResponseIsBundleExtracting7 BookAppointment_FailedValidation ResponseIsOperationOutcome
+BookAppointment_Invalid TESTS SFFSWithValidParameters_3_days_8 ResponseIsBundleExtracting8 BookAppointment_Invalid ResponseIsOperationOutcome
+BookAppointment_Forbidden TESTS SFFSWithValidParameters_3_days_9 ResponseIsBundleExtracting9 BookAppointment_Forbidden ResponseIsOperationOutcome
+BookAppointment_ServerError TESTS SFFSWithValidParameters_3_days_10 ResponseIsBundleExtracting10 BookAppointment_ServerError ResponseIsOperationOutcome
+BookAppointment_UnsupportedMediaType TESTS SFFSWithValidParameters_3_days_11 ResponseIsBundleExtracting11 BookAppointment_UnsupportedMediaType ResponseIsOperationOutcome
+BookAppointment_BadGateway TESTS SFFSWithValidParameters_3_days_12 ResponseIsBundleExtracting12 BookAppointment_BadGateway ResponseIsOperationOutcome
+END SCHEDULES
+
+BEGIN TESTS
+AppointmentHasId CHAIN SYNC appt_has_id TEXT "Booked appointment has an allocated id element. SCAL P26"
+LocationIsWellFormed CHAIN SYNC location_is_well_formed TEXT "Location is well formed. SCAL P28"
+
+OutcomeSeverityIsError CHAIN SYNC severity_is_error TEXT "Operation Outcome severity is error. SCAL P30" 
+OutcomeCodeIsProcessingFailure CHAIN SYNC code_is_processing_failure TEXT "Operation Outcome code is Processing Failure. SCAL P30" 
+OutcomeDiagnosticsIsSlotNoLongerAvailable CHAIN SYNC diagnostics_is_slot_no_longer_available TEXT "Operation Outcome diagnostics is Slot no longer available. SCAL P30"
+
+#
+# slot already booked scenario 15
+BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_slot6 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422 SCAL P29"
+
+# failed validation 16 If the request fails because the request body failed validation against the relevant profiles
+# TODO need to make this request invalid in some way whats the difference between this and scenario 17
+BookAppointment_FailedValidation SEND_TKW book_appointment_slot7 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422"
+#
+# request body is invalid or unsupported scenario 17
+# TODO need to make this request invalid in some way whats the difference between this and scenario 16
+BookAppointment_Invalid SEND_TKW book_appointment_slot8 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck400 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 400"
+#
+# no valid jwt or invalid jwt scenario 18
+# TODO This jwt is actually ok at present
+BookAppointment_Forbidden SEND_TKW book_appointment_slot9 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 403"
+#
+# server error scenario 19
+BookAppointment_ServerError SEND_TKW book_appointment_slot10 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck500 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 500"
+#
+# unsupported media type 20 - content type is application/xml
+BookAppointment_UnsupportedMediaType SEND_TKW book_appointment_slot11 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck415 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+unsupported_content+xml_accept TEXT "HTTP Response must be HTTP 415"
+#
+# bad gateway scenario 21
+BookAppointment_BadGateway SEND_TKW book_appointment_slot12 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck502 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 502"
+
+SFFSWithValidParameters_3_days_6 SEND_TKW empty_file6 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_7 SEND_TKW empty_file7 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_8 SEND_TKW empty_file8 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_9 SEND_TKW empty_file9 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_10 SEND_TKW empty_file10 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_11 SEND_TKW empty_file11 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_12 SEND_TKW empty_file12 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+END TESTS
+
+BEGIN PASSFAIL
+appt_has_id synchronousxpath /fhir:Appointment/fhir:id/@value exists
+location_is_well_formed httpheadercheck Location matches "^http://.+/Appointment/.+$"
+
+severity_is_error synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:severity/@value matches "^error$"
+code_is_processing_failure synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^(processing|Processing Failure)$"
+diagnostics_is_slot_no_longer_available synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:diagnostics/@value matches "^Slot no longer available$"
+END PASSFAIL
+
+BEGIN MESSAGES
+book_appointment_slot6 USING book_appt_template WITH slots6 ID s6
+book_appointment_slot7 USING book_appt_template WITH slots7 ID s7
+book_appointment_slot8 USING book_appt_template WITH slots8 ID s8
+book_appointment_slot9 USING book_appt_template WITH slots9 ID s9
+book_appointment_slot10 USING book_appt_template WITH slots10 ID s10
+book_appointment_slot11 USING book_appt_template WITH slots11 ID s11
+book_appointment_slot12 USING book_appt_template WITH slots12 ID s12
+END MESSAGES

@@ -1,0 +1,160 @@
+# Emergency Booking Search for free slots test script
+#
+# slot numbers refer to test scenario identifiers not actual slot numbers
+#
+SCRIPT EB_SearchForFreeSlots
+#
+#  Search parameters spec implies thay are all optional https://developer.nhs.uk/apis/nhsbooking-2.0.0-beta/search_free_slots.html
+#  
+#status=free  C27 => optional
+#start=le mandatory le or lt See C28
+#start=ge optional gt or ge See  C29
+#schedule.actor.healthcareservice mandatory C30
+#
+#_include in response parameters
+#
+#_include=Slot:Schedule mandatory C31
+#_include=Schedule:actor%2BPractitioner mandatory SCAL P19 implies optional C33 States mandatory
+#_include=Schedule:actor%2BPractitionerRole mandatory SCAL P20 implies optional C34 States mandatory
+#_include=Schedule:actor%2BHealthcareService mandatory SCAL P21 implies optional C32 states Mandatory
+#_include=HealthcareService.location Not mentioned
+#_include=HealthcareService.providedBy SCAL P21 implies optional
+#
+#
+
+BEGIN SCHEDULES
+# valid date ranges
+# SCAL P9 - formats
+SFFSWithValidParameters_parameter_json TESTS SFFSWithValidParameters_parameter_json ResponseIsJson ResponseIsBundle
+SFFSWithValidParameters_header_json TESTS SFFSWithValidParameters_header_json ResponseIsJson ResponseIsBundle
+SFFSWithValidParameters_parameter_xml TESTS SFFSWithValidParameters_parameter_xml ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate
+SFFSWithValidParameters_header_xml TESTS SFFSWithValidParameters_header_xml ResponseIsXml ResponseIsBundle
+
+SFFSWithValidParameters_3_days TESTS SFFSWithValidParameters_3_days ResponseIsBundle
+
+SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIsBundle SFFSPractitionersReturned SFFSPractitionerRolesReturned SFFSOrgsReturned SFFSHealthcareOrgsReturned
+
+# invalid date ranges
+SFFSWithInvalidDateRangeError_l1_days TESTS SFFSWithInvalidDateRangeError_l1_days InvalidParameter
+
+# state is free
+
+# state is busy
+#
+
+SearchSlots_NoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
+
+# scenario 3
+SearchSlots_Invalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome AccessDenied
+
+# scenario 4
+# SCAL P3 Invalid aud endpoint
+SearchSlots_Forbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome AccessDenied
+#
+# scenario 6
+SearchSlots_WrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome AccessDenied
+
+SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
+
+END SCHEDULES
+
+BEGIN TESTS
+# formats
+# json format parameter
+SFFSWithValidParameters_parameter_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# json accept header
+SFFSWithValidParameters_header_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+json_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# xml format parameter
+SFFSWithValidParameters_parameter_xml SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=xml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# xml format header  free slots
+SFFSWithValidParameters_header_xml SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# xml format header busy slots
+SFFSWithValidParameters_search_for_busy_slots SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=busy&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+#
+# No slots scenario 2
+SFFSNoSlotsAvailable SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS_NO_SLOTS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# scenario 3 invalid query string
+SFFSWithInvalidQuery SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2BXXXXXXXXXXXXXXXXXXhealthcareservice=__HCS_400__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 400 Bad Request (https://developer.nhs.uk/apis/nhsbooking-2.0.0-beta/search_free_slots.html"
+
+# invalid aud scenario 4
+SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P3)"
+#
+# scenario 5 server error no point in testing this
+#
+# scenario 6 wrong method post instead of get TODO the simulator doesnt respond correctly because the POST ruleset is selected not the GET ruleset
+#
+SFFSWithWrongMethod SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS_405__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 405"
+#
+# invalid scope uses Book Cancel JWT which has appointment write scenario 4
+SFFSWithInvalidJWTScope SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P4)"
+
+ResponseIsJson CHAIN SYNC httpheadercheckcontenttypeisjson TEXT "Content-type header must start with application/fhir+json"
+ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Content-type header must start with application/fhir+xml"
+#
+# Errors Invalid dates
+SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__START_SLOT_TIME1L__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_content+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422"
+#
+# SCAL entries
+# P10 Validate slots request - The provider system must validate that where an incoming request for Slots specifies a HealthcareService, that it is a valid value recognised and delivered by the system.
+#
+# P11 Create response - must return slots meeting query parameters
+#
+# SCAL P18 Every returned slot must have a status of free (if free was specified)
+SFFSSlotsStatusFree CHAIN SYNC slots_status_free TEXT "All slot records should have a slot status of 'free' (SCAL Requirement P18)"
+# SCAL P19 for each reference to a practitioner that practitioner should be present in the response
+SFFSPractitionersReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioners must be returned (SCAL Requirement P19)"
+# SCAL P20 for each reference to a practitioner role that practitioner should be present in the response
+SFFSPractitionerRolesReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioner roles must be returned (SCAL Requirement P20)"
+# SCAL P21 for each reference to an organization that organization should be present in the response
+SFFSOrgsReturned CHAIN SYNC orgs_returned TEXT "Referenced organizations must be returned (SCAL Requirement P21)"
+# SCAL P22 for each reference to an HealthcareService that HealthcareService should be present in the responsendle.
+SFFSHealthcareOrgsReturned CHAIN SYNC healthcare_returned TEXT "Referenced HealthcareService must be returned (SCAL Requirement P22)"
+# SCAL P23 Create response - Slots returned must meet any provided time constraints.
+SFFSSlotsTooEarly CHAIN SYNC slots_too_early TEXT "No slots that start before the search start should be returned"
+SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the search end should be returned"
+
+SearchCountIsZero CHAIN SYNC search_count_is_zero TEXT "Search count must be zero"
+# 
+#
+END TESTS
+
+BEGIN PASSFAIL
+#SCAL P11 count of slots earlier than start, count of slots later then end, these values will need to be edited when the test is run
+slots_too_early synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[. < '__TODAY1__']) matches "^0$"
+slots_too_late synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[ . > '__TODAY4__']) matches "^0$"
+
+# SCAL P18 Every returned slot must ha2yyve a status of free (if free was specified)
+slots_status_free synchronousxpath boolean(count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:status[@value='free']) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot)) matches "^true$"
+
+# SCAL P19 for each reference to a practitioner that practitioner should be present in the response
+practitioners_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule/fhir:actor/fhir:reference/@value[starts-with(.,'Practitioner/')] return /fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner[fhir:id/@value=substring($r,14)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+
+# SCAL P20 for each reference to a practitioner role that practitioner should be present in the response
+practitioners_roles_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner/fhir:identifier[fhir:system/@value='https://fhir.nhs.uk/Id/sds-role-profile-id']/fhir:value/@value return /fhir:Bundle/fhir:entry/fhir:resource/fhir:PractitionerRole[fhir:id/@value=$r]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Practitioner)) matches "^true$"
+
+# SCAL P21 for each reference to an organization that organization should be present in the response
+orgs_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:HealthcareService/fhir:providedBy/fhir:reference/@value return /fhir:Bundle/fhir:entry/fhir:resource/fhir:Organization[fhir:id/@value=substring($r,58)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+
+# SCAL P22 for each reference to an HealthcareService that HealthcareService should be present in the response
+healthcare_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule/fhir:actor/fhir:reference/@value[starts-with(.,'HealthcareService/')] return /fhir:Bundle/fhir:entry/fhir:resource/fhir:HealthcareService[fhir:id/@value=substring($r,19)]) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Schedule)) matches "^true$"
+
+# Bundle search count must be zero
+search_count_is_zero synchronousxpath /fhir:Bundle/fhir:total/@value matches "^0$"
+
+END PASSFAIL
+#
+# These are evaluated at runtime when the script is run by TKW in autotest mode
+#
+BEGIN SUBSTITUTION_TAGS
+# Europe/London sets the DST flag correctly, true => URL encode the result, unfortunately at present these values cannot be used in the slots_too_early/late tests
+# NB despite the XXX the timezone string set is Z not +00:00. This is as per javadoc
+# see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html   ISO8601
+__START_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "1" "0" "true"
+__START_SLOT_TIME1L__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "-1" "0" "true"
+__END_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "4" "0" "true"
+END SUBSTITUTION_TAGS

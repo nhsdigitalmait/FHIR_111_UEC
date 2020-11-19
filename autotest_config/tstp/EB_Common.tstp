@@ -1,0 +1,301 @@
+#
+# Care Connect Emergency Booking EB_Common tstp file
+# slot numbers refer to test scenario identifiers not actual slot numbers
+#
+SCRIPT EB_Common
+
+# NB this references the *internal* autotest simulator rules applied when listening for async messages not the rule set autotest applies which are referenced in the main properties file
+SIMULATOR __TKWROOT__/config/GP_CONNECT/simulator_config/test_tks_rule_forwarder_config.txt
+VALIDATOR __TKWROOT__/config/FHIR_111_UEC/validator_config/provider_tester_validator.conf
+STOP WHEN COMPLETE
+
+# generic test names - cant be used with auto populated descriptions from a spreadsheet
+# tests which define an extractor cannot be reused unless all the extractor references are the same
+BEGIN TESTS
+# valid date ranges
+SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%2Bhealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%2Bactor%2BPractitioner&_include=Schedule%2Bactor%2BPractitionerRole&_include=Schedule%2Bactor%2BHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# happy path
+BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 201"
+
+ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
+InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
+AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
+
+ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
+
+ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
+
+ResponseIsEmptyPayloadExtracting5 CHAIN SYNC response_is_empty_payload_extracting5 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting5 CHAIN SYNC response_is_bundle_extracting5 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting6 CHAIN SYNC response_is_bundle_extracting6 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting7 CHAIN SYNC response_is_bundle_extracting7 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting8 CHAIN SYNC response_is_bundle_extracting8 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting9 CHAIN SYNC response_is_bundle_extracting9 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting10 CHAIN SYNC response_is_bundle_extracting10 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting11 CHAIN SYNC response_is_bundle_extracting11 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsBundleExtracting12 CHAIN SYNC response_is_bundle_extracting12 TEXT "Response contains a root fhir:Bundle element"
+
+ResponseIsBundleExtracting13 CHAIN SYNC response_is_bundle_extracting13 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting13 CHAIN SYNC response_is_empty_payload_extracting13 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting14 CHAIN SYNC response_is_bundle_extracting14 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting14 CHAIN SYNC response_is_empty_payload_extracting14 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting15 CHAIN SYNC response_is_bundle_extracting15 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting15 CHAIN SYNC response_is_empty_payload_extracting15 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting16 CHAIN SYNC response_is_bundle_extracting16 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting16 CHAIN SYNC response_is_empty_payload_extracting16 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting17 CHAIN SYNC response_is_bundle_extracting17 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting17 CHAIN SYNC response_is_empty_payload_extracting17 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting18 CHAIN SYNC response_is_bundle_extracting18 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting18 CHAIN SYNC response_is_empty_payload_extracting18 TEXT "Response payload is empty"
+
+ResponseIsBundleExtracting19 CHAIN SYNC response_is_bundle_extracting19 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting19 CHAIN SYNC response_is_empty_payload_extracting19 TEXT "Response payload is empty"
+
+LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
+AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
+
+
+# Most of the operation outcome checks will be satisified bythe validation
+#OperationOutcomeHasId CHAIN SYNC outcome_has_id TEXT "Operation outcome id is mandatory. SCAL P37"
+END TESTS
+
+BEGIN MESSAGES
+#
+# supply this for HTTP GET requests
+#
+empty_file USING empty_file_template WITH slots
+empty_file5 USING empty_file_template WITH slots5
+empty_file6 USING empty_file_template WITH slots6
+empty_file7 USING empty_file_template WITH slots7
+empty_file8 USING empty_file_template WITH slots8
+empty_file9 USING empty_file_template WITH slots9
+empty_file10 USING empty_file_template WITH slots10
+empty_file11 USING empty_file_template WITH slots11
+empty_file12 USING empty_file_template WITH slots12
+empty_file13 USING empty_file_template WITH slots13
+empty_file14 USING empty_file_template WITH slots14
+empty_file15 USING empty_file_template WITH slots15
+empty_file16 USING empty_file_template WITH slots16
+empty_file17 USING empty_file_template WITH slots17
+empty_file18 USING empty_file_template WITH slots18
+empty_file19 USING empty_file_template WITH slots19
+
+book_appointment_slot5 USING book_appt_template WITH slots5 ID s5
+END MESSAGES
+
+BEGIN TEMPLATES
+# for GET
+empty_file_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/emptyfile.txt
+book_appt_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/book_appt.xml
+END TEMPLATES
+
+BEGIN PROPERTYSETS
+webservices
+	SET tks.HttpTransport.listenport 4000
+	SET tks.HttpTransport.listenaddr  127.0.0.1
+	SET tks.tls.truststore __TRUSTSTORE__
+	SET tks.tls.keystore __KEYSTORE__
+	SET tks.sendtls __SEND_TLS__
+	SET tks.fhir.version Dstu3
+	SET tks.HttpTransport.suppress.close Y
+	SET tks.transmitter.send.chunksize 150
+	SET tks.autotest.stoponfail No
+get
+	SET tks.transmitter.http.method GET
+post
+	SET tks.transmitter.http.method POST
+put
+	SET tks.transmitter.http.method PUT
+END PROPERTYSETS
+
+BEGIN HTTPHEADERS
+credentials
+	Ssp-From "__FROM_ASID__"
+	Ssp-To "__TO_ASID__"
+	Ssp-TraceID function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getuuid
+
+getmetadata_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:metadata"
+search_slots_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+book_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+read_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:read:appointment"
+update_appt_interactionid
+	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+
+# The endpoint repurposes the unused __NHS_NUMBER__ tag in the template, we may need to generalise this later if more tags are required
+JWT_metadata
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template_metadata.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+JWT_search_slots
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+JWT_book_cancel
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.book_cancel.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+JWT_invalid_aud
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 notanendpoint secret true
+
+unsupported_content
+	Content-type "application/xml"
+xml_content
+	Content-type "application/fhir+xml"
+xml_accept
+	Accept "application/fhir+xml"
+
+json_content
+	Content-type "application/fhir+json"
+json_accept
+	Accept "application/fhir+json"
+
+content_zip
+	Content-Encoding "gzip"
+accept_gzip
+	Accept-Encoding "gzip"
+END HTTPHEADERS
+
+BEGIN EXTRACTORS
+slots_free5_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free5.cfg
+slots_free6_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free6.cfg
+slots_free7_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free7.cfg
+slots_free8_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free8.cfg
+slots_free9_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free9.cfg
+slots_free10_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free10.cfg
+slots_free11_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free11.cfg
+slots_free12_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free12.cfg
+slots_free13_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free13.cfg
+slots_free14_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free14.cfg
+slots_free15_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free15.cfg
+slots_free16_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free16.cfg
+slots_free17_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free17.cfg
+slots_free18_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free18.cfg
+slots_free19_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free19.cfg
+END EXTRACTORS
+
+BEGIN DATASOURCES
+# do we actually need this datasource?
+slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots.tdv
+slots5 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_5.tdv
+slots6 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_6.tdv
+slots7 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_7.tdv
+slots8 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_8.tdv
+slots9 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_9.tdv
+slots10 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_10.tdv
+slots11 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_11.tdv
+slots12 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_12.tdv
+slots13 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_13.tdv
+slots14 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_14.tdv
+slots15 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_15.tdv
+slots16 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_16.tdv
+slots17 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_17.tdv
+slots18 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_18.tdv
+slots19 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_19.tdv
+END DATASOURCES
+
+BEGIN PASSFAIL
+#
+# Response checks
+#
+ok httpok
+response_is_bundle synchronousxpath /fhir:Bundle exists
+
+response_is_bundle_extracting5 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free5_extractor
+response_is_appt_extracting5 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free5_extractor
+
+response_is_empty_payload_extracting5 synchronousxpath / doesnotexist EXTRACTOR slots_free5_extractor
+response_is_empty_payload_extracting13 synchronousxpath / doesnotexist EXTRACTOR slots_free13_extractor
+response_is_empty_payload_extracting14 synchronousxpath / doesnotexist EXTRACTOR slots_free14_extractor
+response_is_empty_payload_extracting15 synchronousxpath / doesnotexist EXTRACTOR slots_free15_extractor
+response_is_empty_payload_extracting16 synchronousxpath / doesnotexist EXTRACTOR slots_free16_extractor
+response_is_empty_payload_extracting17 synchronousxpath / doesnotexist EXTRACTOR slots_free17_extractor
+response_is_empty_payload_extracting18 synchronousxpath / doesnotexist EXTRACTOR slots_free18_extractor
+response_is_empty_payload_extracting19 synchronousxpath / doesnotexist EXTRACTOR slots_free19_extractor
+
+response_is_bundle_extracting6 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free6_extractor
+response_is_bundle_extracting7 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free7_extractor
+response_is_bundle_extracting8 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free8_extractor
+response_is_bundle_extracting9 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free9_extractor
+response_is_bundle_extracting10 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free10_extractor
+response_is_bundle_extracting11 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free11_extractor
+response_is_bundle_extracting12 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free12_extractor
+response_is_bundle_extracting13 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free13_extractor
+response_is_bundle_extracting14 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free14_extractor
+response_is_bundle_extracting15 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free15_extractor
+response_is_bundle_extracting16 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free16_extractor
+response_is_bundle_extracting17 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free17_extractor
+response_is_bundle_extracting18 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free18_extractor
+response_is_bundle_extracting19 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free19_extractor
+
+type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
+operation_outcome synchronousxpath /fhir:OperationOutcome exists
+
+invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
+# 403
+access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
+# 405 wrong method
+wrong_method synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^WRONG_METHOD$"
+#
+# http status code checks
+#
+httpstatuscheck201 httpstatuscheck 201
+httpstatuschecknot200 not ( httpok )
+
+httpstatuscheck400 httpstatuscheck 400
+httpstatuscheck403 httpstatuscheck 403
+httpstatuscheck404 httpstatuscheck 404
+httpstatuscheck405 httpstatuscheck 405
+httpstatuscheck409 httpstatuscheck 409
+httpstatuscheck412 httpstatuscheck 412
+httpstatuscheck415 httpstatuscheck 415
+httpstatuscheck422 httpstatuscheck 422
+
+httpstatuscheck500 httpstatuscheck 500
+httpstatuscheck502 httpstatuscheck 502
+httpstatuscheck504 httpstatuscheck 504
+#
+# http header checks
+#
+httpheaderchecknonzerocontent httpheadercheck Content-Length doesnotmatch "^0$"
+httpheadercheckzerocontent httpheadercheck Content-Length matches "^0$"
+httpheadercheckcontentlengthexists httpheadercheck Content-Length exists
+httpheadercheckcontentlengthdoesnotexist httpheadercheck Content-Length doesnotexist
+httpheadercheckcontentlengthcheck httpheadercheck Content-Length check
+httpheadercheckcontenttypeisxml  httpheadercheck Content-Type matches "^application/fhir\+xml.*$"
+httpheadercheckcontenttypeisjson  httpheadercheck Content-Type matches "^application/fhir\+json.*$"
+httpheadercheckchunking  httpheadercheck X-was-Transfer-Encoding matches  "^.*chunked.*$"
+
+location_is_returned httpheadercheck Location exists
+appt_is_booked  synchronousxpath /fhir:Appointment/fhir:status/@value matches "^booked$"
+
+END PASSFAIL
+
+#
+# These are evaluated at runtime when the script is run by TKW in autotest mode
+#
+BEGIN SUBSTITUTION_TAGS
+# Healthcare Service happy path
+__HCS__  Literal "999999999999"
+
+# Healthcare Service happy path - no slots
+__HCS_NO_SLOTS__  Literal "999999999998"
+
+# Healthcare Service http 400 Invalid
+__HCS_400__  Literal "999999999997"
+
+# Healthcare Service http 403 Forbidden
+__HCS_403__  Literal "999999999996"
+
+# Healthcare Service http 500 Server Error
+__HCS_500__  Literal "999999999995"
+
+# Healthcare Service http 405 Wrong Method
+__HCS_405__  Literal "999999999994"
+END SUBSTITUTION_TAGS

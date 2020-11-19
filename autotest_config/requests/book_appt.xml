@@ -110,5 +110,6 @@
          <display value="Peter James Chalmers"></display>
       </actor>
       <status value="accepted"></status>
-   </participant>
+  </participant>
+  <id value="__APPT_ID__"/>
 </Appointment>
