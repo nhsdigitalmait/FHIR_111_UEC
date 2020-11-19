@@ -26,5 +26,5 @@ sed -i -e "/^tks.validator.hapifhirvalidator.profileversionfilelocation/c\tks.va
 # Update Simulator ruleset with docker image directories
 sed -i -e 's|TKW_ROOT/|/home/service/TKW/|g' ${configDirectory}/simulator_config/test_tks_rule_config.txt
 # Update Validator ruleset with docker image directories
-sed -i -e 's|TKW_ROOT/|/home/service/TKW/|g' ${configDirectory}/validator_config/validator.conf
+sed -i -e 's|TKW_ROOT/|/home/service/TKW/|g' ${configDirectory}/validator_config/validator_provider_simulator.conf
 
