@@ -1,0 +1,2245 @@
+{
+	"info": {
+		"_postman_id": "2089c94a-b21f-44e2-a4b3-21581f3c7aa0",
+		"name": "FHIR_111-UEC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SearchSlots_HappyPath",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-From",
+						"value": "{{fromASID}}",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-To",
+						"value": "{{toASID}}",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot",
+						"type": "text"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999999&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999999"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_NoSlots_HappyPath",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-From",
+						"value": "{{fromASID}}",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-To",
+						"value": "{{toASID}}",
+						"type": "text"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot",
+						"type": "text"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999998&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999998"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_Forbidden",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999996&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999996"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_Invalid",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999997&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999997"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_ServerError",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999995&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999995"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_WrongMethod",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999994&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999994"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_SspFromMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}",
+						"disabled": true
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?schedule.actor%3Ahealthcareservice=999999999999&start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "schedule.actor%3Ahealthcareservice",
+							"value": "999999999999"
+						},
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchSlots_HealthcareServiceMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:search:slot"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/STU3/Slot?start=ge2019-05-09T10%3A00%3A00%2B00%3A00&start=le2019-05-09T10%3A30%3A00%2B00%3A00&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Slot"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "ge2019-05-09T10%3A00%3A00%2B00%3A00"
+						},
+						{
+							"key": "start",
+							"value": "le2019-05-09T10%3A30%3A00%2B00%3A00"
+						},
+						{
+							"key": "status",
+							"value": "free"
+						},
+						{
+							"key": "_include",
+							"value": "Slot%3Aschedule"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitioner"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3APractitionerRole"
+						},
+						{
+							"key": "_include",
+							"value": "Schedule%3Aactor%3AHealthcareService"
+						},
+						{
+							"key": "_include",
+							"value": "HealthcareService.location"
+						},
+						{
+							"key": "_format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_HappyPath",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n    <Slot xmlns=\"http://hl7.org/fhir\">\n      <id value=\"slot005\" />\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n      </identifier>\n      <schedule>\n        <reference value=\"Schedule/sched1111\" />\n      </schedule>\n      <status value=\"busy\" />\n      <start value=\"2019-05-09T10:00:00.000+00:00\" />\n      <end value=\"2019-05-09T10:15:00.000+00:00\" />\n    </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot005\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_SlotAlreadyBooked",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n         <Slot xmlns=\"http://hl7.org/fhir\">\n            <id value=\"slot006\"/>\n            <identifier>\n               <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n               <value value=\"d939f0e0-d434-4962-a327-7ed52fde2b2e\"/>\n            </identifier>\n            <schedule>\n               <reference value=\"Schedule/sched1111\"/>\n            </schedule>\n            <status value=\"free\"/>\n            <start value=\"2019-05-09T10:15:00.000+00:00\"/>\n            <end value=\"2019-05-09T10:30:00.000+00:00\"/>\n         </Slot>    \n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot006\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_FailedValidation",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n         <Slot xmlns=\"http://hl7.org/fhir\">\n            <id value=\"slot007\"/>\n            <identifier>\n               <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n               <value value=\"50360c34-c1e0-42dd-b965-8e4dd79ed902\"/>\n            </identifier>\n            <schedule>\n               <reference value=\"Schedule/sched1111\"/>\n            </schedule>\n            <status value=\"free\"/>\n            <start value=\"2019-05-09T10:30:00.000+00:00\"/>\n            <end value=\"2019-05-09T10:45:00.000+00:00\"/>\n         </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot007\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_Invalid",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n         <Slot xmlns=\"http://hl7.org/fhir\">\n            <id value=\"slot008\"/>\n            <identifier>\n               <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n               <value value=\"a17291ee-88d7-4565-b1a3-4f7ed970eb69\"/>\n            </identifier>\n            <schedule>\n               <reference value=\"Schedule/sched1111\"/>\n            </schedule>\n            <status value=\"free\"/>\n            <start value=\"2019-05-09T10:45:00.000+00:00\"/>\n            <end value=\"2019-05-09T11:00:00.000+00:00\"/>\n         </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot008\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_Forbidden",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n         <Slot xmlns=\"http://hl7.org/fhir\">\n            <id value=\"slot009\"/>\n            <identifier>\n               <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n               <value value=\"f8ff57c9-6f8e-48d1-9c16-a6f382b8cc26\"/>\n            </identifier>\n            <schedule>\n               <reference value=\"Schedule/sched1111\"/>\n            </schedule>\n            <status value=\"free\"/>\n            <start value=\"2019-05-09T11:00:00.000+00:00\"/>\n            <end value=\"2019-05-09T11:15:00.000+00:00\"/>\n         </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot009\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_ServerError",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n         <Slot xmlns=\"http://hl7.org/fhir\">\n            <id value=\"slot010\"/>\n            <identifier>\n               <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n               <value value=\"66e82d33-bf74-4c23-8929-589e65785385\"/>\n            </identifier>\n            <schedule>\n               <reference value=\"Schedule/sched1111\"/>\n            </schedule>\n            <status value=\"free\"/>\n            <start value=\"2019-05-09T11:30:00.000+00:00\"/>\n            <end value=\"2019-05-09T11:45:00.000+00:00\"/>\n         </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot010\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_UnsupportedMediaType",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot011\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"f8cc8202-24f9-463b-a144-a14ee760586b\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2020-10-24T14:00:00.000+00:00\" />\n        <end value=\"2020-10-24T14:15:00.000+00:00\" />\n      </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot011\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_BadGateway",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot012\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"1621f9c3-8575-44c9-a13b-5640d23005db\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2020-10-24T14:15:00.000+00:00\" />\n        <end value=\"2020-10-24T14:30:00.000+00:00\" />\n      </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot012\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_SlotMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n    <Slot xmlns=\"http://hl7.org/fhir\">\n      <id value=\"\" />\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n      </identifier>\n      <schedule>\n        <reference value=\"Schedule/sched1111\" />\n      </schedule>\n      <status value=\"busy\" />\n      <start value=\"2019-05-09T10:00:00.000+00:00\" />\n      <end value=\"2019-05-09T10:15:00.000+00:00\" />\n    </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot005\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookAppointment_SspFromMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}",
+						"disabled": true
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:create:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n  <meta>\n    <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\" />\n  </meta>\n  <contained>\n    <DocumentReference xmlns=\"http://hl7.org/fhir\">\n      <id value=\"123\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\" />\n      </meta>\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\" />\n      </identifier>\n      <status value=\"current\" />\n      <type>\n        <coding>\n          <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\" />\n          <code value=\"POCD_MT200001GB02\" />\n          <display value=\"Integrated Urgent Care Report\" />\n        </coding>\n      </type>\n      <indexed value=\"2018-12-20T09:43:41+11:00\" />\n      <content>\n        <attachment>\n          <contentType value=\"application/hl7-v3+xml\" />\n          <language value=\"en\" />\n        </attachment>\n      </content>\n    </DocumentReference>\n  </contained>\n  <contained>\n    <Slot xmlns=\"http://hl7.org/fhir\">\n      <id value=\"slot005\" />\n      <identifier>\n        <system value=\"https://tools.ietf.org/html/rfc4122\" />\n        <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n      </identifier>\n      <schedule>\n        <reference value=\"Schedule/sched1111\" />\n      </schedule>\n      <status value=\"busy\" />\n      <start value=\"2019-05-09T10:00:00.000+00:00\" />\n      <end value=\"2019-05-09T10:15:00.000+00:00\" />\n    </Slot>\n  </contained>\n  <contained>\n    <Patient xmlns=\"http://hl7.org/fhir\">\n      <id value=\"P1\" />\n      <meta>\n        <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\" />\n      </meta>\n      <identifier>\n        <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n          <valueCodeableConcept>\n            <coding>\n              <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\" />\n              <code value=\"01\" />\n              <display value=\"Number present and verified\" />\n            </coding>\n          </valueCodeableConcept>\n        </extension>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <name>\n        <use value=\"official\" />\n        <family value=\"Chalmers\" />\n        <given value=\"Peter\" />\n        <prefix value=\"Mr\" />\n      </name>\n      <telecom>\n        <system value=\"phone\" />\n        <value value=\"01234 567 890\" />\n        <use value=\"home\" />\n        <rank value=\"1\" />\n      </telecom>\n      <gender value=\"male\" />\n      <birthDate value=\"1974-12-25\" />\n      <address>\n        <use value=\"home\" />\n        <text value=\"123 High Street, Leeds LS1 4HR\" />\n        <line value=\"123 High Street\" />\n        <line value=\"Leeds\" />\n        <city value=\"Leeds\" />\n        <postalCode value=\"LS1 4HR\" />\n      </address>\n    </Patient>\n  </contained>\n  <status value=\"booked\" />\n  <description value=\"Reason for calling\" />\n  <supportingInformation>\n    <reference value=\"#123\" />\n  </supportingInformation>\n  <start value=\"2019-01-17T15:00:00.000Z\" />\n  <end value=\"2019-01-17T15:10:00.000Z\" />\n  <slot>\n    <reference value=\"#slot005\" />\n  </slot>\n  <created value=\"2019-01-17T14:32:22.579+00:00\" />\n  <participant>\n    <actor>\n      <reference value=\"#P1\" />\n      <identifier>\n        <use value=\"official\" />\n        <system value=\"https://fhir.nhs.uk/Id/nhs-number\" />\n        <value value=\"1234554321\" />\n      </identifier>\n      <display value=\"Peter James Chalmers\" />\n    </actor>\n    <status value=\"accepted\" />\n  </participant>\n</Appointment>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_HappyPath",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot005\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot005\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_DifferencesDetected",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot013\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot013\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_VersionConflict",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot014\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot014\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_If-MatchHeaderMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot015\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot015\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_ServerError",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot016\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot016\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_UnsupportedMediaType",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot017\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot017\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_BadGateway",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot018\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot018\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_GatewayTimeout",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot019\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot019\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_SlotMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}"
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot005\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelAppointment_SspFromMissing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Ssp-TraceID",
+						"type": "text",
+						"value": "3cb63c23-2d28-49c5-ad57-033fcbba71c7"
+					},
+					{
+						"key": "Ssp-From",
+						"type": "text",
+						"value": "{{fromASID}}",
+						"disabled": true
+					},
+					{
+						"key": "Ssp-To",
+						"type": "text",
+						"value": "{{toASID}}"
+					},
+					{
+						"key": "Ssp-InteractionID",
+						"type": "text",
+						"value": "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
+					},
+					{
+						"key": "Content-type",
+						"type": "text",
+						"value": "{{contentType}}"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "{{accept}}"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Appointment xmlns=\"http://hl7.org/fhir\">\n   <meta>\n      <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1\"/>\n   </meta>\n   <contained>\n      <DocumentReference xmlns=\"http://hl7.org/fhir\">\n         <id value=\"123\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1\"/>\n         </meta>\n         <identifier>\n            <system value=\"https://tools.ietf.org/html/rfc4122\"/>\n            <value value=\"6b9c59dd-675b-4026-98db-f608ef501e6e\"/>\n         </identifier>\n         <status value=\"current\"/>\n         <type>\n            <coding>\n               <system value=\"urn:oid:2.16.840.1.113883.2.1.3.2.4.18.17\"/>\n               <code value=\"POCD_MT200001GB02\"/>\n               <display value=\"Integrated Urgent Care Report\"/>\n            </coding>\n         </type>\n         <indexed value=\"2018-12-20T09:43:41+11:00\"/>\n         <content>\n            <attachment>\n               <contentType value=\"application/hl7-v3+xml\"/>\n               <language value=\"en\"/>\n            </attachment>\n         </content>\n      </DocumentReference>\n   </contained>\n   <contained>\n      <Slot xmlns=\"http://hl7.org/fhir\">\n        <id value=\"slot005\" />\n        <identifier>\n          <system value=\"https://tools.ietf.org/html/rfc4122\" />\n          <value value=\"5a889965-3db4-4c29-8003-676c247a763e\" />\n        </identifier>\n        <schedule>\n          <reference value=\"Schedule/sched1111\" />\n        </schedule>\n        <status value=\"free\" />\n        <start value=\"2019-01-01T10:00:00.000+00:00\" />\n        <end value=\"2019-01-01T10:15:00.000+00:00\" />\n      </Slot>\n   </contained>\n   <contained>\n      <Patient xmlns=\"http://hl7.org/fhir\">\n         <id value=\"P1\"/>\n         <meta>\n            <profile value=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1\"/>\n         </meta>\n         <identifier>\n            <extension url=\"https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1\">\n               <valueCodeableConcept>\n                  <coding>\n                     <system value=\"https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1\"/>\n                     <code value=\"01\"/>\n                     <display value=\"Number present and verified\"/>\n                  </coding>\n               </valueCodeableConcept>\n            </extension>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <name>\n            <use value=\"official\"/>\n            <family value=\"Chalmers\"/>\n            <given value=\"Peter\"/>\n            <prefix value=\"Mr\"/>\n         </name>\n         <telecom>\n            <system value=\"phone\"/>\n            <value value=\"01234 567 890\"/>\n            <use value=\"home\"/>\n            <rank value=\"1\"/>\n         </telecom>\n         <gender value=\"male\"/>\n         <birthDate value=\"1974-12-25\"/>\n         <address>\n            <use value=\"home\"/>\n            <text value=\"123 High Street, Leeds LS1 4HR\"/>\n            <line value=\"123 High Street\"/>\n            <line value=\"Leeds\"/>\n            <city value=\"Leeds\"/>\n            <postalCode value=\"LS1 4HR\"/>\n         </address>\n      </Patient>\n   </contained>\n   <status value=\"cancelled\"/>\n   <description value=\"Reason for calling\"/>\n   <supportingInformation>\n      <reference value=\"#123\"/>\n   </supportingInformation>\n   <start value=\"2019-01-17T15:00:00.000Z\"/>\n   <end value=\"2019-01-17T15:10:00.000Z\"/>\n   <slot>\n      <reference value=\"#slot005\"/>\n   </slot>\n   <created value=\"2019-01-17T14:32:22.579+00:00\"/>\n   <participant>\n      <actor>\n         <reference value=\"#P1\"/>\n         <identifier>\n            <use value=\"official\"/>\n            <system value=\"https://fhir.nhs.uk/Id/nhs-number\"/>\n            <value value=\"1234554321\"/>\n         </identifier>\n         <display value=\"Peter James Chalmers\"/>\n      </actor>\n      <status value=\"accepted\"/>\n   </participant>\n</Appointment>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/STU3/Appointment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"STU3",
+						"Appointment"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
