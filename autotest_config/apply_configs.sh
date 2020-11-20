@@ -4,7 +4,8 @@
 # then run the tst file
 #
 
-tst=$TKWROOT/config/FHIR_111_UEC/autotest_config/tst
+autotest=$TKWROOT/config/FHIR_111_UEC/autotest_config
+tst=$autotest/tst
 
 
 if [[ $# == 2 ]]
@@ -37,9 +38,9 @@ today4=`date $date_format --date='+ 4 days'`
 todayl1=`date $date_format --date='- 1 days'`
 
 # read in the endpoint config
-if [[ -e endpoint_configs/$dest.sh ]]
+if [[ -e $autotest/endpoint_configs/$dest.sh ]]
 then
-	. endpoint_configs/$dest.sh
+	. $autotest/endpoint_configs/$dest.sh
 else
 	echo "Unrecognised endpoint $dest"
 	read -n 1 -p "Press any key to exit..."
@@ -82,20 +83,23 @@ sed -e s!__TKWROOT__!$TKWROOT!g \
 	-e s!__TODAYl1__!$todayl1!g \
 	< $tstfile  > $tst/$prefix'.tst'
 
-read -n 1 -p "Press any key to continue..."
-echo
+if [[ "$TKW_BROWSER" != "" ]]
+then
+	read -n 1 -p "Press any key to continue..."
+	echo
+fi
 
 # run the tests
-./run_tst.sh $tst/$prefix'.tst'
+$autotest/run_tst.sh $tst/$prefix'.tst'
 
 # copy the tst file to the latest autotests folder
-latest_autotest_folder=`ls -t auto_tests | head -n 1`
-cp $tst/$prefix'.tst' auto_tests/$latest_autotest_folder/
+latest_autotest_folder=`ls -t $autotest/auto_tests | head -n 1`
+cp $tst/$prefix'.tst' $autotest/auto_tests/$latest_autotest_folder/
 # copy a statically named version for ease of debugging
-cp $tst/$prefix'.tst' tst/mergedfile.tst
+cp $tst/$prefix'.tst' $autotest/tst/mergedfile.tst
 
 # if there's a browser configured display the results
 if [[ "$TKW_BROWSER" != "" ]]
 then
-	$TKW_BROWSER auto_tests/$latest_autotest_folder/test_log.html
+	$TKW_BROWSER $autotest/auto_tests/$latest_autotest_folder/test_log.html
 fi
