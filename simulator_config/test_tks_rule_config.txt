@@ -50,7 +50,8 @@ __CANCEL_SLOT_END_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:e
 __CANCEL_START_TIME__	Xpath /fhir:Appointment/fhir:start/@value
 __CANCEL_END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
 __CANCEL_CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
-__FULL_CONTEXT_PATH__ reg_exp context_path "." "$0"
+# needs to be html escaped for full url on response
+__FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
 
 
