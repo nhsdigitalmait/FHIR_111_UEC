@@ -43,6 +43,7 @@ BEGIN SUBSTITUTIONS
 __MESSAGEID__	uuid
 __VERSIONID__	uuid
 __TIMESTAMP__	ISO8601datetime
+__RFC822TIMESTAMP__	RFC822datetime
 __TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 1 0"
 __DAY_AFTER_TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 2 0"
 __CANCEL_SLOT_START_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:start/@value
