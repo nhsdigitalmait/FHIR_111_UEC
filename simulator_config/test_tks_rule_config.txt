@@ -33,9 +33,10 @@ Operation_Outcome_504					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operatio
 SearchSlots_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_Response.xml 200 
 SearchSlots_HappyPath_NoSlots_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_NoSlots_Response.xml 200 
 
-BookAppointment_HappyPath_Response	class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 
+Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/Capability_Response_WRONG.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 do_process	NONE	0
 END RESPONSES
 
@@ -46,11 +47,16 @@ __TIMESTAMP__	ISO8601datetime
 __RFC822TIMESTAMP__	RFC822datetime
 __TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 1 0"
 __DAY_AFTER_TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 2 0"
-__CANCEL_SLOT_START_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:start/@value
-__CANCEL_SLOT_END_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:end/@value
-__CANCEL_START_TIME__	Xpath /fhir:Appointment/fhir:start/@value
-__CANCEL_END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
-__CANCEL_CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
+__SLOT_START_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:start/@value
+__SLOT_END_TIME__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:end/@value
+__START_TIME__	Xpath /fhir:Appointment/fhir:start/@value
+__END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
+__CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
+__SLOT_ID__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value
+__SLOT_VALUE__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:identifier/fhir:value/@value
+__SLOT_SCHED_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:schedule/fhir:reference/fhir:value/@value
+__DOC_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:id/@value
+__DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:identifier/fhir:value/@value
 # needs to be html escaped for full url on response
 __FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
@@ -81,6 +87,8 @@ INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json
 
 #CONTEXT PATH CHECKS
 SLOT						context_path matches ^.*\/STU3\/Slot.*$
+METADATA					context_path matches ^.*\/STU3\/metadata.*$
+
 HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999999.*$
 HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999998.*$
 HEALTHCARESERVICE999999999997		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999997.*$
@@ -143,6 +151,7 @@ END RULE
 BEGIN RULE
 GET
 IF 	Ssp_From_MISSING							THEN	Operation_Outcome_400					ELSE	NEXT
+IF	METADATA									THEN	Capability_HappyPath_Response			ELSE	NEXT
 IF 	HEALTHCARESERVICE_MISSING					THEN	Operation_Outcome_400					ELSE	NEXT
 IF	SLOT	AND	HEALTHCARESERVICE999999999999	THEN	SearchSlots_HappyPath_Response			ELSE	NEXT
 IF	SLOT	AND	HEALTHCARESERVICE999999999998	THEN	SearchSlots_HappyPath_NoSlots_Response	ELSE	NEXT

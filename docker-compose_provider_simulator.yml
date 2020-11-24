@@ -6,4 +6,4 @@ services:
         volumes:
             - '/home/riro/Scratch/data:/home/service/data'
             - '/home/riro/Technical_Specialist_Folder/fhir/Assets/NHSD.Assets.STU3_1.3.0/node_modules/NHSD.Assets.STU3:/home/service/fhir'
-        image: 'nhsdigitalmait/111_uec_booking_config:20201120'
+        image: 'nhsdigitalmait/111_uec_booking_config:20201124'

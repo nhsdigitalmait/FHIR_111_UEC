@@ -39,9 +39,9 @@
         <value value="__SLOT_VALUE__" />
       </identifier>
       <schedule>
-        <reference value="Schedule/sched1111" />
+        <reference value="__SLOT_SCHED_REF__" />
       </schedule>
-      <status value="free" />
+      <status value="busy" />
       <start value="__SLOT_START_TIME__" />
       <end value="__SLOT_END_TIME__" />
     </Slot>
@@ -90,7 +90,7 @@
       </address>
     </Patient>
   </contained>
-  <status value="cancelled" />
+  <status value="booked" />
   <description value="Reason for calling" />
   <supportingInformation>
     <reference value="#__DOC_REF__" />
