@@ -12,7 +12,8 @@
 #
 TSTP_FILES=EB_Common.tstp
 
-ENVIRONMENT=local   # acts as a label for an endpoint config in endpoint_configs
+# local
+ENVIRONMENT=200000000359   # acts as a label for an endpoint config in endpoint_configs
 if [[ $# != 0 ]]
 then
 	ENVIRONMENT=$1

@@ -10,10 +10,10 @@ tst=$autotest/tst
 
 if [[ $# == 2 ]]
 then
-	dest=$1
+	dest_asid=$1
 	tstfile=$2
 else
-	echo usage $0 '<endpoint_label> <tst filename>'
+	echo usage $0 '<destination asid> <tst filename>'
 	exit
 fi
 
@@ -38,11 +38,11 @@ today4=`date $date_format --date='+ 4 days'`
 todayl1=`date $date_format --date='- 1 days'`
 
 # read in the endpoint config
-if [[ -e $autotest/endpoint_configs/$dest.sh ]]
+if [[ -e $autotest/endpoint_configs/$dest_asid.sh ]]
 then
-	. $autotest/endpoint_configs/$dest.sh
+	. $autotest/endpoint_configs/$dest_asid.sh
 else
-	echo "Unrecognised endpoint $dest"
+	echo "Unrecognised endpoint $dest_asid"
 	read -n 1 -p "Press any key to exit..."
 	echo
 	exit
@@ -98,8 +98,20 @@ cp $tst/$prefix'.tst' $autotest/auto_tests/$latest_autotest_folder/
 # copy a statically named version for ease of debugging
 cp $tst/$prefix'.tst' $autotest/tst/mergedfile.tst
 
+# move the folder into a folder named for the asid
+if [[ ! -e $autotest/auto_tests/$dest_asid ]]
+then
+	mkdir $autotest/auto_tests/$dest_asid
+fi
+
+mv $autotest/auto_tests/$latest_autotest_folder $autotest/auto_tests/$dest_asid/
+
+cd $autotest/auto_tests/$dest_asid/
+zip -qr $latest_autotest_folder'.zip'  $latest_autotest_folder/
+cd -
+
 # if there's a browser configured display the results
 if [[ "$TKW_BROWSER" != "" ]]
 then
-	$TKW_BROWSER $autotest/auto_tests/$latest_autotest_folder/test_log.html
+	$TKW_BROWSER $autotest/auto_tests/$dest_asid/$latest_autotest_folder/test_log.html
 fi

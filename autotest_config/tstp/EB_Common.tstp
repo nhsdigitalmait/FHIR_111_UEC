@@ -23,6 +23,7 @@ BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment F
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
 AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
+BadRequest CHAIN SYNC bad_request TEXT "Response contains a root fhir:OperationOutcome reporting a BAD_REQUEST code"
 
 ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
 
@@ -237,9 +238,13 @@ response_is_bundle_extracting19 synchronousxpath /fhir:Bundle exists EXTRACTOR s
 type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
 operation_outcome synchronousxpath /fhir:OperationOutcome exists
 
+# 400
 invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
+bad_request synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^BAD_REQUEST$"
+#
 # 403
 access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
+#
 # 405 wrong method
 wrong_method synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^WRONG_METHOD$"
 #

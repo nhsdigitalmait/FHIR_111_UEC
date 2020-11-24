@@ -5,7 +5,7 @@
 version: "3"
 services:
   tkw_uec_provider_test:
-    image: simonfarrow/tkw_uec_provider_test:0.1
+    image: nhsdigitalmait/tkw_uec_provider_test:0.1
 
     environment:
       - TZ=Europe/London
