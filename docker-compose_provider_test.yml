@@ -15,8 +15,8 @@ services:
     volumes:
         # <host path to mount> : <mount point within docker>
         # auto_tests folder
-        - /mnt/encrypted/home/simonfarrow/Documents/TKW5.0Dev/TKW/config/FHIR_111_UEC/autotest_config/auto_tests:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/auto_tests
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/auto_tests:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/auto_tests
         # endpoint_configs folder
-        - /mnt/encrypted/home/simonfarrow/Documents/TKW5.0Dev/TKW/config/FHIR_111_UEC/autotest_config/endpoint_configs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/endpoint_configs
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/endpoint_configs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/endpoint_configs
         # autotest logs folder
-        - /mnt/encrypted/home/simonfarrow/Documents/TKW5.0Dev/TKW/config/FHIR_111_UEC/autotest_config/autotest_logs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/autotest_logs
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/autotest_logs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/autotest_logs

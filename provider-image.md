@@ -1,5 +1,5 @@
 # 111 UEC Booking Test Provider Test Suite
-This configuration will run suites of tests related to iscenarios in the scenario spreadsheet: https://github.com/nhsdigitalmait/FHIR_111_UEC/blob/master/Scenario_Schedule_spreadsheet/Scenario%20Schedule%20for%20Care%20Connect%20NHS%20111%20UEC%20Booking.xlsx
+This configuration will run suites of tests related to scenarios in the scenario spreadsheet: https://github.com/nhsdigitalmait/FHIR_111_UEC/blob/master/Scenario_Schedule_spreadsheet/Scenario%20Schedule%20for%20Care%20Connect%20NHS%20111%20UEC%20Booking.xlsx
 
 The scenarios are based upon the specifications: https://developer.nhs.uk/apis/nhsbooking-2.0.0-beta/index.html
 

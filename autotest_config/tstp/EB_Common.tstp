@@ -165,6 +165,7 @@ END HTTPHEADERS
 
 BEGIN EXTRACTORS
 slots_free5_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free5.cfg
+
 slots_free6_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free6.cfg
 slots_free7_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free7.cfg
 slots_free8_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free8.cfg
@@ -172,6 +173,7 @@ slots_free9_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_co
 slots_free10_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free10.cfg
 slots_free11_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free11.cfg
 slots_free12_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free12.cfg
+
 slots_free13_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free13.cfg
 slots_free14_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free14.cfg
 slots_free15_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free15.cfg
@@ -184,6 +186,7 @@ END EXTRACTORS
 BEGIN DATASOURCES
 # do we actually need this datasource?
 slots circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots.tdv
+
 slots5 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_5.tdv
 slots6 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_6.tdv
 slots7 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_7.tdv
@@ -192,6 +195,7 @@ slots9 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extra
 slots10 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_10.tdv
 slots11 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_11.tdv
 slots12 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_12.tdv
+
 slots13 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_13.tdv
 slots14 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_14.tdv
 slots15 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_15.tdv
@@ -208,10 +212,10 @@ BEGIN PASSFAIL
 ok httpok
 response_is_bundle synchronousxpath /fhir:Bundle exists
 
-response_is_bundle_extracting5 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free5_extractor
 response_is_appt_extracting5 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free5_extractor
 
 response_is_empty_payload_extracting5 synchronousxpath / doesnotexist EXTRACTOR slots_free5_extractor
+
 response_is_empty_payload_extracting13 synchronousxpath / doesnotexist EXTRACTOR slots_free13_extractor
 response_is_empty_payload_extracting14 synchronousxpath / doesnotexist EXTRACTOR slots_free14_extractor
 response_is_empty_payload_extracting15 synchronousxpath / doesnotexist EXTRACTOR slots_free15_extractor
@@ -220,6 +224,7 @@ response_is_empty_payload_extracting17 synchronousxpath / doesnotexist EXTRACTOR
 response_is_empty_payload_extracting18 synchronousxpath / doesnotexist EXTRACTOR slots_free18_extractor
 response_is_empty_payload_extracting19 synchronousxpath / doesnotexist EXTRACTOR slots_free19_extractor
 
+response_is_bundle_extracting5 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free5_extractor
 response_is_bundle_extracting6 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free6_extractor
 response_is_bundle_extracting7 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free7_extractor
 response_is_bundle_extracting8 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free8_extractor
@@ -227,6 +232,7 @@ response_is_bundle_extracting9 synchronousxpath /fhir:Bundle exists EXTRACTOR sl
 response_is_bundle_extracting10 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free10_extractor
 response_is_bundle_extracting11 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free11_extractor
 response_is_bundle_extracting12 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free12_extractor
+
 response_is_bundle_extracting13 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free13_extractor
 response_is_bundle_extracting14 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free14_extractor
 response_is_bundle_extracting15 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free15_extractor

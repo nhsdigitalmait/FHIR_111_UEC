@@ -31,17 +31,17 @@
    </contained>
    <contained>
       <Slot xmlns="http://hl7.org/fhir">
-         <id value="__SLOT_ID__"></id>
+         <id value="__SLOT_ID____APPT_SLOT_ID__"></id>
          <identifier>
-            <system value="__IDENTIFIER_SYSTEM__"></system>
-            <value value="__IDENTIFIER_VALUE__"></value>
+            <system value="__IDENTIFIER_SYSTEM____APPT_IDENTIFIER_SYSTEM__"></system>
+            <value value="__IDENTIFIER_VALUE____APPT_IDENTIFIER_VALUE__"></value>
          </identifier>
          <schedule>
-            <reference value="Schedule/__SCHEDULE__"></reference>
+            <reference value="Schedule/__SCHEDULE____APPT_SCHEDULE__"></reference>
          </schedule>
          <status value="busy"></status>
-         <start value="__START_DATE__"></start>
-         <end value="__END_DATE__"></end>
+         <start value="__START_DATE____APPT_START_DATE__"></start>
+         <end value="__END_DATE____APPT_END_DATE__"></end>
       </Slot>
    </contained>
    <contained>

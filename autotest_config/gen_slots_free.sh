@@ -4,7 +4,7 @@
 TARGET=extractor_configs
 NOW=`date`
 
-for f in {5..19}
+for f in {6..12}
 do
 	echo $f
 	# configure each extractor config file file with correct indices
@@ -14,5 +14,5 @@ do
 		< slots_free_template.cfg > $TARGET/slots_free$f.cfg
 
 	#  append a field title and an underscore field data item to the associated tdv
-	#sed -i -e "/__ID__/s/$/	__APPT_ID__/" -e "/^s/s/$/	_/" $TARGET/slot_$f.tdv
+	sed -i -e "/__ID__/s/$/	__APPT_SLOT_ID__	__APPT_IDENTIFIER_SYSTEM__	__APPT_IDENTIFIER_VALUE__	__APPT_SCHEDULE__	__APPT_STATUS__	__APPT_START_DATE__	__APPT_END_DATE__/" -e "/^s/s/$/	_	_	_	_	_	_	_/" $TARGET/slot_$f.tdv
 done

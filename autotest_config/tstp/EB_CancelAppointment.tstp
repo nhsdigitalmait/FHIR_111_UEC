@@ -78,7 +78,7 @@ CancelAppointment_GatewayTimeout SEND_TKW cancel_appointment_slot19 TO __TO_ENDP
 
 #============================================================================================================
 
-#ResponseIsAppointment CHAIN SYNC response_is_appt_extracting TEXT "Response contains a root fhir:Appointment element"
+ResponseIsAppointment CHAIN SYNC response_is_appt TEXT "Response contains a root fhir:Appointment element"
 
 ResponseIsAppointmentExtracting13 CHAIN SYNC response_is_appt_extracting13 TEXT "Response contains a root fhir:Appointment element"
 ResponseIsAppointmentExtracting14 CHAIN SYNC response_is_appt_extracting14 TEXT "Response contains a root fhir:Appointment element"
@@ -128,6 +128,7 @@ BEGIN PASSFAIL
 #
 # Response checks
 #
+response_is_appt synchronousxpath /fhir:Appointment exists
 response_is_appt_extracting13 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free13_extractor
 response_is_appt_extracting14 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free14_extractor
 response_is_appt_extracting15 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free15_extractor
