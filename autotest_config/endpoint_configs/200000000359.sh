@@ -1,8 +1,7 @@
 # Autotest endpoint config file
 #
 # to local 
-to_ep=http://192.168.1.112:4434/STU3
-
+to_ep=http://localhost:4434/STU3
 # to local via reverse proxy
 #to_ep=http://192.168.1.112/STU3
 
