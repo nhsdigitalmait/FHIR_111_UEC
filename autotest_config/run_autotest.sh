@@ -2,7 +2,7 @@
 #
 #  Script for TKWATM test script generation and execution for Emergency Booking
 #
-#  usage ./run_autotest.sh [<environment> <A|S|B|C|>*]
+#  usage ./run_autotest.sh ( -s  <environment> [<testname> *]) |  ( [<environment> <A|S|B|C|>*] )
 #
 #  A => Capability
 #  S => Search for free slots
@@ -12,6 +12,12 @@
 #
 TSTP_FILES=EB_Common.tstp
 
+if [[ "$1" == '-s' ]]
+then
+	OPTION=$1
+	shift
+fi
+
 # local
 ENVIRONMENT=200000000359   # acts as a label for an endpoint config in endpoint_configs
 if [[ $# != 0 ]]
@@ -20,7 +26,7 @@ then
 	shift
 fi
 
-if [[ $# == 0 ]]
+if [[ "$OPTION" == '-s' || $# == 0 ]]
 then
 	TSTP_FILES+=' EB_Capability.tstp EB_SearchForFreeSlots.tstp EB_BookAppointment.tstp EB_CancelAppointment.tstp'
 else
@@ -42,6 +48,10 @@ else
 			C|c)
 			TSTP_FILES+=' EB_CancelAppointment.tstp'
 			;;
+			*)
+			echo "unrecognised group parameter $t"
+			exit 1
+			;;
 		esac
 	done
 fi
@@ -58,6 +68,29 @@ java -cp $TKWROOT/TKWAutotestManager.jar TKWAutotestManager.TestFileMerger $TSTP
 
 # change title of merged tstp script
 sed -i $MERGED_TSTP_FILE -r -e 's/SCRIPT .+/SCRIPT '$SCRIPT_NAME'_'$ENVIRONMENT'/'
+
+
+if [[ "$OPTION" == '-s' ]]
+then
+	valid_tests=`sed -r -e '1,/BEGIN SCHEDULES/d' -e '/END SCHEDULES/,$d' -e 's/\s+.*$/!/' <  $MERGED_TSTP_FILE`
+	valid_tests=`echo $valid_tests | sed -e 's/\s*//g'`
+	#
+	#  remove unselected tests
+	#
+	for test in $*
+	do
+		if [[  $valid_tests =~ ((^|!)$test($|!)) ]]
+		then
+			TESTS+='|'$test
+		else
+			echo "Unrecognised test $test"
+			exit
+		fi
+	done
+fi
+
+# post edit to filter out any tests not specified
+sed -i -r -e '/BEGIN SCHEDULES/,/END SCHEDULES/s/^/#/' -e "s/^#(BEGIN|END$TESTS)/\1/" $MERGED_TSTP_FILE
 
 # transform the merged file into a tst file to resolve substitution tags and then runs the script
 $ROOT/apply_configs.sh $ENVIRONMENT $MERGED_TSTP_FILE
