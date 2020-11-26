@@ -6,3 +6,5 @@
 /logs/**
 /all_evidence/**
 /certs/**
+/autotest_config/autotest_logs
+/autotest_config/auto_tests

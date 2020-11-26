@@ -1,4 +1,5 @@
 <Appointment xmlns="http://hl7.org/fhir">
+  <id value="__MESSAGEID__"/>
   <meta>
     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" />
     <versionId value="__VERSIONID__" />
