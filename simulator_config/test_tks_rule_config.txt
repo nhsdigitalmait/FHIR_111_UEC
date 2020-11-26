@@ -54,7 +54,7 @@ __END_TIME__	Xpath /fhir:Appointment/fhir:end/@value
 __CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
 __SLOT_ID__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value
 __SLOT_VALUE__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:identifier/fhir:value/@value
-__SLOT_SCHED_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:schedule/fhir:reference/fhir:value/@value
+__SLOT_SCHED_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:schedule/fhir:reference/@value
 __DOC_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:id/@value
 __DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:identifier/fhir:value/@value
 # needs to be html escaped for full url on response
