@@ -93,10 +93,10 @@
    <supportingInformation>
       <reference value="#123"></reference>
    </supportingInformation>
-   <start value="__START_DATE__"></start>
-   <end value="__END_DATE__"></end>
+   <start value="__START_DATE____APPT_START_DATE__"></start>
+   <end value="__END_DATE____APPT_END_DATE__"></end>
    <slot>
-      <reference value="#__SLOT_ID__"></reference>
+      <reference value="#__SLOT_ID____APPT_SLOT_ID__"></reference>
    </slot>
    <created value="2019-01-17T14:32:22.579+00:00"></created>
    <participant>
