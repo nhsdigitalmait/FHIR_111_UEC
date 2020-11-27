@@ -87,10 +87,10 @@ then
 			exit
 		fi
 	done
+	# post edit to filter out any tests not specified
+	sed -i -r -e '/BEGIN SCHEDULES/,/END SCHEDULES/s/^/#/' -e "s/^#(BEGIN|END$TESTS)/\1/" $MERGED_TSTP_FILE
 fi
 
-# post edit to filter out any tests not specified
-sed -i -r -e '/BEGIN SCHEDULES/,/END SCHEDULES/s/^/#/' -e "s/^#(BEGIN|END$TESTS)/\1/" $MERGED_TSTP_FILE
 
 # transform the merged file into a tst file to resolve substitution tags and then runs the script
 $ROOT/apply_configs.sh $ENVIRONMENT $MERGED_TSTP_FILE
