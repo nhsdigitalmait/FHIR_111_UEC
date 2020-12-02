@@ -147,14 +147,3 @@ healthcare_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:e
 search_count_is_zero synchronousxpath /fhir:Bundle/fhir:total/@value matches "^0$"
 
 END PASSFAIL
-#
-# These are evaluated at runtime when the script is run by TKW in autotest mode
-#
-BEGIN SUBSTITUTION_TAGS
-# Europe/London sets the DST flag correctly, true => URL encode the result, unfortunately at present these values cannot be used in the slots_too_early/late tests
-# NB despite the XXX the timezone string set is Z not +00:00. This is as per javadoc
-# see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html   ISO8601
-__START_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "1" "0" "true"
-__START_SLOT_TIME1L__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "-1" "0" "true"
-__END_SLOT_TIME__  function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getFormattedTime "yyyy-MM-dd'T00:00:00'XXX" "Europe/London" "4" "0" "true"
-END SUBSTITUTION_TAGS
