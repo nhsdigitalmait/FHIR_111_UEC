@@ -5,7 +5,7 @@
 	</meta>
 	<issue>
 		<severity value="error"/>
-		<code value="not-supported"/>
+		<code value="ACCESS_DENIED"/>
 		<diagnostics value="Bad request for an unsupported HTTP verb such as TRACE"/>
 	</issue>
 </OperationOutcome>

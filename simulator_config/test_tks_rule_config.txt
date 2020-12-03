@@ -22,8 +22,8 @@ Operation_Outcome_405					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operatio
 Operation_Outcome_409					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_409.xml "409 Conflict" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
 Operation_Outcome_412 					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_412.xml	"412 Precondition Failed" WITH_HTTP_HEADERS (  Date : "__RFC822TIMESTAMP__" )
 Operation_Outcome_415					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_415_UMT.xml "415 Unsupported Media Type"
+Operation_Outcome_422_PF					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_PF.xml "422 Unprocessable Entity"
 Operation_Outcome_422_IP					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_IP.xml "422 Unprocessable Entity"
-Operation_Outcome_422_IR					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_IR.xml "422 Unprocessable Entity"
 Operation_Outcome_422_RNF					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_RNF.xml "422 Unprocessable Entity"
 Operation_Outcome_500					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_500_ISE.xml "500 Internal Server Error"
 Operation_Outcome_502					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_502_BG.xml "502 Bad Gateway"
@@ -125,10 +125,12 @@ END EXPRESSIONS
 BEGIN RULE
 POST
 IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400				ELSE	NEXT
+#This is to show that the provider tester works
+IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405	ELSE	NEXT
 IF 	SLOT_MISSING			THEN	Operation_Outcome_400				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_IP			ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT007	THEN	Operation_Outcome_422_IR			ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_PF			ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT007	THEN	Operation_Outcome_422_IP			ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT008	THEN	Operation_Outcome_400				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_403				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_405				ELSE	NEXT
@@ -164,16 +166,16 @@ END RULE
 
 BEGIN RULE
 PUT
-IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400					ELSE	NEXT
-IF 	SLOT_MISSING			THEN	Operation_Outcome_400					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT005 THEN	CancelAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT013 THEN	Operation_Outcome_422_RNF				ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT014 THEN	Operation_Outcome_409					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT015 THEN	Operation_Outcome_412					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT016 THEN	Operation_Outcome_400					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_403					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT018 THEN	Operation_Outcome_500					ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT019 THEN	Operation_Outcome_504					ELSE	NEXT
+IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400						ELSE	NEXT
+IF 	SLOT_MISSING			THEN	Operation_Outcome_400						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT005 THEN	CancelAppointment_HappyPath_Response		ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT013 THEN	Operation_Outcome_422_RNF					ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT014 THEN	Operation_Outcome_409						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT015 THEN	Operation_Outcome_412						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT016 THEN	Operation_Outcome_400						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_415						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT018 THEN	Operation_Outcome_500						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT019 THEN	Operation_Outcome_504						ELSE	NEXT
 IF passthrough THEN operation_outcome_unsupported_verb_404
 END RULE
 

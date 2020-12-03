@@ -4,6 +4,6 @@ services:
         ports:
             - '4434:4434'
         volumes:
-            - '/home/riro/Scratch/data:/home/service/data'
-            - '/home/riro/Technical_Specialist_Folder/fhir/Assets/NHSD.Assets.STU3_1.3.0/node_modules/NHSD.Assets.STU3:/home/service/fhir'
-        image: 'nhsdigitalmait/tkw_uec_provider_simulator:20201126'
+            - '${HOME}/Scratch/data:/home/service/data'
+            - '${HOME}/Technical_Specialist_Folder/fhir/Assets/NHSD.Assets.STU3_1.3.0/node_modules/NHSD.Assets.STU3:/home/service/fhir'
+        image: 'nhsdigitalmait/tkw_uec_provider_simulator:0.1'
