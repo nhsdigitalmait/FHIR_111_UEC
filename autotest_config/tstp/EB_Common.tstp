@@ -5,8 +5,8 @@
 SCRIPT EB_Common
 
 # NB this references the *internal* autotest simulator rules applied when listening for async messages not the rule set autotest applies which are referenced in the main properties file
-SIMULATOR __TKWROOT__/config/GP_CONNECT/simulator_config/test_tks_rule_forwarder_config.txt
-VALIDATOR __TKWROOT__/config/FHIR_111_UEC/validator_config/provider_tester_validator.conf
+SIMULATOR __TKWROOT__/config/FHIR_111_UEC/simulator_config/test_tks_rule_config.txt
+VALIDATOR __TKWROOT__/config/FHIR_111_UEC/validator_config/consumer_simulator_validator.conf
 STOP WHEN COMPLETE
 
 # generic test names - cant be used with auto populated descriptions from a spreadsheet
