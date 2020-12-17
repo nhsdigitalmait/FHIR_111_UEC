@@ -40,7 +40,11 @@ todayl1=`date $date_format --date='- 1 days'`
 # read in the endpoint config
 if [[ -e $autotest/endpoint_configs/$dest_asid.sh ]]
 then
-	. $autotest/endpoint_configs/$dest_asid.sh
+	# The script does not expect dos format files
+	dos2unix -n $autotest/endpoint_configs/$dest_asid.sh $autotest/endpoint_configs/temp.sh
+	. $autotest/endpoint_configs/temp.sh
+	rm $autotest/endpoint_configs/temp.sh
+	#. $autotest/endpoint_configs/$dest_asid.sh
 else
 	echo "Unrecognised endpoint $dest_asid"
 	read -n 1 -p "Press any key to exit..."
@@ -113,5 +117,10 @@ cd -
 # if there's a browser configured display the results
 if [[ "$TKW_BROWSER" != "" ]]
 then
-	$TKW_BROWSER $autotest/auto_tests/$dest_asid/$latest_autotest_folder/test_log.html
+	if [[ -e $autotest/auto_tests/$dest_asid/$latest_autotest_folder/test_log.html ]]
+	then
+		$TKW_BROWSER $autotest/auto_tests/$dest_asid/$latest_autotest_folder/test_log.html
+	else
+		echo Test log file $autotest/auto_tests/$dest_asid/$latest_autotest_folder/test_log.html not found
+	fi
 fi
