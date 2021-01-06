@@ -14,7 +14,7 @@ then
 	tstfile=$2
 else
 	echo usage $0 '<destination asid> <tst filename>'
-	exit
+	exit 1
 fi
 
 # endpoint defaults
@@ -47,9 +47,12 @@ then
 	#. $autotest/endpoint_configs/$dest_asid.sh
 else
 	echo "Unrecognised endpoint $dest_asid"
-	read -n 1 -p "Press any key to exit..."
-	echo
-	exit
+	if [[ "$TKW_BROWSER" != "" ]]
+	then
+		read -n 1 -p "Press any key to exit..."
+		echo
+	fi
+	exit 1
 fi
 
 prefix=`basename $tstfile .tstp`
