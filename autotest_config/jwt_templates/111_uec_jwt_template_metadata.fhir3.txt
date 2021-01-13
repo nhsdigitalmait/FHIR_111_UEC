@@ -10,10 +10,10 @@
         "resourceType": "Device",
         "id": "1",
         "identifier": [{
-                "system": "GPConnectTestSystem",
-                "value": "Client"
+              "system": "https://consumersupplier.com/Id/device-identifier",
+              "value": "CONS-APP-4"
             }],
-        "model": "v1",
+        "model": "Consumer product name",
         "version": "1.1"
     },
     "requesting_organization": {
@@ -22,7 +22,7 @@
                 "system": "https://fhir.nhs.uk/Id/ods-organization-code",
                 "value": "GPCA0001"
             }],
-		"name": "GP Connect Assurance"
+		"name": "Emergency Booking Assurance"
     },
     "requesting_practitioner": {
         "resourceType": "Practitioner",

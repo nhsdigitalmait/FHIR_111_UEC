@@ -28,31 +28,41 @@ BEGIN SCHEDULES
 SFFSWithValidParameters_parameter_json TESTS SFFSWithValidParameters_parameter_json ResponseIsJson ResponseIsBundle
 SFFSWithValidParameters_header_json TESTS SFFSWithValidParameters_header_json ResponseIsJson ResponseIsBundle
 SFFSWithValidParameters_parameter_xml TESTS SFFSWithValidParameters_parameter_xml ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate
+#
+# TODO P-CRT-RES-RET-SLOT-START-TIMESTAMP-UTC-OFFSET Every returned Slot has a start timestamp that is explicitly in either UTC Time (preferred) or states an offset in DateTime/Instant format.
+# TODO P-CRT-RES-RET-SLOT-END-TIMESTAMP-UTC-OFFSET Every returned Slot has a end timestamp that is explicitly in either UTC Time (preferred) or states an offset in DateTime/Instant format.
+# in validation?
+#
+# TODO P-CRT-RES-RET-SLOT-INC-DELI-CHAN-EXT-POP Every returned Slot includes the delivery channel extension if supported and is populated if the information is available.
 SFFSWithValidParameters_header_xml TESTS SFFSWithValidParameters_header_xml ResponseIsXml ResponseIsBundle
+
+SFFSWithValidParameters_JWT_NoPractitioner TESTS SFFSWithJWTNoPractitioner ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate 
 
 SFFSWithValidParameters_3_days TESTS SFFSWithValidParameters_3_days ResponseIsBundle
 
 SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIsBundle SFFSPractitionersReturned SFFSPractitionerRolesReturned SFFSOrgsReturned SFFSHealthcareOrgsReturned
 
 # invalid date ranges
-SFFSWithInvalidDateRangeError_l1_days TESTS SFFSWithInvalidDateRangeError_l1_days InvalidParameter
+# commented out since TAs state no reqt to limit this.
+#SFFSWithInvalidDateRangeError_l1_days TESTS SFFSWithInvalidDateRangeError_l1_days InvalidParameter
 
 # state is free
 
 # state is busy
 #
 
-SearchSlots_NoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
+SFFSNoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
 
 # scenario 3
-SearchSlots_Invalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome BadRequest
+SFFSInvalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome BadRequest
 
 # scenario 4
-# SCAL P3 Invalid aud endpoint
-SearchSlots_Forbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome AccessDenied
+# SCAL P3 Invalid aud endpoint, invalid scope
+SFFSForbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome AccessDenied
+# TODO P-VDATE-INCOM-JWT-CHK-EXP Put in an expired timestamp
 #
 # scenario 6
-SearchSlots_WrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome AccessDenied
+SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome AccessDenied
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
 
@@ -61,17 +71,20 @@ END SCHEDULES
 BEGIN TESTS
 # formats
 # json format parameter
-SFFSWithValidParameters_parameter_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_parameter_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200 SCAL P-FORMAT-XML-JSON"
 
 # json accept header
-SFFSWithValidParameters_header_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+json_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_header_json SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+json_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200 SCAL P-FORMAT-XML-JSON"
 
 # xml format parameter
-SFFSWithValidParameters_parameter_xml SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=xml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_parameter_xml SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=xml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200 SCAL P-FORMAT-XML-JSON"
 
 # xml format header  free slots
 SFFSWithValidParameters_header_xml SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
+# xml format header  free slots jwt has no practitioner element
+SFFSWithJWTNoPractitioner SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots_no_practitioner TEXT "HTTP Response must be HTTP 200"
+#
 # xml format header busy slots
 SFFSWithValidParameters_search_for_busy_slots SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=busy&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 #
@@ -82,7 +95,7 @@ SFFSNoSlotsAvailable SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%
 SFFSWithInvalidQuery SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_400__&startXXXXXXX=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck400 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 400 Bad Request"
 
 # invalid aud scenario 4
-SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P3)"
+SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P-VDATE-INCOM-JWT-AUDI-CLAIM)"
 #
 # scenario 5 server error no point in testing this
 #
@@ -91,10 +104,8 @@ SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor
 SFFSWithWrongMethod SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_405__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck405 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 405"
 #
 # invalid scope uses Book Cancel JWT which has appointment write scenario 4
-SFFSWithInvalidJWTScope SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P4)"
+SFFSWithInvalidJWTScope SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_book_cancel TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P-VDATE-INCOM-JWT-SCOPE-CLAIM)"
 
-ResponseIsJson CHAIN SYNC httpheadercheckcontenttypeisjson TEXT "Content-type header must start with application/fhir+json"
-ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Content-type header must start with application/fhir+xml"
 #
 # Errors Invalid dates
 SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__START_SLOT_TIME1L__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_format=json FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_content+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 422"
@@ -105,18 +116,18 @@ SFFSWithInvalidDateRangeError_l1_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slo
 # P11 Create response - must return slots meeting query parameters
 #
 # SCAL P18 Every returned slot must have a status of free (if free was specified)
-SFFSSlotsStatusFree CHAIN SYNC slots_status_free TEXT "All slot records should have a slot status of 'free' (SCAL Requirement P18)"
+SFFSSlotsStatusFree CHAIN SYNC slots_status_free TEXT "All slot records should have a slot status of 'free' (SCAL Requirement P-CRT-RES-RET-SLOT-STAT-FREE)"
 # SCAL P19 for each reference to a practitioner that practitioner should be present in the response
-SFFSPractitionersReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioners must be returned (SCAL Requirement P19)"
+SFFSPractitionersReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioners must be returned (SCAL Requirement P-CRT-RES-PRACT-REQ-SLOT-INC-BUND)"
 # SCAL P20 for each reference to a practitioner role that practitioner should be present in the response
-SFFSPractitionerRolesReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioner roles must be returned (SCAL Requirement P20)"
+SFFSPractitionerRolesReturned CHAIN SYNC practitioners_returned TEXT "Referenced practitioner roles must be returned (SCAL Requirement P-CRT-RES-PRACTROLE-REQ-SLOT-INC-BUND)"
 # SCAL P21 for each reference to an organization that organization should be present in the response
-SFFSOrgsReturned CHAIN SYNC orgs_returned TEXT "Referenced organizations must be returned (SCAL Requirement P21)"
+SFFSOrgsReturned CHAIN SYNC orgs_returned TEXT "Referenced organizations must be returned (SCAL Requirement P-CRT-RES-HEAL-SERV-REQ-SLOT-INC-BUND)"
 # SCAL P22 for each reference to an HealthcareService that HealthcareService should be present in the responsendle.
-SFFSHealthcareOrgsReturned CHAIN SYNC healthcare_returned TEXT "Referenced HealthcareService must be returned (SCAL Requirement P22)"
+SFFSHealthcareOrgsReturned CHAIN SYNC healthcare_returned TEXT "Referenced HealthcareService must be returned (SCAL Requirement P-CRT-RES-ACT-REQ-SLOT-INC-BUND)"
 # SCAL P23 Create response - Slots returned must meet any provided time constraints.
-SFFSSlotsTooEarly CHAIN SYNC slots_too_early TEXT "No slots that start before the search start should be returned"
-SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the search end should be returned"
+SFFSSlotsTooEarly CHAIN SYNC slots_too_early TEXT "No slots that start before the search start should be returned SCAL Requirement P-CRT-RES-SLOT-RET-MEET-TIME"
+SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the search end should be returned SCAL Requirement P-CRT-RES-SLOT-RET-MEET-TIME"
 
 SearchCountIsZero CHAIN SYNC search_count_is_zero TEXT "Search count must be zero"
 # 

@@ -67,6 +67,9 @@ AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be b
 
 # Most of the operation outcome checks will be satisified bythe validation
 #OperationOutcomeHasId CHAIN SYNC outcome_has_id TEXT "Operation outcome id is mandatory. SCAL P37"
+#
+ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Response has fhir xml Content-type"
+ResponseIsJson CHAIN SYNC httpheadercheckcontenttypeisjson TEXT "Response has fhir json Content-type"
 END TESTS
 
 BEGIN MESSAGES
@@ -135,15 +138,19 @@ read_appt_interactionid
 update_appt_interactionid
 	Ssp-InteractionID "urn:nhs:names:services:careconnect:fhir:rest:update:appointment"
 
-# The endpoint repurposes the unused __NHS_NUMBER__ tag in the template, we may need to generalise this later if more tags are required
+# The endpoint repurposes the unused __NHS_NUMBER__ tag in the template to populate the aud field, we may need to generalise this later if more tags are required
+# 111222333444 is the practitioner id value
+# see https://developer.nhs.uk/apis/uec-appointments/fs_authentication.html for details of jwt claims
 JWT_metadata
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template_metadata.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template_metadata.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
 JWT_search_slots
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
+JWT_search_slots_no_practitioner
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.nopractitioner.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
 JWT_book_cancel
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.book_cancel.fhir3.txt GCASDS0001 "__TO_ENDPOINT__" secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.book_cancel.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
 JWT_invalid_aud
-	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt GCASDS0001 notanendpoint secret true
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt 111222333444 notanendpoint secret true
 
 unsupported_content
 	Content-type "application/xml"

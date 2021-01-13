@@ -1,15 +1,30 @@
 #
 # Care Connect emergency booking EB_Capability tstp file
-# slot numbers refer to test scenario identifiers not actual slot numbers
 #
 SCRIPT EB_Capability
 
 BEGIN SCHEDULES
-Capability TESTS CapabilityTest ResponseIsCapabilityStatement
+Capability_xml_accept TESTS CapabilityTest_xml_accept ResponseIsCapabilityStatement ResponseIsXml
+Capability_json_accept TESTS CapabilityTest_json_accept ResponseIsCapabilityStatement ResponseIsJson
+
+Capability_xml_parameter TESTS CapabilityTest_xml_parameter ResponseIsCapabilityStatement ResponseIsXml
+Capability_json_parameter TESTS CapabilityTest_json_parameter ResponseIsCapabilityStatement ResponseIsJson
+
+Capability_xml_parameter_json_accept TESTS CapabilityTest_xml_parameter_json_accept ResponseIsCapabilityStatement ResponseIsXml
+Capability_json_parameter_xml_accept TESTS CapabilityTest_json_parameter_xml_accept ResponseIsCapabilityStatement ResponseIsJson
+
 END SCHEDULES
 
 BEGIN TESTS
-CapabilityTest SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept TEXT "HTTP Response must be HTTP 200"
+CapabilityTest_xml_accept SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept TEXT "HTTP Response must be HTTP 200"
+CapabilityTest_json_accept SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+json_accept TEXT "HTTP Response must be HTTP 200"
+
+CapabilityTest_xml_parameter SEND_TKW empty_file TO __TO_ENDPOINT__/metadata?_format=application/fhir%2Bxml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata TEXT "HTTP Response must be HTTP 200"
+CapabilityTest_json_parameter SEND_TKW empty_file TO __TO_ENDPOINT__/metadata?_format=application/fhir%2Bjson FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata TEXT "HTTP Response must be HTTP 200"
+
+CapabilityTest_xml_parameter_json_accept SEND_TKW empty_file TO __TO_ENDPOINT__/metadata?_format=application/fhir%2Bxml FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+json_accept TEXT "HTTP Response must be HTTP 200"
+CapabilityTest_json_parameter_xml_accept SEND_TKW empty_file TO __TO_ENDPOINT__/metadata?_format=application/fhir%2Bjson FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept TEXT "HTTP Response must be HTTP 200"
+
 ResponseIsCapabilityStatement CHAIN SYNC response_is_capability_statement TEXT "Response must be a CapabilityStatement"
 END TESTS
 

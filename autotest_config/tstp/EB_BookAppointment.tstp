@@ -9,7 +9,7 @@ BEGIN SCHEDULES
 BookAppointment_HappyPath TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment ResponseIsAppointmentExtracting5 LocationIsReturned AppointmentIsBooked AppointmentHasId LocationIsWellFormed
 
 # need to book the slot then rebook it, or search for a busy slot and rebook it
-BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked ResponseIsOperationOutcome OutcomeSeverityIsError OutcomeCodeIsProcessingFailure OutcomeDiagnosticsIsSlotNoLongerAvailable
+BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked ResponseIsOperationOutcome OutcomeSeverityIsError OutcomeCodeIsProcessing OutcomeDetailsSystemIsIssueType OutcomeDetailsCodeIsProcessing OutcomeDetailsDisplayIsProcessingFailure OutcomeDiagnosticsIsSlotNoLongerAvailable
 BookAppointment_FailedValidation TESTS SFFSWithValidParameters_3_days_7 ResponseIsBundleExtracting7 BookAppointment_FailedValidation ResponseIsOperationOutcome
 BookAppointment_Invalid TESTS SFFSWithValidParameters_3_days_8 ResponseIsBundleExtracting8 BookAppointment_Invalid ResponseIsOperationOutcome
 BookAppointment_Forbidden TESTS SFFSWithValidParameters_3_days_9 ResponseIsBundleExtracting9 BookAppointment_Forbidden ResponseIsOperationOutcome
@@ -19,16 +19,20 @@ BookAppointment_BadGateway TESTS SFFSWithValidParameters_3_days_12 ResponseIsBun
 END SCHEDULES
 
 BEGIN TESTS
-AppointmentHasId CHAIN SYNC appt_has_id TEXT "Booked appointment has an allocated id element. SCAL P26"
-LocationIsWellFormed CHAIN SYNC location_is_well_formed TEXT "Location is well formed. SCAL P28"
+AppointmentHasId CHAIN SYNC appt_has_id TEXT "Booked appointment has an allocated id element. SCAL P-BOOK-APP-RES-CRT-CODE-RET-NEW-ID"
+LocationIsWellFormed CHAIN SYNC location_is_well_formed TEXT "Location is well formed. SCAL P-BOOK-APP-LOCA-HEAD-RELA-ABSOL-VALUE"
 
-OutcomeSeverityIsError CHAIN SYNC severity_is_error TEXT "Operation Outcome severity is error. SCAL P30" 
-OutcomeCodeIsProcessingFailure CHAIN SYNC code_is_processing_failure TEXT "Operation Outcome code is Processing Failure. SCAL P30" 
-OutcomeDiagnosticsIsSlotNoLongerAvailable CHAIN SYNC diagnostics_is_slot_no_longer_available TEXT "Operation Outcome diagnostics is Slot no longer available. SCAL P30"
+OutcomeSeverityIsError CHAIN SYNC severity_is_error TEXT "Operation Outcome severity is error. SCAL P-BOOK-APP-SLOT-NOT-FREE-OPER-OUT-RES-ONE-ISSUE" 
+OutcomeCodeIsProcessing CHAIN SYNC code_is_processing TEXT "Operation Outcome code is Processing." 
+
+OutcomeDetailsCodeIsProcessing CHAIN SYNC details_code_is_processing TEXT "Operation Outcome details code is Processing. SCAL P-BOOK-APP-SLOT-NOT-FREE-OPER-OUT-RES-ONE-ISSUE" 
+OutcomeDetailsSystemIsIssueType CHAIN SYNC details_system_is_issue-type TEXT "Operation Outcome details system is http://hl7.org/fhir/issue-type." 
+OutcomeDetailsDisplayIsProcessingFailure CHAIN SYNC details_display_is_processing_failure TEXT "Operation Outcome details display is Processing Failure. SCAL P-BOOK-APP-SLOT-NOT-FREE-OPER-OUT-RES-ONE-ISSUE" 
+OutcomeDiagnosticsIsSlotNoLongerAvailable CHAIN SYNC diagnostics_is_slot_no_longer_available TEXT "Operation Outcome diagnostics is Slot no longer available. SCAL P-BOOK-APP-SLOT-NOT-FREE-OPER-OUT-RES-ONE-ISSUE"
 
 #
 # slot already booked scenario 15
-BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_slot6 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422 SCAL P29"
+BookAppointment_SlotAlreadyBooked SEND_TKW book_appointment_slot6 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck422 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 422 SCAL P-BOOK-APP-SLOT-NOT-FREE-RET-STAT"
 
 # failed validation 16 If the request fails because the request body failed validation against the relevant profiles
 # TODO need to make this request invalid in some way whats the difference between this and scenario 17
@@ -66,7 +70,12 @@ appt_has_id synchronousxpath /fhir:Appointment/fhir:id/@value exists
 location_is_well_formed httpheadercheck Location matches "^https://.+/Appointment/.+$"
 
 severity_is_error synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:severity/@value matches "^error$"
-code_is_processing_failure synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^(processing|Processing Failure)$"
+code_is_processing synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^processing$"
+
+details_system_is_issue-type synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:system/@value matches "^http://hl7.org/fhir/issue-type$"
+details_code_is_processing synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^processing$"
+details_display_is_processing_failure synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:display/@value matches "^Processing Failure$"
+
 diagnostics_is_slot_no_longer_available synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:diagnostics/@value matches "^Slot no longer available$"
 END PASSFAIL
 
