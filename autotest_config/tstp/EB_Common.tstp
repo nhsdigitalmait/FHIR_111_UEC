@@ -77,21 +77,21 @@ BEGIN MESSAGES
 # supply this for HTTP GET requests
 #
 empty_file USING empty_file_template WITH slots
-empty_file5 USING empty_file_template WITH slots5
-empty_file6 USING empty_file_template WITH slots6
-empty_file7 USING empty_file_template WITH slots7
-empty_file8 USING empty_file_template WITH slots8
-empty_file9 USING empty_file_template WITH slots9
-empty_file10 USING empty_file_template WITH slots10
-empty_file11 USING empty_file_template WITH slots11
-empty_file12 USING empty_file_template WITH slots12
-empty_file13 USING empty_file_template WITH slots13
-empty_file14 USING empty_file_template WITH slots14
-empty_file15 USING empty_file_template WITH slots15
-empty_file16 USING empty_file_template WITH slots16
-empty_file17 USING empty_file_template WITH slots17
-empty_file18 USING empty_file_template WITH slots18
-empty_file19 USING empty_file_template WITH slots19
+empty_file5 USING empty_file_template WITH slots5 ID s5
+empty_file6 USING empty_file_template WITH slots6 ID s6
+empty_file7 USING empty_file_template WITH slots7 ID s7
+empty_file8 USING empty_file_template WITH slots8 ID s8
+empty_file9 USING empty_file_template WITH slots9 ID s9
+empty_file10 USING empty_file_template WITH slots10 ID s10
+empty_file11 USING empty_file_template WITH slots11 ID s11
+empty_file12 USING empty_file_template WITH slots12 ID s12
+empty_file13 USING empty_file_template WITH slots13 ID s13
+empty_file14 USING empty_file_template WITH slots14 ID s14
+empty_file15 USING empty_file_template WITH slots15 ID s15
+empty_file16 USING empty_file_template WITH slots16 ID s16
+empty_file17 USING empty_file_template WITH slots17 ID s17
+empty_file18 USING empty_file_template WITH slots18 ID s18
+empty_file19 USING empty_file_template WITH slots19 ID s19
 
 book_appointment_slot5 USING book_appt_template WITH slots5 ID s5
 END MESSAGES

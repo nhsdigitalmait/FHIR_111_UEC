@@ -98,6 +98,7 @@ SFFSWithInvalidQuery SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%
 SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P-VDATE-INCOM-JWT-AUDI-CLAIM)"
 #
 # scenario 5 server error no point in testing this
+# This is a provider simulator sentinel check so of no value when testing real systems
 #
 # scenario 6 wrong method post instead of get TODO the simulator doesnt respond correctly because the POST ruleset is selected not the GET ruleset
 #
