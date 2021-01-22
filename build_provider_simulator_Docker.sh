@@ -4,7 +4,7 @@ label=$1
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied - date will be used for label"
-	$label=`date +%Y%m%d`
+	label=`date +%Y%m%d`
 fi
 #Update the docker ignore sim link
 ln -fs .dockerignore.simulator .dockerignore
