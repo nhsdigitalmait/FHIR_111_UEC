@@ -361,7 +361,7 @@
           <reference value="https://directory.spineservices.nhs.uk/STU3/Organization/RR8" />
         </providedBy>
         <location>
-          <reference value="Location/loc2222" />
+          <reference value="Location/loc1111" />
         </location>
         <name value="Service One" />
       </HealthcareService>

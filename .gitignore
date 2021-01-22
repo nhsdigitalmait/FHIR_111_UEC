@@ -1,4 +1,5 @@
 /validator_reports/**
+/validator_config/NHSD.Assets.STU3_1.3.0/**
 /transmitter_source/**
 /tranmitter_sent_messages/**
 /simulator_saved_messages/**

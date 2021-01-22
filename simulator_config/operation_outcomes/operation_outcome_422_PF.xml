@@ -13,6 +13,6 @@
 				<display value="Invalid parameter"/>
 			</coding>
 		</details>
-		<diagnostics value="Slot no longer available"/>
+		<diagnostics value="the proposed resource violated applicable FHIR profiles or server business rules"/>
 	</issue>
 </OperationOutcome>

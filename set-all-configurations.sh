@@ -17,9 +17,9 @@ sed -i -e "/^tks.logdir/c\tks.logdir /home/service/data/logs" ${configDirectory}
 sed -i -e "/^tks.savedmessages/c\tks.savedmessages /home/service/data/all_evidence" ${configDirectory}/tkw-x_provider_simulator.properties
 
 # Update FHIR profile directory with docker image volume directories (This should be done in a more programatic fasion with a loop - run out of time :-)) 
-sed -i -e "/^tks.validator.hapifhirvalidator.assetdir.ignore/c\tks.validator.hapifhirvalidator.assetdir.ignore /home/service/fhir/examples/" ${configDirectory}/tkw-x_provider_simulator.properties
-sed -i -e "/^tks.validator.hapifhirvalidator.assetdir /c\tks.validator.hapifhirvalidator.assetdir /home/service/fhir" ${configDirectory}/tkw-x_provider_simulator.properties
-sed -i -e "/^tks.validator.hapifhirvalidator.profileversionfilelocation/c\tks.validator.hapifhirvalidator.profileversionfilelocation /home/service/fhir/package.json" ${configDirectory}/tkw-x_provider_simulator.properties
+#sed -i -e "/^tks.validator.hapifhirvalidator.assetdir.ignore/c\tks.validator.hapifhirvalidator.assetdir.ignore /home/service/fhir/examples/" ${configDirectory}/tkw-x_provider_simulator.properties
+#sed -i -e "/^tks.validator.hapifhirvalidator.assetdir /c\tks.validator.hapifhirvalidator.assetdir /home/service/fhir" ${configDirectory}/tkw-x_provider_simulator.properties
+#sed -i -e "/^tks.validator.hapifhirvalidator.profileversionfilelocation/c\tks.validator.hapifhirvalidator.profileversionfilelocation /home/service/fhir/package.json" ${configDirectory}/tkw-x_provider_simulator.properties
 
 # Update Simulator ruleset with docker image directories
 sed -i -e 's|/home/riro/TKW-5.0.5/TKW/|/home/service/TKW/|g' ${configDirectory}/simulator_config/test_tks_rule_config.txt

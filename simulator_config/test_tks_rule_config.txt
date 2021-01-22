@@ -34,6 +34,14 @@ SearchSlots_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111
 SearchSlots_HappyPath_NoSlots_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_NoSlots_Response.xml 200 
 
 BookAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+RetrieveAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_005.xml "200 Created" 
+RetrieveAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_013.xml "200 Created" 
+RetrieveAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_014.xml "200 Created" 
+RetrieveAppointment_HappyPath015_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_015.xml "200 Created" 
+RetrieveAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_016.xml "200 Created" 
+RetrieveAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_017.xml "200 Created" 
+RetrieveAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_018.xml "200 Created" 
+RetrieveAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_019.xml "200 Created" 
 CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 
 Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/Capability_Response_WRONG.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
@@ -60,6 +68,7 @@ __DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentRefer
 # needs to be html escaped for full url on response
 __FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
+__APPOINTMENT_ID__	reg_exp context_path "^.*\/STU3\/Appointment\/(([0-9]|[a-f]){8}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){12}).*$" "$1"
 
 
 END SUBSTITUTIONS
@@ -88,6 +97,16 @@ INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json
 #CONTEXT PATH CHECKS
 SLOT						context_path matches ^.*\/STU3\/Slot.*$
 METADATA					context_path matches ^.*\/STU3\/metadata.*$
+APPOINTMENT					context_path matches ^.*\/STU3\/Appointment.*$
+APPOINTMENT005				context_path matches ^.*\/STU3\/Appointment\/48fae2df-8010-4c80-8dd0-289a9dd60ae4.*$
+APPOINTMENT013				context_path matches ^.*\/STU3\/Appointment\/1ef97d28-1e42-4e4f-981b-3e26bec1870a.*$
+APPOINTMENT014				context_path matches ^.*\/STU3\/Appointment\/0dd85bf6-653c-4531-9890-78f4691eabe2.*$
+APPOINTMENT015				context_path matches ^.*\/STU3\/Appointment\/a3b76480-cd4a-4271-aedc-10eccb17b2ed.*$
+APPOINTMENT016				context_path matches ^.*\/STU3\/Appointment\/07ef6a30-851b-47f0-8727-78200e642347.*$
+APPOINTMENT017				context_path matches ^.*\/STU3\/Appointment\/615fcfdd-6efa-4eee-aa3f-d86893d1a98a.*$
+APPOINTMENT018				context_path matches ^.*\/STU3\/Appointment\/ec104b34-adfa-40ac-9dfb-20c428397e85.*$
+APPOINTMENT019				context_path matches ^.*\/STU3\/Appointment\/6fdd6b8f-7752-445b-88a4-cb1f8efb1373.*$
+APPOINTMENT_NF				context_path matches ^.*\/STU3\/Appointment\/95e58add-0b10-4a8c-817c-2729eb0cab75.*$
 
 HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999999.*$
 HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999998.*$
@@ -96,7 +115,7 @@ HEALTHCARESERVICE999999999996		context_path matches ^.*schedule.actor%3Ahealthca
 HEALTHCARESERVICE999999999995		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999995.*$
 HEALTHCARESERVICE999999999994		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999994.*$
 
-APPOINTMENT							context_path matches ^.*\/STU3\/Appointment.*$
+
 SLOT005								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot005
 SLOT006								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot006
 SLOT007								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot007
@@ -152,15 +171,24 @@ END RULE
 
 BEGIN RULE
 GET
-IF 	Ssp_From_MISSING							THEN	Operation_Outcome_400					ELSE	NEXT
-IF	METADATA									THEN	Capability_HappyPath_Response			ELSE	NEXT
-IF 	HEALTHCARESERVICE_MISSING					THEN	Operation_Outcome_400					ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999999	THEN	SearchSlots_HappyPath_Response			ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999998	THEN	SearchSlots_HappyPath_NoSlots_Response	ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999997	THEN	Operation_Outcome_400					ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999996	THEN	Operation_Outcome_403					ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999995	THEN	Operation_Outcome_500					ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405					ELSE	NEXT
+IF 	Ssp_From_MISSING								THEN	Operation_Outcome_400						ELSE	NEXT
+IF	METADATA										THEN	Capability_HappyPath_Response				ELSE	NEXT
+IF	APPOINTMENT005									THEN	RetrieveAppointment_HappyPath005_Response	ELSE	NEXT
+IF	APPOINTMENT013									THEN	RetrieveAppointment_HappyPath013_Response	ELSE	NEXT
+IF	APPOINTMENT014									THEN	RetrieveAppointment_HappyPath014_Response	ELSE	NEXT
+IF	APPOINTMENT015									THEN	RetrieveAppointment_HappyPath015_Response	ELSE	NEXT
+IF	APPOINTMENT016									THEN	RetrieveAppointment_HappyPath016_Response	ELSE	NEXT
+IF	APPOINTMENT017									THEN	RetrieveAppointment_HappyPath017_Response	ELSE	NEXT
+IF	APPOINTMENT018									THEN	RetrieveAppointment_HappyPath018_Response	ELSE	NEXT
+IF	APPOINTMENT019									THEN	RetrieveAppointment_HappyPath019_Response	ELSE	NEXT
+IF	APPOINTMENT_NF									THEN	Operation_Outcome_404						ELSE	NEXT
+IF 	HEALTHCARESERVICE_MISSING						THEN	Operation_Outcome_400						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999999		THEN	SearchSlots_HappyPath_Response				ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999998		THEN	SearchSlots_HappyPath_NoSlots_Response		ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999997		THEN	Operation_Outcome_400						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999996		THEN	Operation_Outcome_403						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999995		THEN	Operation_Outcome_500						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999994		THEN	Operation_Outcome_405						ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
 
