@@ -7,6 +7,7 @@ SCRIPT EB_BookAppointment
 BEGIN SCHEDULES
 # valid date ranges this tests populates the slot 5 tdv including the etag from the successful book
 BookAppointment_HappyPath TESTS SFFSWithValidParameters_3_days_5 ResponseIsBundleExtracting5 BookAppointment ResponseIsAppointmentExtracting5 LocationIsReturned AppointmentIsBooked AppointmentHasId LocationIsWellFormed
+BookAppointment_NoNHSNumber TESTS SFFSWithValidParameters_3_days_20 ResponseIsBundleExtracting20 BookAppointment_NoNHSNumber ResponseIsAppointmentExtracting20 LocationIsReturned AppointmentIsBooked AppointmentHasId LocationIsWellFormed
 
 # need to book the slot then rebook it, or search for a busy slot and rebook it
 BookAppointment_SlotAlreadyBooked TESTS SFFSWithValidParameters_3_days_6 ResponseIsBundleExtracting6 BookAppointment_SlotAlreadyBooked ResponseIsOperationOutcome OutcomeSeverityIsError OutcomeCodeIsProcessing OutcomeDetailsSystemIsIssueType OutcomeDetailsCodeIsProcessing OutcomeDetailsDisplayIsProcessingFailure OutcomeDiagnosticsIsSlotNoLongerAvailable
@@ -16,6 +17,7 @@ BookAppointment_Forbidden TESTS SFFSWithValidParameters_3_days_9 ResponseIsBundl
 BookAppointment_ServerError TESTS SFFSWithValidParameters_3_days_10 ResponseIsBundleExtracting10 BookAppointment_ServerError ResponseIsOperationOutcome
 BookAppointment_UnsupportedMediaType TESTS SFFSWithValidParameters_3_days_11 ResponseIsBundleExtracting11 BookAppointment_UnsupportedMediaType ResponseIsOperationOutcome
 BookAppointment_BadGateway TESTS SFFSWithValidParameters_3_days_12 ResponseIsBundleExtracting12 BookAppointment_BadGateway ResponseIsOperationOutcome
+
 END SCHEDULES
 
 BEGIN TESTS
@@ -56,6 +58,8 @@ BookAppointment_UnsupportedMediaType SEND_TKW book_appointment_slot11 TO __TO_EN
 # This is a provider simulator sentinel check so of no value when testing real systems
 BookAppointment_BadGateway SEND_TKW book_appointment_slot12 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck502 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 502"
 
+BookAppointment_NoNHSNumber SEND_TKW book_appointment_slot20 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id_and_nhs_no.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept TEXT "HTTP Response must be HTTP 201"
+
 SFFSWithValidParameters_3_days_6 SEND_TKW empty_file6 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 SFFSWithValidParameters_3_days_7 SEND_TKW empty_file7 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 SFFSWithValidParameters_3_days_8 SEND_TKW empty_file8 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
@@ -64,6 +68,7 @@ SFFSWithValidParameters_3_days_10 SEND_TKW empty_file10 TO __TO_ENDPOINT__/Slot?
 SFFSWithValidParameters_3_days_11 SEND_TKW empty_file11 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 SFFSWithValidParameters_3_days_12 SEND_TKW empty_file12 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
+SFFSWithValidParameters_3_days_20 SEND_TKW empty_file20 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 END TESTS
 
 BEGIN PASSFAIL
@@ -88,4 +93,6 @@ book_appointment_slot9 USING book_appt_template WITH slots9 ID s9
 book_appointment_slot10 USING book_appt_template WITH slots10 ID s10
 book_appointment_slot11 USING book_appt_template WITH slots11 ID s11
 book_appointment_slot12 USING book_appt_template WITH slots12 ID s12
+
+book_appointment_slot20 USING book_appt_template WITH slots20 ID s20
 END MESSAGES

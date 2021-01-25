@@ -26,6 +26,7 @@ AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:Operat
 BadRequest CHAIN SYNC bad_request TEXT "Response contains a root fhir:OperationOutcome reporting a BAD_REQUEST code"
 
 ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
+ResponseIsAppointmentExtracting20 CHAIN SYNC response_is_appt_extracting20 TEXT "Response contains a root fhir:Appointment element"
 
 ResponseIsBundle CHAIN SYNC response_is_bundle TEXT "Response contains a root fhir:Bundle element"
 
@@ -61,6 +62,9 @@ ResponseIsEmptyPayloadExtracting18 CHAIN SYNC response_is_empty_payload_extracti
 ResponseIsBundleExtracting19 CHAIN SYNC response_is_bundle_extracting19 TEXT "Response contains a root fhir:Bundle element"
 ResponseIsEmptyPayloadExtracting19 CHAIN SYNC response_is_empty_payload_extracting19 TEXT "Response payload is empty"
 
+ResponseIsBundleExtracting20 CHAIN SYNC response_is_bundle_extracting20 TEXT "Response contains a root fhir:Bundle element"
+ResponseIsEmptyPayloadExtracting20 CHAIN SYNC response_is_empty_payload_extracting20 TEXT "Response payload is empty"
+
 LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
 AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
 
@@ -93,7 +97,10 @@ empty_file17 USING empty_file_template WITH slots17 ID s17
 empty_file18 USING empty_file_template WITH slots18 ID s18
 empty_file19 USING empty_file_template WITH slots19 ID s19
 
+empty_file20 USING empty_file_template WITH slots20 ID s20
+
 book_appointment_slot5 USING book_appt_template WITH slots5 ID s5
+book_appointment_slot20 USING book_appt_template WITH slots20 ID s20
 END MESSAGES
 
 BEGIN TEMPLATES
@@ -188,6 +195,8 @@ slots_free16_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_c
 slots_free17_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free17.cfg
 slots_free18_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free18.cfg
 slots_free19_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free19.cfg
+
+slots_free20_extractor xpathextractor __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slots_free20.cfg
 END EXTRACTORS
 
 BEGIN DATASOURCES
@@ -210,6 +219,8 @@ slots16 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extr
 slots17 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_17.tdv
 slots18 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_18.tdv
 slots19 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_19.tdv
+
+slots20 circularwritabletdv __TKWROOT__/config/FHIR_111_UEC/autotest_config/extractor_configs/slot_20.tdv
 END DATASOURCES
 
 BEGIN PASSFAIL
@@ -220,6 +231,7 @@ ok httpok
 response_is_bundle synchronousxpath /fhir:Bundle exists
 
 response_is_appt_extracting5 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free5_extractor
+response_is_appt_extracting20 synchronousxpath /fhir:Appointment exists EXTRACTOR slots_free20_extractor
 
 response_is_empty_payload_extracting5 synchronousxpath / doesnotexist EXTRACTOR slots_free5_extractor
 
@@ -247,6 +259,8 @@ response_is_bundle_extracting16 synchronousxpath /fhir:Bundle exists EXTRACTOR s
 response_is_bundle_extracting17 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free17_extractor
 response_is_bundle_extracting18 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free18_extractor
 response_is_bundle_extracting19 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free19_extractor
+
+response_is_bundle_extracting20 synchronousxpath /fhir:Bundle exists EXTRACTOR slots_free20_extractor
 
 type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
 operation_outcome synchronousxpath /fhir:OperationOutcome exists
