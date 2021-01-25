@@ -33,7 +33,16 @@ Operation_Outcome_504					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operatio
 SearchSlots_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_Response.xml 200 
 SearchSlots_HappyPath_NoSlots_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_NoSlots_Response.xml 200 
 
-BookAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_Response.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_005.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_013.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/1ef97d28-1e42-4e4f-981b-3e26bec1870a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_014.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/0dd85bf6-653c-4531-9890-78f4691eabe2/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath015_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_015.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/a3b76480-cd4a-4271-aedc-10eccb17b2ed/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_016.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/07ef6a30-851b-47f0-8727-78200e642347/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_017.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/615fcfdd-6efa-4eee-aa3f-d86893d1a98a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_018.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/ec104b34-adfa-40ac-9dfb-20c428397e85/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_019.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/6fdd6b8f-7752-445b-88a4-cb1f8efb1373/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath020_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_no_NHS_Number.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/5d8d5eec-00ce-4b00-8f01-95b1590cf686/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath021_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_021.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/95e58add-0b10-4a8c-817c-2729eb0cab75/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 RetrieveAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_005.xml "200 Created" 
 RetrieveAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_013.xml "200 Created" 
 RetrieveAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_014.xml "200 Created" 
@@ -42,7 +51,7 @@ RetrieveAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator
 RetrieveAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_017.xml "200 Created" 
 RetrieveAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_018.xml "200 Created" 
 RetrieveAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_019.xml "200 Created" 
-CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 
 Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/Capability_Response_WRONG.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 do_process	NONE	0
@@ -131,6 +140,8 @@ SLOT016								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@
 SLOT017								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot017
 SLOT018								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot018
 SLOT019								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot019
+SLOT020								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot020
+SLOT021								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot021
 
 #HTTP HEADER CHECKS
 #QUESTION - is the GUID Upper or Lower case? 3cb63c23-2d28-49c5-ad57-033fcbba71c7
@@ -147,7 +158,7 @@ IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400				ELSE	NEXT
 #This is to show that the provider tester works
 IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405	ELSE	NEXT
 IF 	SLOT_MISSING			THEN	Operation_Outcome_400				ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath005_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_PF			ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT007	THEN	Operation_Outcome_422_IP			ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT008	THEN	Operation_Outcome_400				ELSE	NEXT
@@ -156,13 +167,15 @@ IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_405				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT010	THEN	Operation_Outcome_500				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT011	THEN	Operation_Outcome_415				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT012	THEN	Operation_Outcome_502				ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT013	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT014	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT015	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT016	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT017	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT018	THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT019 THEN	BookAppointment_HappyPath_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT013	THEN	BookAppointment_HappyPath013_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT014	THEN	BookAppointment_HappyPath014_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT015	THEN	BookAppointment_HappyPath015_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT016	THEN	BookAppointment_HappyPath016_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT017	THEN	BookAppointment_HappyPath017_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT018	THEN	BookAppointment_HappyPath018_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT019 THEN	BookAppointment_HappyPath019_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT020 THEN	BookAppointment_HappyPath020_Response	ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT021 THEN	BookAppointment_HappyPath021_Response	ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
 

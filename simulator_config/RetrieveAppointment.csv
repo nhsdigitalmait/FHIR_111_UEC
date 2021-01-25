@@ -1,7 +1,6 @@
 #
 # drives creation of operation outcomes
 # <tag>,<doc_ref>,<doc_ref_identifier>,<slotId>,<slotValue>,<scheduleRef>,<slotStartTime>,<slotEndTime>
-
 005,123,6b9c59dd-675b-4026-98db-f608ef501e6e,slot005,5a889965-3db4-4c29-8003-676c247a763e,Schedule\/sched1111,__TOMORROW__T10:00:00.000+00:00,__TOMORROW__T10:15:00.000+00:00
 013,123,6b9c59dd-675b-4026-98db-f608ef501e6e,slot013,2a71eb2f-6736-4864-a713-f533ca9916ab,Schedule\/sched1111,__TOMORROW__T14:30:00.000+00:00,__TOMORROW__T14:45:00.000+00:00
 014,123,6b9c59dd-675b-4026-98db-f608ef501e6e,slot014,32bbfb15-ed32-4831-8b32-f3da34b08d5d,Schedule\/sched1111,__DAY_AFTER_TOMORROW__T14:45:00.000+00:00,__DAY_AFTER_TOMORROW__T15:00:00.000+00:00

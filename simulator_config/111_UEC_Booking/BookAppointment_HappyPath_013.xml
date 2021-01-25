@@ -1,5 +1,5 @@
 <Appointment xmlns="http://hl7.org/fhir">
-  <id value="48fae2df-8010-4c80-8dd0-289a9dd60ae4"/>
+  <id value="1ef97d28-1e42-4e4f-981b-3e26bec1870a"/>
   <meta>
     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" />
     <versionId value="__VERSIONID__" />
@@ -40,9 +40,9 @@
         <value value="__SLOT_VALUE__" />
       </identifier>
       <schedule>
-        <reference value="Schedule/sched1111" />
+        <reference value="__SLOT_SCHED_REF__" />
       </schedule>
-      <status value="free" />
+      <status value="busy" />
       <start value="__SLOT_START_TIME__" />
       <end value="__SLOT_END_TIME__" />
     </Slot>
@@ -91,7 +91,7 @@
       </address>
     </Patient>
   </contained>
-  <status value="cancelled" />
+  <status value="booked" />
   <description value="Reason for calling" />
   <supportingInformation>
     <reference value="#__DOC_REF__" />

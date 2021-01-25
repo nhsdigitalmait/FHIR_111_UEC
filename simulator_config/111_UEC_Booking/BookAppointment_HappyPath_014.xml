@@ -1,24 +1,19 @@
 <Appointment xmlns="http://hl7.org/fhir">
-  <id value="__APPOINTMENT_ID__" />
+  <id value="0dd85bf6-653c-4531-9890-78f4691eabe2"/>
   <meta>
-    <versionId value="__VERSIONID__" />
     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" />
+    <versionId value="__VERSIONID__" />
     <lastUpdated value="__TIMESTAMP__" />
   </meta>
-  <language value="en" />
-  <text>
-    <status value="generated" />
-    <div xmlns="http://www.w3.org/1999/xhtml">Appointment</div>
-  </text>
   <contained>
     <DocumentReference xmlns="http://hl7.org/fhir">
-      <id value="" />
+      <id value="__DOC_REF__" />
       <meta>
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1" />
       </meta>
       <identifier>
         <system value="https://tools.ietf.org/html/rfc4122" />
-        <value value="" />
+        <value value="__DOC_REF_IDENTIFIER__" />
       </identifier>
       <status value="current" />
       <type>
@@ -39,17 +34,17 @@
   </contained>
   <contained>
     <Slot xmlns="http://hl7.org/fhir">
-      <id value="" />
+      <id value="__SLOT_ID__" />
       <identifier>
         <system value="https://tools.ietf.org/html/rfc4122" />
-        <value value="" />
+        <value value="__SLOT_VALUE__" />
       </identifier>
       <schedule>
-        <reference value="" />
+        <reference value="__SLOT_SCHED_REF__" />
       </schedule>
       <status value="busy" />
-      <start value="" />
-      <end value="" />
+      <start value="__SLOT_START_TIME__" />
+      <end value="__SLOT_END_TIME__" />
     </Slot>
   </contained>
   <contained>
@@ -99,14 +94,14 @@
   <status value="booked" />
   <description value="Reason for calling" />
   <supportingInformation>
-    <reference value="#" />
+    <reference value="#__DOC_REF__" />
   </supportingInformation>
-  <start value="" />
-  <end value="" />
+  <start value="__START_TIME__" />
+  <end value="__END_TIME__" />
   <slot>
-    <reference value="#" />
+    <reference value="#__SLOT_ID__" />
   </slot>
-  <created value="__TIMESTAMP__" />
+  <created value="__CREATED_TIME__" />
   <participant>
     <actor>
       <reference value="#P1" />
