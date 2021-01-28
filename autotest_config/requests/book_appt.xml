@@ -32,6 +32,9 @@
    <contained>
       <Slot xmlns="http://hl7.org/fhir">
          <id value="__SLOT_ID____APPT_SLOT_ID__"></id>
+         <meta>
+            <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"></profile>
+         </meta>
          <identifier>
             <system value="__IDENTIFIER_SYSTEM____APPT_IDENTIFIER_SYSTEM__"></system>
             <value value="__IDENTIFIER_VALUE____APPT_IDENTIFIER_VALUE__"></value>

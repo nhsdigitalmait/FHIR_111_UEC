@@ -4,6 +4,8 @@
 # usage $0 <tstfile>+
 #
 #OPTIONS=-Djavax.net.debug=all
+# need more heap space
+OPTIONS=-Xmx2048m
 
 for f in $*
 do

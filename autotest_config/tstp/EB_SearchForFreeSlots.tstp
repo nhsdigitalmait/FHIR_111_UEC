@@ -54,7 +54,7 @@ SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIs
 SFFSNoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
 
 # scenario 3
-SFFSInvalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome BadRequest
+SFFSInvalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome InvalidParameter
 
 # scenario 4
 # SCAL P3 Invalid aud endpoint, invalid scope
