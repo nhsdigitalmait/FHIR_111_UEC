@@ -62,7 +62,7 @@ SFFSForbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenie
 # TODO P-VDATE-INCOM-JWT-CHK-EXP Put in an expired timestamp
 #
 # scenario 6
-SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome AccessDenied
+SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome NotSupported
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
 
