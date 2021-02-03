@@ -115,4 +115,5 @@
       <status value="accepted"></status>
   </participant>
   <id value="__APPT_ID__"/>
+  <language value="en-GB"></language>
 </Appointment>
