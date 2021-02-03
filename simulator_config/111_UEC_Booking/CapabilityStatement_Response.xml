@@ -1,0 +1,114 @@
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+   <version value="2.0.1"/>
+   <name value="Care Connect"/>
+   <status value="active"/>
+   <date value="2021-01-20"/>
+   <publisher value="NHS Digital"/>
+   <contact>
+      <name value="NHS Digital MAIT 111 UEC Booking TKW Test Harness"/>
+   </contact>
+   <description value="This server implements the Care Connect UEC Appointment API version 2.0.0"/>
+   <copyright value="Copyright NHS Digital 2016-21"/>
+   <kind value="capability"/>
+   <software>
+      <name value="111 UEC Booking TKW Test Harness"/>
+      <version value="0.1 Alpha"/>
+      <releaseDate value="2021-02-01T00:00:00+00:00"/>
+   </software>
+   <fhirVersion value="3.0.1"/>
+   <acceptUnknown value="both"/>
+   <format value="application/fhir+json"/>
+   <format value="application/fhir+xml"/>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-HealthcareService-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Schedule-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-DocumentReference-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+   </profile>
+   <profile>
+      <reference value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
+   </profile>
+   <rest>
+      <mode value="server"/>
+      <security>
+         <cors value="true"/>
+      </security>
+      <resource>
+         <type value="Appointment"/>
+         <interaction>
+            <code value="read"/>
+         </interaction>
+         <interaction>
+            <code value="create"/>
+         </interaction>
+         <interaction>
+            <code value="search-type"/>
+         </interaction>
+         <updateCreate value="false"/>
+         <searchParam>
+            <name value="identifier"/>
+            <type value="token"/>
+            <documentation value="NHS Number (i.e. https://fhir.nhs.uk/Id/nhs-number|123456789)"/>
+         </searchParam>
+         <searchParam>
+            <name value="appointmentId"/>
+            <type value="token"/>
+            <documentation value="Unique identifier for an appointment"/>
+         </searchParam>
+         <searchParam>
+            <name value="version"/>
+            <type value="token"/>
+            <documentation value="The version identifier for the Appointment being requested."/>
+         </searchParam>
+      </resource>
+      <resource>
+         <type value="Slot"/>
+         <interaction>
+            <code value="search-type"/>
+         </interaction>
+         <searchInclude value="Slot.schedule"/>
+         <searchInclude value="Schedule:actor:Practitioner"/>
+         <searchInclude value="Schedule:actor:PractitionerRole"/>
+         <searchInclude value="Schedule:actor:HealthcareService"/>
+         <searchInclude value="HealthcareService.providedBy"/>
+         <searchInclude value="HealthcareService.location"/>
+         <searchParam>
+            <name value="service"/>
+            <type value="token"/>
+         </searchParam>
+         <searchParam>
+            <name value="status"/>
+            <type value="token"/>
+         </searchParam>
+         <searchParam>
+            <name value="start"/>
+            <type value="date"/>
+         </searchParam>
+         <searchParam>
+            <name value="end"/>
+            <type value="date"/>
+         </searchParam>
+      </resource>
+   </rest>
+</CapabilityStatement>

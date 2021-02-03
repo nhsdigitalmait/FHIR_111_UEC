@@ -8,11 +8,11 @@
 		<code value="processing"/>
 		<details>
 			<coding>
-				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<system value="http://hl7.org/fhir/issue-type"/>
 				<code value="processing"/>
-				<display value="Invalid parameter"/>
+				<display value="Processing Failure"/>
 			</coding>
 		</details>
-		<diagnostics value="the proposed resource violated applicable FHIR profiles or server business rules"/>
+		<diagnostics value="Slot no longer available"/>
 	</issue>
 </OperationOutcome>

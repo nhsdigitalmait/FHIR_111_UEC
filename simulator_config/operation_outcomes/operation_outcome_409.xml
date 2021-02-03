@@ -6,6 +6,13 @@
 	<issue>
 		<severity value="error"/>
 		<code value="invalid"/>
-		<diagnostics value="The request could not be completed due to a conflict with the current state of the target resource"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="CONFLICTING_VALUES"/>
+				<display value="Conflicting values have been specified in different fields"/>
+			</coding>
+		</details>
+		<diagnostics value="Conflicting values have been specified in different fields"/>
 	</issue>
 </OperationOutcome>

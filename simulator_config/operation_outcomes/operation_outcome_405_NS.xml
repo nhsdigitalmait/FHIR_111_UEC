@@ -1,11 +1,8 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
-	<meta>
-		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
-	</meta>
 	<issue>
 		<severity value="error"/>
-		<code value="ACCESS_DENIED"/>
+		<code value="not-supported"/>
 		<diagnostics value="Bad request for an unsupported HTTP verb such as TRACE"/>
 	</issue>
 </OperationOutcome>

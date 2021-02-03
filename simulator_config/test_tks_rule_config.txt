@@ -53,7 +53,7 @@ RetrieveAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator
 RetrieveAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_019.xml "200 Created" 
 CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 
-Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/Capability_Response_WRONG.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CapabilityStatement_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
 do_process	NONE	0
 END RESPONSES
 
@@ -100,6 +100,9 @@ INVALID_CONTENT_TYPE			http_header content-type matches ^.*(text.*|application\/
 EMPTY_ACCEPT					http_header accept notmatches ^.+$
 INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json).*$
 #
+
+
+#CREATED_RANGE_VALID Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.ValidUrlEncodingExpression context_path "" ""
 
 #NHS 111 UEC Booking
 
@@ -214,7 +217,7 @@ IF	APPOINTMENT	AND	SLOT013 THEN	Operation_Outcome_422_RNF					ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT014 THEN	Operation_Outcome_409						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT015 THEN	Operation_Outcome_412						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT016 THEN	Operation_Outcome_400						ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_415						ELSE	NEXT
+IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_403						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT018 THEN	Operation_Outcome_500						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT019 THEN	Operation_Outcome_504						ELSE	NEXT
 IF passthrough THEN operation_outcome_unsupported_verb_404

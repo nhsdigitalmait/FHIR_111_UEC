@@ -5,7 +5,6 @@
     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" />
     <lastUpdated value="__TIMESTAMP__" />
   </meta>
-  <language value="en" />
   <text>
     <status value="generated" />
     <div xmlns="http://www.w3.org/1999/xhtml">Appointment</div>
@@ -96,6 +95,7 @@
       </address>
     </Patient>
   </contained>
+  <language value="en-GB" />
   <status value="booked" />
   <description value="Reason for calling" />
   <supportingInformation>

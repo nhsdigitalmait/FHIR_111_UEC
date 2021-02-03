@@ -10,7 +10,6 @@ do
 	fi
 done < BookAppointment.csv
 
-exit
 while IFS=, read -r tag doc_ref doc_ref_identifier si sv sr ss se
 do
 	if [[ ! $tag =~ ^#.*$ ]]

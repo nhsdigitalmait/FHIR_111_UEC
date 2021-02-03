@@ -9,6 +9,7 @@ fi
 #Update the docker ignore sim link
 ln -fs .dockerignore.simulator .dockerignore
 #Build the docker image
-docker build -f Dockerfile.simulator -t tkw_uec_provider_simulator .
-#Tag the docker image with today's date
+docker build -f Dockerfile.simulator.1004 -t tkw_uec_provider_simulator .
+#Tag the docker image with today's date or provided label
 docker tag tkw_uec_provider_simulator nhsdigitalmait/tkw_uec_provider_simulator:$label
+echo Docker Image tagged with $label

@@ -91,6 +91,7 @@
       </address>
     </Patient>
   </contained>
+  <language value="en-GB" />
   <status value="cancelled" />
   <description value="Reason for calling" />
   <supportingInformation>
