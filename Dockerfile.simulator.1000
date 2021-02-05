@@ -1,4 +1,4 @@
-FROM nhsdigitalmait/tkw-x:5512f73
+FROM nhsdigitalmait/tkw-x:fa163b2
 RUN useradd -rm -u 1000 service
 RUN mkdir /home/service/data/ && chown service:service /home/service/data/
 VOLUME /home/service/data
