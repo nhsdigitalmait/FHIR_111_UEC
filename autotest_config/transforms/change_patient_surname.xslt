@@ -7,11 +7,11 @@
 	<xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
 
 	<xsl:template match="fhir:Appointment/fhir:contained/fhir:Patient/fhir:name/fhir:family/@value">
-		<xsl:value-of select="concat(.,'xxxxx')"/>
+		<xsl:attribute name="value"><xsl:value-of select="concat(.,'xxxxx')"/></xsl:attribute>
 	</xsl:template>
 
 	<xsl:template match="fhir:Appointment/fhir:status/@value">
-		<xsl:value-of select="'cancelled'"/>
+		<xsl:attribute name="value">cancelled</xsl:attribute>
 	</xsl:template>
 
 	<!-- match all atts all nodes -->

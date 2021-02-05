@@ -273,7 +273,7 @@ bad_request synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir
 access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
 #
 # 405 wrong method
-not_supported synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^not-supported$"
+not_supported synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^not-supported$"
 #
 # http status code checks
 #
