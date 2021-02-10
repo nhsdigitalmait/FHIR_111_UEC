@@ -6,6 +6,10 @@ if [ $# -eq 0 ]
     echo "No arguments supplied - date will be used for label"
 	label=`date +%Y%m%d`
 fi
+
+# put the git commit hash and date into a text file
+git show -s --format="$PROJECT %h %cI" > version_string.txt
+
 #Update the docker ignore sim link
 ln -fs .dockerignore.simulator .dockerignore
 #Build the docker image
