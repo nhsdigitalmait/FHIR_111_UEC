@@ -8,7 +8,8 @@ if [ $# -eq 0 ]
 fi
 
 # put the git commit hash and date into a text file
-git show -s --format="$PROJECT %h %cI" > version_string.txt
+echo "111 UEC Booking Provider Simulator Version:" $label > version_string.txt
+echo "111 UEC Booking Github repository shortcode:" `git show -s --format="$PROJECT %h %cI"` >> version_string.txt
 
 #Update the docker ignore sim link
 ln -fs .dockerignore.simulator .dockerignore
