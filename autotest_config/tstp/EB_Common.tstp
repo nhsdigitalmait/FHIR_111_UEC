@@ -66,10 +66,10 @@ ResponseIsBundleExtracting20 CHAIN SYNC response_is_bundle_extracting20 TEXT "Re
 ResponseIsEmptyPayloadExtracting20 CHAIN SYNC response_is_empty_payload_extracting20 TEXT "Response payload is empty"
 
 LocationIsReturned CHAIN SYNC location_is_returned TEXT "Location must be returned in an http header"
-AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C42"
+AppointmentIsBooked CHAIN SYNC appt_is_booked TEXT "Appointment status must be booked SCAL C-APP-RES-STAT-BOOKED"
 
 
-# Most of the operation outcome checks will be satisified bythe validation
+# Most of the operation outcome checks will be satisified by the validation
 #OperationOutcomeHasId CHAIN SYNC outcome_has_id TEXT "Operation outcome id is mandatory. SCAL P37"
 #
 ResponseIsXml CHAIN SYNC httpheadercheckcontenttypeisxml TEXT "Response has fhir xml Content-type"

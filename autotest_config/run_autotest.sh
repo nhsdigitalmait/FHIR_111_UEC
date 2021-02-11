@@ -2,7 +2,7 @@
 #
 #  Script for TKWATM test script generation and execution for Emergency Booking
 #
-#  usage ./run_autotest.sh ( -s  <environment> [<testname> *]) |  ( [<environment> <A|S|B|C|>*] )
+#  usage ./run_autotest.sh --version | ( -s  <environment> [<testname> *]) |  ( [<environment> <A|S|B|C|>*] )
 #
 #  A => Capability
 #  S => Search for free slots
@@ -10,6 +10,23 @@
 #  C => Cancel appointment
 #  No Parameter => All
 #
+
+usage() 
+{
+	echo usage: $0 '--version |  ( -s  <environment> [<testname> *]) |  ( [<environment> <A|S|B|C|>*] )'
+	exit 1
+}
+
+VERSION_FILE=$TKWROOT/config/FHIR_111_UEC/version_string.txt
+if [[ "$1" == "--version" ]]
+then
+	if [[ -e $VERSION_FILE ]]
+	then
+		cat $VERSION_FILE
+	fi
+	exit 0
+fi
+
 TSTP_FILES=EB_Common.tstp
 
 if [[ "$1" == '-s' ]]
