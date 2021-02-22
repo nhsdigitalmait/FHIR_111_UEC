@@ -3,11 +3,7 @@
 #
 if [[ "$1" == "--version" ]]
 then
-	if [[ -e $TKWROOT/config/FHIR_111_UEC/version_string.txt ]]
-	then
-		cat $TKWROOT/config/FHIR_111_UEC/version_string.txt
-	fi
-	java -jar $TKWROOT/TKW-x.jar -version | grep -v "starting on"
+docker-compose -f docker-compose_provider_simulator.yml run --rm tkw_uec_provider_simulator $1
 	exit 0
 else
 	if [[ "$1" == "-d" ]]

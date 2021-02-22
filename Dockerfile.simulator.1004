@@ -15,5 +15,5 @@ ENV trustStorePassword=default
 ENV keyStore=default
 ENV keyStorePassword=default
 USER service
-CMD ["bash", "runtkwfhirvalidator.sh"]
+ENTRYPOINT ["bash", "runtkwfhirvalidator.sh"]
 

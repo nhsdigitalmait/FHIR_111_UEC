@@ -8,3 +8,4 @@
 !/set-all-configurations.sh
 !/runtkwfhirvalidator.sh
 !/tkwoutputstructure.tar
+!/version_string.txt
