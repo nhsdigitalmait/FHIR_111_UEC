@@ -5,7 +5,7 @@
 version: "3"
 services:
   tkw_uec_consumer_simulator:
-    image: nhsdigitalmait/tkw_uec_consumer_simulator:0.3
+    image: nhsdigitalmait/tkw_uec_consumer_simulator:0.4
 
     environment:
       - TZ=Europe/London
@@ -15,8 +15,8 @@ services:
     volumes:
         # <host path to mount> : <mount point within docker>
         # auto_tests folder
-        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/auto_tests:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/auto_tests
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/auto_tests:/home/service/TKW/config/FHIR_111_UEC/autotest_config/auto_tests
         # endpoint_configs folder
-        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/endpoint_configs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/endpoint_configs
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/endpoint_configs:/home/service/TKW/config/FHIR_111_UEC/autotest_config/endpoint_configs
         # autotest logs folder
-        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/autotest_logs:/TKW_ROOT/config/FHIR_111_UEC/autotest_config/autotest_logs
+        - ${TKWROOT}/config/FHIR_111_UEC/autotest_config/autotest_logs:/home/service/TKW/config/FHIR_111_UEC/autotest_config/autotest_logs

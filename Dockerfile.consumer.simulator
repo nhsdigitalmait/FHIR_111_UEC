@@ -1,0 +1,40 @@
+FROM nhsdigitalmait/tkw-x:fd0494d
+ARG USER_ID
+
+RUN useradd -rm -u $USER_ID service
+RUN apt-get update && apt-get install zip && apt-get install dos2unix
+
+WORKDIR /home/service/TKW/config/FHIR_111_UEC
+
+VOLUME /home/service/TKW/autotest_config/auto_tests
+VOLUME /home/service/TKW/autotest_config/autotest_logs
+
+COPY --chown=service:service autotest_config autotest_config
+COPY --chown=service:service validator_config validator_config
+COPY --chown=service:service simulator_config simulator_config
+
+COPY --chown=service:service TKWAutotestManager.jar  ../../
+COPY --chown=service:service TKWPropertiesEditor.jar  ../../lib/
+
+ENV TKWROOT=/home/service/TKW
+
+WORKDIR /home/service/TKW/config/ITK_Autotest
+RUN mkdir -p transmitter_source
+RUN mkdir -p simulator_config
+RUN mkdir -p transmitter_sent_messages  && chown service:service transmitter_sent_messages
+RUN mkdir -p messages_for_validation && chown service:service messages_for_validation
+RUN mkdir -p validator_reports && chown service:service validator_reports
+RUN mkdir -p validator_config && chown service:service validator_config
+
+COPY --chown=service:service ITK_Autotest/test_tks_rule_config.txt simulator_config/
+COPY --chown=service:service ITK_Autotest/validator.conf validator_config/
+
+RUN sh -c 'find /home/service/TKW/config/FHIR_111_UEC/autotest_config -type f -exec grep -l TKW_ROOT {} \; -exec sed -i -e "s|TKW_ROOT|/home/service/TKW|" {} \;'
+RUN sh -c 'find /home/service/TKW/config/FHIR_111_UEC/validator_config -type f -exec grep -l TKW_ROOT {} \; -exec sed -i -e "s|TKW_ROOT|/home/service/TKW|" {} \;'
+RUN sh -c 'find /home/service/TKW/config/FHIR_111_UEC/simulator_config -type f -exec grep -l TKW_ROOT {} \; -exec sed -i -e "s|TKW_ROOT|/home/service/TKW|" {} \;'
+
+# show all the folders created
+#RUN sh -c 'find /home/service/TKW/config/FHIR_111_UEC -type f'
+
+USER service
+ENTRYPOINT ["bash", "/home/service/TKW/config/FHIR_111_UEC/autotest_config/run_autotest.sh"]

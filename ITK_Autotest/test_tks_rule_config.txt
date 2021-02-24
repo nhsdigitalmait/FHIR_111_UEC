@@ -1,0 +1,737 @@
+#
+#=================================================================================================================================================================================================================================================
+#HEADER
+#=================================================================================================================================================================================================================================================
+#
+# Simulator rule definition file for ITK Testbench
+# AUTOTESTMANAGER
+# v5.2 Template
+#
+#=================================================================================================================================================================================================================================================
+#RESPONSES
+#=================================================================================================================================================================================================================================================
+#
+BEGIN RESPONSES
+ack_response /home/service/TKW/contrib/Common/simulator_packs/_all_ITK_services/response_templates/tk_test_response.xml	200
+async_fault_response	/home/service/TKW/contrib/Common/simulator_packs/_all_ITK_services/response_templates/tk_test_error.xml	200	http://www.w3.org/2005/08/addressing/fault
+error_response	/home/service/TKW/contrib/Common/simulator_packs/_all_ITK_services/response_templates/tk_test_error.xml	500	error
+ITKEvents_ACK_2010_05	/home/service/TKW/contrib/Common/simulator_packs/ITK_ADT/response_templates/ITKEvents_ACK_2010_05.xml	200
+ITKEvents_RSP_ZV2-2010-05	/home/service/TKW/contrib/Common/simulator_packs/ITK_ADT/response_templates/ITKEvents_RSP_ZV2-2010-05.xml	200
+ITKEvents_RSP_K21-2010-05	/home/service/TKW/contrib/Common/simulator_packs/ITK_ADT/response_templates/ITKEvents_RSP_K21-2010-05.xml	200
+ITKEvents_RSP_K22-2010-05	/home/service/TKW/contrib/Common/simulator_packs/ITK_ADT/response_templates/ITKEvents_RSP_K22-2010-05.xml	200
+verifyNHSNumber-v1-0Response	/home/service/TKW/contrib/Common/simulator_packs/ITK_SMS_PDS/response_templates/verifyNHSNumber_COMT_MT000013GB01.xml	200
+getNHSNumber-v1-0Response	/home/service/TKW/contrib/Common/simulator_packs/ITK_SMS_PDS/response_templates/getNHSNumber_COMT_MT000014GB01.xml	200
+getPatientDetailsByNHSNumber-v1-0Response	/home/service/TKW/contrib/Common/simulator_packs/ITK_SMS_PDS/response_templates/getPatientDetailsByNHSNumber_QUPA_MT000003GB01.xml	200
+getPatientDetailsBySearch-v1-0Response	/home/service/TKW/contrib/Common/simulator_packs/ITK_SMS_PDS/response_templates/getPatientDetailsSearch_QUPA_MT000003GB01.xml	200
+getPatientDetails-v1-0Response	/home/service/TKW/contrib/Common/simulator_packs/ITK_SMS_PDS/response_templates/getPatientDetailsCOMT_MT000016GB01.xml 200
+do_process	NONE	0
+END RESPONSES
+#
+#=================================================================================================================================================================================================================================================
+#SUBSTITUTIONS
+#=================================================================================================================================================================================================================================================
+#
+BEGIN SUBSTITUTIONS
+INCLUDE	/home/service/TKW/contrib/Common/simulator_packs/_all_ITK_services/substitutions.conf
+END SUBSTITUTIONS
+#
+#=================================================================================================================================================================================================================================================
+#EXPRESSIONS
+#=================================================================================================================================================================================================================================================
+#
+BEGIN EXPRESSIONS
+A01_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A01']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333301
+A02_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A02']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333302
+A03_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A03']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333303
+A05_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A05']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333305
+A09_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A09']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333309
+A15_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A15']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333315
+A16_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A16']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333316
+A21_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A21']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333321
+A38_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A38']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333338
+A39_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A39']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333339
+A52_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A52']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333352
+A01_ACK	XpathEquals	/soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A01']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333901
+A02_ACK	XpathEquals	/soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A02']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333902
+A03_ACK	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A03']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333903
+A05_ACK	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A05']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333905
+A09_ACK	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/*[name()='hl7v2:ADT_A09']/*[name()='hl7v2:PID']/*[name()='hl7v2:PID.3']/*[name()='hl7v2:CX.1']	3333333909
+ZV2_RES	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/hl7v2:QBP_Q21/hl7v2:QPD/hl7v2:QPD.2 QRY12345
+K21_RES	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/hl7v2:QBP_Q21/hl7v2:QPD/hl7v2:QPD.2 QRY54321
+K22_RES	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/hl7v2:QBP_Q21/hl7v2:QPD/hl7v2:QPD.2 QRY54354
+J01_SIM	XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:payloads/itk:payload/hl7v2:QCN_J01/hl7v2:QID/hl7v2:QID.1 QRY54545
+ACK_SIM1 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendBusinessAck-v1-0
+ACK_SIM2 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendInfrastructureAck-v1-0
+RES_01	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:registerOutpatientUpdateMaster-v1-0Response
+RES_02	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:cancelDischargePatientUpdateMaster-v1-0Response
+RES_03	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:transferPatientUpdateMaster-v1-0Response
+RES_04	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:dischargePatientUpdateMaster-v1-0Response
+RES_05	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:updatePatientUpdateMaster-v1-0Response
+RES_06	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:cancelTransferPatientUpdateMaster-v1-0Response
+RES_07	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:queryPatientDemographicsAndVisit-v1-0Response
+RES_08	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:queryPatientDemographics-v1-0Response
+RES_09	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:findCandidatesQuery-v1-0Response
+RES_10	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:registerOutpatientUpdateMasterPH-v1-0Response
+RES_11	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:cancelDischargePatientUpdateMasterPH-v1-0Response
+RES_12	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:transferPatientUpdateMasterPH-v1-0Response
+RES_13	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:dischargePatientUpdateMasterPH-v1-0Response
+RES_14	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:updatePatientUpdateMasterPH-v1-0Response
+RES_15	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:cancelTransferPatientUpdateMasterPH-v1-0Response
+RES_16	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:queryPatientDemographicsAndVisitPH-v1-0Response
+RES_17	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:queryPatientDemographicsPH-v1-0Response
+RES_18	XpathEquals /soap:Envelope/soap:Header/wsa:Action urn:nhs-itk:services:201005:findCandidatesQueryPH-v1-0Response
+testrule1 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCDADocument-v2-0
+testrule2 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendDocument-v1-0
+testrule3 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:BroadcastDocument-v1-0
+testrule4 XpathEquals /soap:Envelope/soap:Body/itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCDADocument-v1-0
+testrule5	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:verifyNHSNumber-v1-0
+testrule6	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getNHSNumber-v1-0
+testrule7	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0
+testrule8	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0
+testrule9	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetails-v1-0
+testrule10	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:verifyNHSNumber-v1-0Response
+testrule11	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getNHSNumber-v1-0Response
+testrule12	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0Response
+testrule13	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0Response
+testrule14	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:getPatientDetails-v1-0Response
+testrule_HSCI_2	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendAssessmentNotificationSection2-v1-0
+testrule_HSCI_3	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendSection2NotificationAccept-v1-0
+testrule_HSCI_4	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendSection2NotificationReject-v1-0
+testrule_HSCI_5	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendDischargeNotificationSection5-v1-0
+testrule_HSCI_6	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendSection5NotificationAccept-v1-0
+testrule_HSCI_7	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendSection5NotificationReject-v1-0
+testrule_HSCI_8	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendDischargeNotificationCancellation-v1-0
+testrule_HSCI_9	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCChecklistAssessment-v1-0
+testrule_HSCI_10	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCChecklistAssessmentAccept-v1-0
+testrule_HSCI_11	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCChecklistAssessmentRejection-v1-0
+testrule_HSCI_12	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCCancellation-v1-0
+testrule_HSCI_13	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendFastTrackPathwayTool-v1-0
+testrule_HSCI_14	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendFastTrackPathwayToolAccept-v1-0
+testrule_HSCI_15	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendFastTrackPathwayToolRejection-v1-0
+testrule_HSCI_16	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCAssessmentRequest-v1-0
+testrule_HSCI_17	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCAssessmentRequestAccept-v1-0
+testrule_HSCI_18	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendCHCAssessmentRequestRejection-v1-0
+testrule_111_1	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:SendNHS111Report-v2-0
+testrule_111_2	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:RequestAmbulanceDispatch-v2-0
+testrule_111_3	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:NHS111RepeatCallerSyncQueryResp-v1-0
+testrule_111_4	XpathEquals	//itk:DistributionEnvelope/itk:header/@service urn:nhs-itk:services:201005:NHS111RepeatCallerSyncQueryResp-v1-0Response
+passthrough	Always
+END EXPRESSIONS
+#
+#=================================================================================================================================================================================================================================================
+#RULES
+#=================================================================================================================================================================================================================================================
+#
+BEGIN RULE
+urn:nhs-itk:services:201005:SendNHS111Report-v2-0
+if testrule_111_1 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:RequestAmbulanceDispatch-v2-0
+if testrule_111_2 then ack_response else error_response
+END RULE
+BEGIN RULE
+urn:nhs-itk:services:201005:NHS111RepeatCallerSyncQueryResp-v1-0
+if testrule_111_3 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:NHS111RepeatCallerSyncQueryResp-v1-0Response
+if testrule_111_4 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendAssessmentNotificationSection2-v1-0
+if testrule_HSCI_2 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendSection2NotificationAccept-v1-0
+if testrule_HSCI_3 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendSection2NotificationReject-v1-0
+if testrule_HSCI_4 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendDischargeNotificationSection5-v1-0
+if testrule_HSCI_5 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendSection5NotificationAccept-v1-0
+if testrule_HSCI_6 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendSection5NotificationReject-v1-0
+if testrule_HSCI_7 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendDischargeNotificationCancellation-v1-0
+if testrule_HSCI_8 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCChecklistAssessment-v1-0
+if testrule_HSCI_9 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCChecklistAssessmentAccept-v1-0
+if testrule_HSCI_10 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCChecklistAssessmentRejection-v1-0
+if testrule_HSCI_11 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCCancellation-v1-0
+if testrule_HSCI_12 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendFastTrackPathwayTool-v1-0
+if testrule_HSCI_13 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendFastTrackPathwayToolAccept-v1-0
+if testrule_HSCI_14 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendFastTrackPathwayToolRejection-v1-0
+if testrule_HSCI_15 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCAssessmentRequest-v1-0
+if testrule_HSCI_16 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCAssessmentRequestAccept-v1-0
+if testrule_HSCI_17 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCHCAssessmentRequestRejection-v1-0
+if testrule_HSCI_18 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:verifyNHSNumber-v1-0
+if testrule5 then verifyNHSNumber-v1-0Response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getNHSNumber-v1-0
+if testrule6 then getNHSNumber-v1-0Response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0
+if testrule7 then getPatientDetailsByNHSNumber-v1-0Response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0
+if testrule8 then getPatientDetailsBySearch-v1-0Response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetails-v1-0
+if testrule9 then getPatientDetails-v1-0Response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:verifyNHSNumber-v1-0Response
+if testrule10 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getNHSNumber-v1-0Response
+if testrule11 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsByNHSNumber-v1-0Response
+if testrule12 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetailsBySearch-v1-0Response
+if testrule13 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:getPatientDetails-v1-0Response
+if testrule14 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCDADocument-v2-0
+if testrule1 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendDocument-v1-0
+if testrule2 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:BroadcastDocument-v1-0
+if testrule3 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendCDADocument-v1-0
+if testrule4 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendBusinessAck-v1-0
+if ACK_SIM1 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:SendInfrastructureAck-v1-0
+if ACK_SIM2 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelQuery-v1-0
+if J01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:createPatient-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatient-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:mergeTwoPatients-v1-0
+if A39_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:admitPatient-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatient-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updateEncounter-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelAdmitPatient-v1-0
+if A09_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatient-v1-0
+if A03_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatient-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatient-v1-0
+if A02_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:preAdmitPatient-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatient-v1-0
+if A09_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPreAdmitPatient-v1-0
+if A38_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:leaveOfAbsence-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelLeaveOfAbsence-v1-0
+if A52_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:returnFromLeaveOfAbsence-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelReturnFromLeaveOfAbsence-v1-0
+if A52_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingAdmit-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingTransfer-v1-0
+if A15_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingDischarge-v1-0
+if A16_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingAdmit-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingTransfer-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingDischarge-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatientUpdateMaster-v1-0
+if A01_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatientUpdateMaster-v1-0
+if A01_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatientUpdateMaster-v1-0
+if A02_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatientUpdateMaster-v1-0
+if A03_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatientUpdateMaster-v1-0
+if A05_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatientUpdateMaster-v1-0
+if A09_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsAndVisit-v1-0
+if ZV2_RES then ITKEvents_RSP_ZV2-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographics-v1-0
+if K21_RES then ITKEvents_RSP_K21-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:findCandidatesQuery-v1-0
+if K22_RES then ITKEvents_RSP_K22-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:GetMessages-v1-0
+if passthrough then do_process
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatientUpdateMaster-v1-0Response
+if RES_01 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatientUpdateMaster-v1-0Response
+if RES_02 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatientUpdateMaster-v1-0Response
+if RES_03 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatientUpdateMaster-v1-0Response
+if RES_04 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatientUpdateMaster-v1-0Response
+if RES_05 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatientUpdateMaster-v1-0Response
+if RES_06 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsAndVisit-v1-0Response
+if RES_07 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographics-v1-0Response
+if RES_08 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:findCandidatesQuery-v1-0Response
+if RES_09 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatientUpdateMasterPH-v1-0Response
+if RES_10 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatientUpdateMasterPH-v1-0Response
+if RES_11 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatientUpdateMasterPH-v1-0Response
+if RES_12 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatientUpdateMasterPH-v1-0Response
+if RES_13 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatientUpdateMasterPH-v1-0Response
+if RES_14 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatientUpdateMasterPH-v1-0Response
+if RES_15 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsAndVisitPH-v1-0Response
+if RES_16 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsPH-v1-0Response
+if RES_17 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:findCandidatesQueryPH-v1-0Response
+if RES_18 then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelQueryPH-v1-0
+if J01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:createPatientPH-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatientPH-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:mergeTwoPatientsPH-v1-0
+if A39_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:admitPatientPH-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatientPH-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updateEncounterPH-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelAdmitPatientPH-v1-0
+if A09_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatientPH-v1-0
+if A03_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatientPH-v1-0
+if A01_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatientPH-v1-0
+if A02_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:preAdmitPatientPH-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatientPH-v1-0
+if A09_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPreAdmitPatientPH-v1-0
+if A38_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:leaveOfAbsencePH-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelLeaveOfAbsencePH-v1-0
+if A52_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:returnFromLeaveOfAbsencePH-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelReturnFromLeaveOfAbsencePH-v1-0
+if A52_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingAdmitPH-v1-0
+if A05_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingTransferPH-v1-0
+if A15_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:pendingDischargePH-v1-0
+if A16_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingAdmitPH-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingTransferPH-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelPendingDischargePH-v1-0
+if A21_SIM then ack_response else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:registerOutpatientUpdateMasterPH-v1-0
+if A01_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelDischargePatientUpdateMasterPH-v1-0
+if A01_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:transferPatientUpdateMasterPH-v1-0
+if A02_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:dischargePatientUpdateMasterPH-v1-0
+if A03_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:updatePatientUpdateMasterPH-v1-0
+if A05_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:cancelTransferPatientUpdateMasterPH-v1-0
+if A09_ACK then ITKEvents_ACK_2010_05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsAndVisitPH-v1-0
+if ZV2_RES then ITKEvents_RSP_ZV2-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:queryPatientDemographicsPH-v1-0
+if K21_RES then ITKEvents_RSP_K21-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:findCandidatesQueryPH-v1-0
+if K22_RES then ITKEvents_RSP_K22-2010-05 else error_response
+END RULE
+
+BEGIN RULE
+urn:nhs-itk:services:201005:ConfirmMessageReceipt-v1-0
+if passthrough then do_process
+END RULE

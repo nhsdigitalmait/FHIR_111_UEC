@@ -24,7 +24,8 @@ then
 	then
 		cat $VERSION_FILE
 	fi
-	exit 0
+	java -jar $TKWROOT/TKW-x.jar -version | grep -v "starting on"
+	exit 
 fi
 
 TSTP_FILES=EB_Common.tstp
