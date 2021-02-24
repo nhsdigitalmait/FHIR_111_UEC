@@ -25,22 +25,22 @@ SCRIPT EB_SearchForFreeSlots
 BEGIN SCHEDULES
 # valid date ranges
 # SCAL P9 - formats
-SFFSWithValidParameters_parameter_json TESTS SFFSWithValidParameters_parameter_json ResponseIsJson ResponseIsBundle
-SFFSWithValidParameters_header_json TESTS SFFSWithValidParameters_header_json ResponseIsJson ResponseIsBundle
-SFFSWithValidParameters_parameter_xml TESTS SFFSWithValidParameters_parameter_xml ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate
+SFFSWithValidParameters_parameter_json TESTS SFFSWithValidParameters_parameter_json ResponseIsJson ResponseIsBundle SearchCountIsGreaterThanZero
+SFFSWithValidParameters_header_json TESTS SFFSWithValidParameters_header_json ResponseIsJson ResponseIsBundle SearchCountIsGreaterThanZero
+SFFSWithValidParameters_parameter_xml TESTS SFFSWithValidParameters_parameter_xml ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate SearchCountIsGreaterThanZero
 #
 # TODO P-CRT-RES-RET-SLOT-START-TIMESTAMP-UTC-OFFSET Every returned Slot has a start timestamp that is explicitly in either UTC Time (preferred) or states an offset in DateTime/Instant format.
 # TODO P-CRT-RES-RET-SLOT-END-TIMESTAMP-UTC-OFFSET Every returned Slot has a end timestamp that is explicitly in either UTC Time (preferred) or states an offset in DateTime/Instant format.
 # in validation?
 #
 # TODO P-CRT-RES-RET-SLOT-INC-DELI-CHAN-EXT-POP Every returned Slot includes the delivery channel extension if supported and is populated if the information is available.
-SFFSWithValidParameters_header_xml TESTS SFFSWithValidParameters_header_xml ResponseIsXml ResponseIsBundle
+SFFSWithValidParameters_header_xml TESTS SFFSWithValidParameters_header_xml ResponseIsXml ResponseIsBundle SearchCountIsGreaterThanZero
 
-SFFSWithValidParameters_JWT_NoPractitioner TESTS SFFSWithJWTNoPractitioner ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate 
+SFFSWithValidParameters_JWT_NoPractitioner TESTS SFFSWithJWTNoPractitioner ResponseIsXml ResponseIsBundle SFFSSlotsStatusFree SFFSSlotsTooEarly SFFSSlotsTooLate SearchCountIsGreaterThanZero
 
-SFFSWithValidParameters_3_days TESTS SFFSWithValidParameters_3_days ResponseIsBundle
+SFFSWithValidParameters_3_days TESTS SFFSWithValidParameters_3_days ResponseIsBundle SearchCountIsGreaterThanZero
 
-SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIsBundle SFFSPractitionersReturned SFFSPractitionerRolesReturned SFFSOrgsReturned SFFSHealthcareOrgsReturned
+SFFSWithValidParameters_includes TESTS SFFSWithValidParameters_3_days ResponseIsBundle SFFSPractitionersReturned SFFSPractitionerRolesReturned SFFSOrgsReturned SFFSHealthcareOrgsReturned SearchCountIsGreaterThanZero
 
 # invalid date ranges
 # commented out since TAs state no reqt to limit this.
@@ -131,6 +131,7 @@ SFFSSlotsTooEarly CHAIN SYNC slots_too_early TEXT "No slots that start before th
 SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the search end should be returned SCAL Requirement P-CRT-RES-SLOT-RET-MEET-TIME"
 
 SearchCountIsZero CHAIN SYNC search_count_is_zero TEXT "Search count must be zero"
+SearchCountIsGreaterThanZero CHAIN SYNC search_count_is_greater_than_zero TEXT "Search count must be greater than zero"
 # 
 #
 END TESTS
@@ -157,5 +158,6 @@ healthcare_returned synchronousxpath boolean(count(for $r in /fhir:Bundle/fhir:e
 
 # Bundle search count must be zero
 search_count_is_zero synchronousxpath /fhir:Bundle/fhir:total/@value matches "^0$"
+search_count_is_greater_than_zero synchronousxpath boolean(/fhir:Bundle/fhir:total/@value > 0) matches "^true$"
 
 END PASSFAIL

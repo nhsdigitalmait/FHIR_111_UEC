@@ -13,6 +13,18 @@ else
 	TAG+=-$USER_ID
 fi
 
+IMAGENAME=tkw_uec_consumer_simulator
+PROJECT=FHIR_111_UEC
+
+echo "Building $IMAGENAME:$TAG"
+read -n 1 -p "Press any key to continue..."
+echo building
+
+# the source folder must be in install mode (with real paths) not uninistall mode (TKW_ROOT)
+cd $TKWROOT/config/$PROJECT
+fixtkwroot.sh -u .
+cd -
+
 if [[ ! -e TKWAutotestManager.jar ]]
 then
 	cp $TKWROOT/TKWAutotestManager.jar .
@@ -23,8 +35,12 @@ then
 	cp $TKWROOT/lib/TKWPropertiesEditor.jar .
 fi
 
+echo "111 UEC Booking Consumer Simulator Version: $TAG"  > version_string.txt
+# put the git commit hash and date into a text file
+git show -s --format="$PROJECT %h %cI" >> version_string.txt
+
 #Update the docker ignore sim link
 ln -fs .dockerignore.consumer.simulator .dockerignore
 #Build the docker image
-docker build --build-arg USER_ID=$USER_ID -f Dockerfile.consumer.simulator -t nhsdigitalmait/tkw_uec_consumer_simulator:$TAG .
+docker build --build-arg USER_ID=$USER_ID -f Dockerfile.consumer.simulator -t nhsdigitalmait/$IMAGENAME:$TAG .
 echo Docker Image tagged with $TAG

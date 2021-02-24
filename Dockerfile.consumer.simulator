@@ -13,6 +13,7 @@ COPY --chown=service:service autotest_config autotest_config
 COPY --chown=service:service validator_config validator_config
 COPY --chown=service:service simulator_config simulator_config
 
+COPY --chown=service:service version_string.txt .
 COPY --chown=service:service TKWAutotestManager.jar  ../../
 COPY --chown=service:service TKWPropertiesEditor.jar  ../../lib/
 
