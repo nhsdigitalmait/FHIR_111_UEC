@@ -1,5 +1,7 @@
 FROM nhsdigitalmait/tkw-x:fd0494d
-RUN useradd -rm -u 1004 service
+ARG USER_ID
+
+RUN useradd -rm -u $USER_ID service
 RUN mkdir /home/service/data/ && chown service:service /home/service/data/
 VOLUME /home/service/data
 VOLUME /home/service/fhir
