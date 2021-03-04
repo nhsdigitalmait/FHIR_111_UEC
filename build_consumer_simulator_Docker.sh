@@ -20,7 +20,7 @@ echo "Building $IMAGENAME:$TAG"
 read -n 1 -p "Press any key to continue..."
 echo building
 
-# the source folder must be in install mode (with real paths) not uninistall mode (TKW_ROOT)
+# the source folder must be in uninstall mode (TKW_ROOTs) not install mode (with real paths)
 cd $TKWROOT/config/$PROJECT
 fixtkwroot.sh -u .
 cd -

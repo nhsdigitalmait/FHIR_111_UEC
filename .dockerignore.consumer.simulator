@@ -1,9 +1,22 @@
 # Ignore everything
 #**
+# file types
 .git
 **/*.log
+autotest_config/extractor_configs/*.backup
+#
+# folders
 autotest_config/autotest_logs/**
 autotest_config/auto_tests/**
+autotest_config/tst/**
+
+# specific files
+autotest_config/gen_slots_free.sh
+autotest_config/slots_free_template.cfg
+autotest_config/mergedfile.tstp
+autotest_config/schedules.txt
+autotest_config/extractor_configs/zap_slot.sh
+autotest_config/tstp/*.log
 
 # With these exceptions:
 #!/simulator_config/**
