@@ -9,6 +9,10 @@
 	<xsl:template match="fhir:Appointment/fhir:id"/>
 	<xsl:template match="fhir:Patient/fhir:identifier"/>
 
+	<xsl:template match="fhir:Appointment/fhir:created/@value">
+		<xsl:attribute name="value"><xsl:value-of select="format-dateTime(current-dateTime(),'[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01][Z]')"/></xsl:attribute>
+	</xsl:template>
+
 	<!-- match all atts all nodes -->
 	<xsl:template match="@*|node()">
 		<xsl:copy>

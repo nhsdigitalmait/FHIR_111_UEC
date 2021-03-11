@@ -101,7 +101,7 @@
    <slot>
       <reference value="#__SLOT_ID____APPT_SLOT_ID__"></reference>
    </slot>
-   <created value="2019-01-17T14:32:22.579+00:00"></created>
+   <created value="__APPT_CREATED__"></created>
    <participant>
       <actor>
          <reference value="#P1"></reference>

@@ -68,6 +68,15 @@ SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIs
 
 END SCHEDULES
 
+# these are the standard includes:
+#
+#_include=Slot%3Aschedule
+#_include=Schedule%3Aactor%3APractitioner
+#_include=Schedule%3Aactor%3APractitionerRole
+#_include=Schedule%3Aactor%3AHealthcareService
+#_include=HealthcareService.location
+#_include=HealthcareService.providedBy
+
 BEGIN TESTS
 # formats
 # json format parameter
