@@ -22,7 +22,7 @@ echo building
 
 # the source folder must be in install mode (with real paths) not uninistall mode (TKW_ROOT)
 cd $TKWROOT/config/$PROJECT
-fixtkwroot.sh .
+fixtkwroot.sh -u .
 cd -
 
 # put the git commit hash and date into a text file
