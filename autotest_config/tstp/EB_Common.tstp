@@ -109,6 +109,8 @@ empty_file_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/emp
 book_appt_template __TKWROOT__/config/FHIR_111_UEC/autotest_config/requests/book_appt.xml
 END TEMPLATES
 
+# future proofing
+#	SET tks.fhir.version R4
 BEGIN PROPERTYSETS
 webservices
 	SET tks.HttpTransport.listenport 4000
@@ -158,6 +160,8 @@ JWT_book_cancel
 	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.book_cancel.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
 JWT_invalid_aud
 	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.sffs.fhir3.txt 111222333444 notanendpoint secret true
+JWT_read_appt
+	Authorization function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getJWT __TKWROOT__/config/FHIR_111_UEC/autotest_config/jwt_templates/111_uec_jwt_template.read_appt.fhir3.txt 111222333444 "__TO_ENDPOINT__" secret true
 
 unsupported_content
 	Content-type "application/xml"

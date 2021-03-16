@@ -90,6 +90,7 @@ sed -i $MERGED_TSTP_FILE -r -e 's/SCRIPT .+/SCRIPT '$SCRIPT_NAME'_'$ENVIRONMENT'
 
 if [[ "$OPTION" == '-s' ]]
 then
+	# create an exclamation mark separated string containging all the tests
 	valid_tests=`sed -r -e '1,/BEGIN SCHEDULES/d' -e '/END SCHEDULES/,$d' -e 's/\s+.*$/!/' <  $MERGED_TSTP_FILE`
 	valid_tests=`echo $valid_tests | sed -e 's/\s*//g'`
 	#
@@ -106,7 +107,7 @@ then
 		fi
 	done
 	# post edit to filter out any tests not specified
-	sed -i -r -e '/BEGIN SCHEDULES/,/END SCHEDULES/s/^/#/' -e "s/^#(BEGIN|END$TESTS)/\1/" $MERGED_TSTP_FILE
+	sed -i -r -e '/BEGIN SCHEDULES/,/END SCHEDULES/s/^/#/' -e "s/^#(BEGIN|END$TESTS) /\1 /" $MERGED_TSTP_FILE
 fi
 
 

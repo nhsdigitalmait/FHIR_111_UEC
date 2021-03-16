@@ -88,7 +88,28 @@
             <line value="Leeds"></line>
             <city value="Leeds"></city>
             <postalCode value="LS1 4HR"></postalCode>
-         </address>
+		</address>
+	   <contact>
+		  <relationship>
+			 <coding>
+				<system value="http://hl7.org/fhir/v2/0131"></system>
+				<code value="N"></code>
+				<display value="Next-of-Kin"></display>
+			 </coding>
+		  </relationship>
+		  <name>
+			 <use value="official"></use>
+			 <family value="Smith"></family>
+			 <given value="Mary"></given>
+			 <prefix value="Mrs"></prefix>
+		  </name>
+		  <telecom>
+			 <system value="phone"></system>
+			 <value value="01234 588 187"></value>
+			 <use value="home"></use>
+			 <rank value="2"></rank>
+		  </telecom>
+   </contact>
       </Patient>
    </contained>
    <status value="booked"></status>
@@ -101,7 +122,7 @@
    <slot>
       <reference value="#__SLOT_ID____APPT_SLOT_ID__"></reference>
    </slot>
-   <created value="2019-01-17T14:32:22.579+00:00"></created>
+   <created value="__APPT_CREATED__"></created>
    <participant>
       <actor>
          <reference value="#P1"></reference>

@@ -66,7 +66,18 @@ SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome NotSupporte
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
 
+SFFSWithFreeAndBusySlots TESTS SFFSWithValidParameters_search_for_free_and_busy_slots ResponseIsBundle
+
 END SCHEDULES
+
+# these are the standard includes:
+#
+#_include=Slot%3Aschedule
+#_include=Schedule%3Aactor%3APractitioner
+#_include=Schedule%3Aactor%3APractitionerRole
+#_include=Schedule%3Aactor%3AHealthcareService
+#_include=HealthcareService.location
+#_include=HealthcareService.providedBy
 
 BEGIN TESTS
 # formats
@@ -133,6 +144,8 @@ SFFSSlotsTooLate CHAIN SYNC slots_too_late TEXT "No slots that start after the s
 SearchCountIsZero CHAIN SYNC search_count_is_zero TEXT "Search count must be zero"
 SearchCountIsGreaterThanZero CHAIN SYNC search_count_is_greater_than_zero TEXT "Search count must be greater than zero"
 # 
+# xml format header free busy slots
+SFFSWithValidParameters_search_for_free_and_busy_slots SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free,busy&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 #
 END TESTS
 
