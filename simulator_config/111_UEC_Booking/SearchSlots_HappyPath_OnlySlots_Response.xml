@@ -1,0 +1,369 @@
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="__MESSAGEID__" />
+  <meta>
+    <lastUpdated value="__TIMESTAMP__" />
+  </meta>
+  <type value="searchset" />
+  <total value="20" />
+  <link>
+    <relation value="self" />
+    <url value="https://__HOST____FULL_CONTEXT_PATH__" />
+  </link>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot005" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot005" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="5a889965-3db4-4c29-8003-676c247a763e" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T10:00:00.000+00:00" />
+        <end value="__TOMORROW__T10:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot006" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot006" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="d939f0e0-d434-4962-a327-7ed52fde2b2e" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T10:15:00.000+00:00" />
+        <end value="__TOMORROW__T10:30:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot007" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot007" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="50360c34-c1e0-42dd-b965-8e4dd79ed902" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T10:30:00.000+00:00" />
+        <end value="__TOMORROW__T10:45:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot008" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot008" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="a17291ee-88d7-4565-b1a3-4f7ed970eb69" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T10:45:00.000+00:00" />
+        <end value="__TOMORROW__T11:00:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot009" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot009" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="f8ff57c9-6f8e-48d1-9c16-a6f382b8cc26" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T11:00:00.000+00:00" />
+        <end value="__TOMORROW__T11:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot010" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot010" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="66e82d33-bf74-4c23-8929-589e65785385" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T11:30:00.000+00:00" />
+        <end value="__TOMORROW__T11:45:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot011" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot011" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="f8cc8202-24f9-463b-a144-a14ee760586b" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T14:00:00.000+00:00" />
+        <end value="__TOMORROW__T14:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot012" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot012" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="1621f9c3-8575-44c9-a13b-5640d23005db" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T14:15:00.000+00:00" />
+        <end value="__TOMORROW__T14:30:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot013" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot013" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="2a71eb2f-6736-4864-a713-f533ca9916ab" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__TOMORROW__T14:30:00.000+00:00" />
+        <end value="__TOMORROW__T14:45:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot014" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot014" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="32bbfb15-ed32-4831-8b32-f3da34b08d5d" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T14:45:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T15:00:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot015" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot015" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="0cb1d567-28eb-49b0-8347-e9120f92ed68" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T15:00:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T15:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot016" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot016" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="ab2dbf29-79cc-4d03-9f10-6fabe015c4f7" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T15:30:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T15:45:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot017" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot017" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="c263e2a0-b309-4472-b879-20fe8edebe9b" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T15:45:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T16:00:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot018" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot018" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="e4a7b327-55b3-40f8-8335-22eeaf3dcd4f" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T16:00:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T16:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot019" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot019" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="1bd2b96c-f1b5-412c-a415-c4d5a543528e" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T16:30:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T16:45:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+    <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot020" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot020" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="ddfd9ed4-a469-417e-98a2-090ae6146a49" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T16:45:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T17:00:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+    <entry>
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot021" />
+    <resource>
+      <Slot xmlns="http://hl7.org/fhir">
+        <id value="slot021" />
+        <meta>
+          <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Slot-1" />
+        </meta>
+        <identifier>
+          <system value="https://tools.ietf.org/html/rfc4122" />
+          <value value="2877e686-199a-48a5-a08b-212d9a93a614" />
+        </identifier>
+        <schedule>
+          <reference value="Schedule/sched1111" />
+        </schedule>
+        <status value="free" />
+        <start value="__DAY_AFTER_TOMORROW__T17:00:00.000+00:00" />
+        <end value="__DAY_AFTER_TOMORROW__T17:15:00.000+00:00" />
+      </Slot>
+    </resource>
+  </entry>
+</Bundle>

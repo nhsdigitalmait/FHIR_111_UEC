@@ -1,0 +1,14 @@
+{
+  "name": "nhsd.assets.stu3_1.6.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "NHSD.Assets.STU3": "^1.6.0"
+  }
+}

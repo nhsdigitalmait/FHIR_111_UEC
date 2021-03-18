@@ -9,7 +9,7 @@
 		<details>
 			<coding>
 				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
-				<code value="ACCESS_DENIED"/>
+				<code value="ACCESS DENIED"/>
 				<display value="Access has been denied to process this request"/>
 			</coding>
 		</details>
