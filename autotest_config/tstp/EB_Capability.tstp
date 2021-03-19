@@ -13,6 +13,9 @@ Capability_json_parameter TESTS CapabilityTest_json_parameter ResponseIsCapabili
 Capability_xml_parameter_json_accept TESTS CapabilityTest_xml_parameter_json_accept ResponseIsCapabilityStatement ResponseIsXml
 Capability_json_parameter_xml_accept TESTS CapabilityTest_json_parameter_xml_accept ResponseIsCapabilityStatement ResponseIsJson
 
+# UECABS-153
+pCapability_xml_accept TESTS CapabilityTest_xml_accept_gzip ResponseIsCapabilityStatement ResponseIsXml
+
 END SCHEDULES
 
 BEGIN TESTS
@@ -26,6 +29,8 @@ CapabilityTest_xml_parameter_json_accept SEND_TKW empty_file TO __TO_ENDPOINT__/
 CapabilityTest_json_parameter_xml_accept SEND_TKW empty_file TO __TO_ENDPOINT__/metadata?_format=application/fhir%2Bjson FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept TEXT "HTTP Response must be HTTP 200"
 
 ResponseIsCapabilityStatement CHAIN SYNC response_is_capability_statement TEXT "Response must be a CapabilityStatement"
+
+CapabilityTest_xml_accept_gzip SEND_TKW empty_file TO __TO_ENDPOINT__/metadata FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+getmetadata_interactionid+JWT_metadata+xml_accept+accept_gzip TEXT "HTTP Response must be HTTP 200"
 END TESTS
 
 BEGIN PASSFAIL

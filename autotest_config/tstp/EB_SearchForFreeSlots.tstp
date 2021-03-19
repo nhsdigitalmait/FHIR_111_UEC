@@ -65,8 +65,18 @@ SFFSForbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenie
 SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome NotSupported
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
+#
+# UECABS-139
+SFFSWithNoIncludes TESTS SFFSWithValidParameters_search_for_free_slots_no_includes ResponseIsBundle
 
+# UECABS-140
 SFFSWithFreeAndBusySlots TESTS SFFSWithValidParameters_search_for_free_and_busy_slots ResponseIsBundle
+#
+# UECABS-144
+SFFSWithFreeSlotsWithRevIncludes TESTS SFFSWithValidParameters_search_for_free_slots_with_revincludes ResponseIsBundle
+#
+# UECABS-153
+SFFSWithFreeSlotsWithGzipEncoding TESTS SFFSWithValidParameters_search_for_free_slots_with_gzip_encoding ResponseIsBundle
 
 END SCHEDULES
 
@@ -146,7 +156,14 @@ SearchCountIsGreaterThanZero CHAIN SYNC search_count_is_greater_than_zero TEXT "
 # 
 # xml format header free busy slots
 SFFSWithValidParameters_search_for_free_and_busy_slots SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free,busy&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+
+# UECABS-139
+SFFSWithValidParameters_search_for_free_slots_no_includes SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 #
+# UECABS-144 5 includes and 5 rev includes
+SFFSWithValidParameters_search_for_free_slots_with_revincludes SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy&_revinclude=Slot%3Aschedule&_revinclude=Schedule%3Aactor%3APractitioner&_revinclude=Schedule%3Aactor%3APractitionerRole&_revinclude=Schedule%3Aactor%3AHealthcareService&_revinclude=HealthcareService.location&_revinclude=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+#
+SFFSWithValidParameters_search_for_free_slots_with_gzip_encoding SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free,busy&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots+accept_gzip TEXT "HTTP Response must be HTTP 200"
 END TESTS
 
 BEGIN PASSFAIL
@@ -154,7 +171,7 @@ BEGIN PASSFAIL
 slots_too_early synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[. < '__TODAY1__']) matches "^0$"
 slots_too_late synchronousxpath count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:start/@value[ . > '__TODAY4__']) matches "^0$"
 
-# SCAL P18 Every returned slot must ha2yyve a status of free (if free was specified)
+# SCAL P18 Every returned slot must have a status of free (if free was specified)
 slots_status_free synchronousxpath boolean(count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot/fhir:status[@value='free']) = count(/fhir:Bundle/fhir:entry/fhir:resource/fhir:Slot)) matches "^true$"
 
 # SCAL P19 for each reference to a practitioner that practitioner should be present in the response

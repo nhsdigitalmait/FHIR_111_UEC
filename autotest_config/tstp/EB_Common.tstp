@@ -22,7 +22,7 @@ BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment F
 
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
-AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS_DENIED code"
+AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS DENIED code"
 NotSupported CHAIN SYNC not_supported TEXT "Response contains a root fhir:OperationOutcome reporting an not-supported code"
 
 ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
@@ -111,6 +111,7 @@ END TEMPLATES
 
 # future proofing
 #	SET tks.fhir.version R4
+# if chunking required
 BEGIN PROPERTYSETS
 webservices
 	SET tks.HttpTransport.listenport 4000
@@ -175,7 +176,7 @@ json_content
 json_accept
 	Accept "application/fhir+json"
 
-content_zip
+content_gzip
 	Content-Encoding "gzip"
 accept_gzip
 	Accept-Encoding "gzip"
@@ -274,7 +275,7 @@ invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:detail
 bad_request synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^BAD_REQUEST$"
 #
 # 403
-access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS_DENIED$"
+access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS DENIED$"
 #
 # 405 wrong method
 not_supported synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^not-supported$"
