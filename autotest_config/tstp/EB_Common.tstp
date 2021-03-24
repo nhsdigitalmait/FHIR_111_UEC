@@ -117,6 +117,7 @@ END TEMPLATES
 # future proofing
 #	SET tks.fhir.version R4
 # if chunking required
+#SET tks.transmitter.send.chunksize 150
 BEGIN PROPERTYSETS
 webservices
 	SET tks.HttpTransport.listenport 4000
@@ -126,7 +127,7 @@ webservices
 	SET tks.sendtls __SEND_TLS__
 	SET tks.fhir.version Dstu3
 	SET tks.HttpTransport.suppress.close Y
-	SET tks.transmitter.send.chunksize 150
+	SET tks.transmitter.send.chunksize 0
 	SET tks.autotest.stoponfail No
 get
 	SET tks.transmitter.http.method GET

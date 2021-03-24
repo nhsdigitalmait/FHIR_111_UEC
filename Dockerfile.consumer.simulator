@@ -1,7 +1,7 @@
 #
 #  Docker file for building FHIR_111_UEC emergency booking consumer simulator docker image
 #
-FROM nhsdigitalmait/tkw-x:168b89c
+FROM nhsdigitalmait/tkw-x:1573092
 
 ARG USER_ID
 
