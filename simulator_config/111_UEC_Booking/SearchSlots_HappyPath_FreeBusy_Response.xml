@@ -442,7 +442,7 @@
           <value value="1015432" />
         </identifier>
         <actor>
-          <reference value="HealthcareService/999999999999" />
+          <reference value="HealthcareService/999999999" />
         </actor>
         <actor>
           <reference value="Practitioner/ABCD123456" />
@@ -451,10 +451,10 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/HealthcareService/999999999999" />
+    <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/HealthcareService/999999999" />
     <resource>
       <HealthcareService xmlns="http://hl7.org/fhir">
-        <id value="999999999999" />
+        <id value="999999999" />
         <meta>
           <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-HealthcareService-1" />
         </meta>

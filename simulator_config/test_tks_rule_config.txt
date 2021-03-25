@@ -132,13 +132,13 @@ APPOINTMENT018				context_path matches ^.*\/STU3\/Appointment\/ec104b34-adfa-40a
 APPOINTMENT019				context_path matches ^.*\/STU3\/Appointment\/6fdd6b8f-7752-445b-88a4-cb1f8efb1373.*$
 APPOINTMENT_NF				context_path matches ^.*\/STU3\/Appointment\/95e58add-0b10-4a8c-817c-2729eb0cab75.*$
 
-HEALTHCARESERVICE999999999999		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999999.*$
-HEALTHCARESERVICE999999999998		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999998.*$
-HEALTHCARESERVICE999999999997		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999997.*$
-HEALTHCARESERVICE999999999996		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999996.*$
-HEALTHCARESERVICE999999999995		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999995.*$
-HEALTHCARESERVICE999999999994		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999994.*$
-HEALTHCARESERVICE999999999993		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999993.*$
+HEALTHCARESERVICE999999999		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999.*$
+HEALTHCARESERVICE999999998		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999998.*$
+HEALTHCARESERVICE999999997		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999997.*$
+HEALTHCARESERVICE999999996		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999996.*$
+HEALTHCARESERVICE999999995		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999995.*$
+HEALTHCARESERVICE999999994		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999994.*$
+HEALTHCARESERVICE999999993		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999993.*$
 
 
 SLOT005								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot005
@@ -170,7 +170,7 @@ END EXPRESSIONS
 BEGIN RULE
 POST
 IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400				ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405	ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999994	THEN	Operation_Outcome_405	ELSE	NEXT
 IF 	X-Request-ID_MISSING	THEN	Operation_Outcome_400				ELSE	NEXT
 IF 	SLOT_MISSING			THEN	Operation_Outcome_400				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath005_Response	ELSE	NEXT
@@ -210,15 +210,15 @@ IF	APPOINTMENT018									THEN	RetrieveAppointment_HappyPath018_Response	ELSE	NE
 IF	APPOINTMENT019									THEN	RetrieveAppointment_HappyPath019_Response	ELSE	NEXT
 IF	APPOINTMENT_NF									THEN	Operation_Outcome_404						ELSE	NEXT
 IF 	HEALTHCARESERVICE_MISSING						THEN	Operation_Outcome_400						ELSE	NEXT
-IF	SLOT	AND FREEANDBUSY	AND	HEALTHCARESERVICE999999999999		THEN	SearchSlots_HappyPath_FreeBusy_Response		ELSE	NEXT
-IF	SLOT	AND FREEONLY	AND	HEALTHCARESERVICE999999999999		THEN	SearchSlots_HappyPath_Response				ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999999		THEN	SearchSlots_HappyPath_Response				ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999998		THEN	SearchSlots_HappyPath_NoSlots_Response		ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999997		THEN	Operation_Outcome_400						ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999996		THEN	Operation_Outcome_403						ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999995		THEN	Operation_Outcome_500						ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999994		THEN	Operation_Outcome_405						ELSE	NEXT
-IF	SLOT	AND	HEALTHCARESERVICE999999999993		THEN	SearchSlots_HappyPath_OnlySlots_Response	ELSE	NEXT
+IF	SLOT	AND FREEANDBUSY	AND	HEALTHCARESERVICE999999999		THEN	SearchSlots_HappyPath_FreeBusy_Response		ELSE	NEXT
+IF	SLOT	AND FREEONLY	AND	HEALTHCARESERVICE999999999		THEN	SearchSlots_HappyPath_Response				ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999999		THEN	SearchSlots_HappyPath_Response				ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999998		THEN	SearchSlots_HappyPath_NoSlots_Response		ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999997		THEN	Operation_Outcome_400						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999996		THEN	Operation_Outcome_403						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999995		THEN	Operation_Outcome_500						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999994		THEN	Operation_Outcome_405						ELSE	NEXT
+IF	SLOT	AND	HEALTHCARESERVICE999999993		THEN	SearchSlots_HappyPath_OnlySlots_Response	ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
 
