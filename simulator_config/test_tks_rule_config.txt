@@ -36,16 +36,15 @@ SearchSlots_HappyPath_NoSlots_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_co
 SearchSlots_HappyPath_OnlySlots_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_OnlySlots_Response.xml 200 
 
 
-BookAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_005.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_013.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/1ef97d28-1e42-4e4f-981b-3e26bec1870a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_014.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/0dd85bf6-653c-4531-9890-78f4691eabe2/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath015_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_015.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/a3b76480-cd4a-4271-aedc-10eccb17b2ed/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_016.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/07ef6a30-851b-47f0-8727-78200e642347/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_017.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/615fcfdd-6efa-4eee-aa3f-d86893d1a98a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_018.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/ec104b34-adfa-40ac-9dfb-20c428397e85/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_019.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/6fdd6b8f-7752-445b-88a4-cb1f8efb1373/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath020_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_no_NHS_Number.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/5d8d5eec-00ce-4b00-8f01-95b1590cf686/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-BookAppointment_HappyPath021_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_021.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/95e58add-0b10-4a8c-817c-2729eb0cab75/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+BookAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_005.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_013.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/1ef97d28-1e42-4e4f-981b-3e26bec1870a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_014.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/0dd85bf6-653c-4531-9890-78f4691eabe2/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath015_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_015.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/a3b76480-cd4a-4271-aedc-10eccb17b2ed/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_016.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/07ef6a30-851b-47f0-8727-78200e642347/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_017.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/615fcfdd-6efa-4eee-aa3f-d86893d1a98a/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_018.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/ec104b34-adfa-40ac-9dfb-20c428397e85/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_019.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/6fdd6b8f-7752-445b-88a4-cb1f8efb1373/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
+BookAppointment_HappyPath021_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/BookAppointment_HappyPath_021.xml "201 Created" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/95e58add-0b10-4a8c-817c-2729eb0cab75/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
 RetrieveAppointment_HappyPath005_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_005.xml "200 OK" 
 RetrieveAppointment_HappyPath013_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_013.xml "200 OK" 
 RetrieveAppointment_HappyPath014_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_014.xml "200 OK" 
@@ -54,9 +53,9 @@ RetrieveAppointment_HappyPath016_Response	TKW_ROOT/config/FHIR_111_UEC/simulator
 RetrieveAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_017.xml "200 OK" 
 RetrieveAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_018.xml "200 OK" 
 RetrieveAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_019.xml "200 OK" 
-CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
-
+CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
 Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CapabilityStatement_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+
 do_process	NONE	0
 END RESPONSES
 
@@ -64,6 +63,8 @@ BEGIN SUBSTITUTIONS
 __MESSAGEID__	uuid
 __VERSIONID__	uuid
 __TIMESTAMP__	ISO8601datetime
+__XREQID__	uuid
+__XCORRID__ reg_exp http_header X-Request-ID "." "$0"
 __RFC822TIMESTAMP__	RFC822datetime
 __TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 1 0"
 __DAY_AFTER_TOMORROW__ Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.FormattedTimeSubstitution "yyyy-MM-dd Europe/London 2 0"
@@ -75,8 +76,8 @@ __CREATED_TIME__	Xpath /fhir:Appointment/fhir:created/@value
 __SLOT_ID__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value
 __SLOT_VALUE__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:identifier/fhir:value/@value
 __SLOT_SCHED_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:Slot/fhir:schedule/fhir:reference/@value
-#__DOC_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:id/@value
-#__DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:identifier/fhir:value/@value
+__DOC_REF__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:id/@value
+__DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentReference/fhir:identifier/fhir:value/@value
 # needs to be html escaped for full url on response
 __FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
@@ -84,7 +85,7 @@ __APPOINTMENT_ID__	reg_exp context_path "^.*\/STU3\/Appointment\/(([0-9]|[a-f]){
 __DOCUMENT_REF_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:DocumentReference]"
 __SLOT_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:Slot]"
 __PATIENT_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:Patient]"
-__SUPPORTING_INFO_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:SupportingInformation"
+__SUPPORTING_INFO_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:supportingInformation"
 __SLOT_REF_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:slot"
 __PARTICIPANT_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:participant"
 __DESCRIPTION_VALUE__	Xpath /fhir:Appointment/fhir:description/@value
@@ -99,6 +100,7 @@ FREEANDBUSY						context_path matches ^.*&status=free%2Cbusy&.*$|^.*&status=free
 HEALTHCARESERVICE_MISSING		context_path notcontains schedule.actor%3Ahealthcareservice
 SLOT_MISSING					xpathnotmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value ^.+$
 HTTP_Authorization_MISSING		http_header Authorization notmatches ^.+$
+X-Request-ID_MISSING		http_header X-Request-ID notmatches ^.+$
 
 #PreExistingServer expresions
 EMPTY_CONTENT					matches ^$
@@ -154,7 +156,6 @@ SLOT016								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@
 SLOT017								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot017
 SLOT018								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot018
 SLOT019								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot019
-SLOT020								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot020
 SLOT021								xpathmatches /fhir:Appointment/fhir:contained/fhir:Slot/fhir:id/@value slot021
 
 #HTTP HEADER CHECKS
@@ -169,8 +170,8 @@ END EXPRESSIONS
 BEGIN RULE
 POST
 IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400				ELSE	NEXT
-#This is to show that the provider tester works
 IF	SLOT	AND	HEALTHCARESERVICE999999999994	THEN	Operation_Outcome_405	ELSE	NEXT
+IF 	X-Request-ID_MISSING	THEN	Operation_Outcome_400				ELSE	NEXT
 IF 	SLOT_MISSING			THEN	Operation_Outcome_400				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT005	THEN	BookAppointment_HappyPath005_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_PF			ELSE	NEXT
@@ -188,7 +189,6 @@ IF	APPOINTMENT	AND	SLOT016	THEN	BookAppointment_HappyPath016_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT017	THEN	BookAppointment_HappyPath017_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT018	THEN	BookAppointment_HappyPath018_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT019 THEN	BookAppointment_HappyPath019_Response	ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT020 THEN	BookAppointment_HappyPath020_Response	ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT021 THEN	BookAppointment_HappyPath021_Response	ELSE	NEXT
 IF passthrough THEN notFound_Response
 END RULE
@@ -225,6 +225,7 @@ END RULE
 BEGIN RULE
 PUT
 IF 	Ssp_From_MISSING		THEN	Operation_Outcome_400						ELSE	NEXT
+IF 	X-Request-ID_MISSING	THEN	Operation_Outcome_400				ELSE	NEXT
 IF 	SLOT_MISSING			THEN	Operation_Outcome_400						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT005 THEN	CancelAppointment_HappyPath_Response		ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT013 THEN	Operation_Outcome_422_RNF					ELSE	NEXT
@@ -239,16 +240,16 @@ END RULE
 
 BEGIN RULE
 DELETE
-IF passthrough THEN notFound_Response
+IF passthrough THEN Operation_Outcome_405
 END RULE
 
 BEGIN RULE
 PATCH
-IF passthrough THEN operation_outcome_unsupported_verb_404
+IF passthrough THEN Operation_Outcome_405
 END RULE
 
 BEGIN RULE
 OPTIONS
-IF passthrough THEN operation_outcome_unsupported_verb_404
+IF passthrough THEN Operation_Outcome_405
 END RULE
 #=========================================================================================

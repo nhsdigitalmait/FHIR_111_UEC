@@ -408,8 +408,7 @@
       </Slot>
     </resource>
   </entry>
-  </entry>
-    <entry>
+  <entry>
     <fullUrl value="http://a2sibookingprovidertest.directoryofservices.nhs.uk:443/poc/Slot/slot121" />
     <resource>
       <Slot xmlns="http://hl7.org/fhir">

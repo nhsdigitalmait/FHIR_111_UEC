@@ -3,7 +3,7 @@
    <name value="Care Connect"/>
    <status value="active"/>
    <date value="2021-01-20"/>
-   <publisher value="NHS Digital"/>
+   <publisher value="[Provider Software Vendor Name]"/>
    <contact>
       <name value="NHS Digital MAIT 111 UEC Booking TKW Test Harness"/>
    </contact>
@@ -12,7 +12,7 @@
    <kind value="capability"/>
    <software>
       <name value="111 UEC Booking TKW Test Harness"/>
-      <version value="0.1 Alpha"/>
+      <version value="0.1 Beta"/>
       <releaseDate value="2021-02-01T00:00:00+00:00"/>
    </software>
    <fhirVersion value="3.0.1"/>
@@ -72,7 +72,7 @@
             <documentation value="NHS Number (i.e. https://fhir.nhs.uk/Id/nhs-number|123456789)"/>
          </searchParam>
          <searchParam>
-            <name value="appointmentId"/>
+            <name value="_id"/>
             <type value="token"/>
             <documentation value="Unique identifier for an appointment"/>
          </searchParam>
@@ -92,10 +92,11 @@
          <searchInclude value="Schedule:actor:PractitionerRole"/>
          <searchInclude value="Schedule:actor:HealthcareService"/>
          <searchInclude value="HealthcareService.providedBy"/>
-         <searchInclude value="HealthcareService.location"/>
+         <searchInclude value="HealthcareService:location"/>
          <searchParam>
             <name value="service"/>
             <type value="token"/>
+            <documentation value="The service id of the Healthcare Service for which Slots are being requested."/>
          </searchParam>
          <searchParam>
             <name value="status"/>

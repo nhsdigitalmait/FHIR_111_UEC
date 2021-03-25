@@ -1,5 +1,5 @@
 /validator_reports/**
-/validator_config/fhir_assets/NHSD.Assets.STU3_1.4.0/**
+/validator_config/fhir_assets/NHSD.Assets.STU3_1.6.0/**
 /transmitter_source/**
 /tranmitter_sent_messages/**
 /simulator_saved_messages/**
