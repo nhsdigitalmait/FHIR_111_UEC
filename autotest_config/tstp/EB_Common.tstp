@@ -79,6 +79,8 @@ IntegrityCorrelationIDHeaderIsPresent CHAIN SYNC response_has_correlation_id_hea
 IntegrityHeadersMatch CHAIN SYNC integrity_headers_match TEXT "Request httpheader X-Request-ID matches response httpHeader X-Correlation-ID"
 
 ResponseWasGzip CHAIN SYNC response_has_was_gzip_header TEXT "Response was returned with a Content-encoding http header value of gzip"
+
+SFFSWithValidParameters_3_days_slots_only SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_SLOTS_ONLY__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 END TESTS
 
 BEGIN MESSAGES
@@ -331,22 +333,25 @@ END PASSFAIL
 #
 BEGIN SUBSTITUTION_TAGS
 # Healthcare Service happy path
-__HCS__  Literal "999999999999"
+__HCS__  Literal "999999999"
 
 # Healthcare Service happy path - no slots
-__HCS_NO_SLOTS__  Literal "999999999998"
+__HCS_NO_SLOTS__  Literal "999999998"
 
 # Healthcare Service http 400 Invalid
-__HCS_400__  Literal "999999999997"
+__HCS_400__  Literal "999999997"
 
 # Healthcare Service http 403 Forbidden
-__HCS_403__  Literal "999999999996"
+__HCS_403__  Literal "999999996"
 
 # Healthcare Service http 500 Server Error
-__HCS_500__  Literal "999999999995"
+__HCS_500__  Literal "999999995"
 
 # Healthcare Service http 405 Wrong Method
-__HCS_405__  Literal "999999999994"
+__HCS_405__  Literal "999999994"
+
+# Healthcare Service Return only slots data
+__HCS_SLOTS_ONLY__  Literal "999999993"
 #
 # These are evaluated at runtime when the script is run by TKW in autotest mode
 #
