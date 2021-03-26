@@ -20,4 +20,8 @@ do
 	#  append 1 field title and underscore for field data item to the associated tdv
 	#sed -i -e "/__ID__/s/$/	__APPT_CREATED__/" $TARGET/slot_$f.tdv
 	#sed -i -e "/^s/s/$/	_/" $TARGET/slot_$f.tdv
+
+	#  append 1 field title and underscore for field data item to the associated tdv
+	#sed -i -e "/__ID__/s/$/	__CORRELATION_ID__/" $TARGET/slot_$f.tdv
+	#sed -i -e "/^s/s/$/	_/" $TARGET/slot_$f.tdv
 done
