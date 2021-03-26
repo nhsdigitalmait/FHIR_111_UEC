@@ -191,6 +191,8 @@ accept_gzip
 
 integrity
 	X-Request-ID function:uk.nhs.digital.mait.tkwx.tk.internalservices.testautomation.PropertySetFunctions.getuuid
+resent_rq_id
+	X-Request-ID __CORRELATION_ID__
 END HTTPHEADERS
 
 BEGIN EXTRACTORS
