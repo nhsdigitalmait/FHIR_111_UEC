@@ -81,7 +81,7 @@ __DOC_REF_IDENTIFIER__	Xpath /fhir:Appointment/fhir:contained/fhir:DocumentRefer
 # needs to be html escaped for full url on response
 __FULL_CONTEXT_PATH__ reg_exp context_path "&" "&amp;" ALL
 __HOST__ reg_exp http_header Host "." "$0"
-__APPOINTMENT_ID__	reg_exp context_path "^.*\/STU3\/Appointment\/(([0-9]|[a-f]){8}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){12}).*$" "$1"
+__APPOINTMENT_ID__	reg_exp context_path "^.*/STU3/Appointment/(([0-9]|[a-f]){8}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){4}-([0-9]|[a-f]){12}).*$" "$1"
 __DOCUMENT_REF_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:DocumentReference]"
 __SLOT_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:Slot]"
 __PATIENT_NODE__	Class uk.nhs.digital.mait.tkwx.tk.internalservices.rules.XmlFragmentSubstitution "/fhir:Appointment/fhir:contained[fhir:Patient]"
@@ -105,12 +105,12 @@ X-Request-ID_MISSING		http_header X-Request-ID notmatches ^.+$
 #PreExistingServer expresions
 EMPTY_CONTENT					matches ^$
 # must be before parameters check since coversion from json wont happen IF content-type is wrong
-INVALID_CONTENT_TYPE			http_header content-type matches ^.*(text.*|application\/[a-z]+[^+]*)$
+INVALID_CONTENT_TYPE			http_header content-type matches ^.*(text.*|application/[a-z]+[^+]*)$
 #
 #http header checks
 #
 EMPTY_ACCEPT					http_header accept notmatches ^.+$
-INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json).*$
+INVALID_ACCEPT					http_header accept notmatches ^.*application/fhir\+(xml|json).*$
 #
 
 
@@ -119,18 +119,18 @@ INVALID_ACCEPT					http_header accept notmatches ^.*application\/fhir\+(xml|json
 #NHS 111 UEC Booking
 
 #CONTEXT PATH CHECKS
-SLOT						context_path matches ^.*\/STU3\/Slot.*$
-METADATA					context_path matches ^.*\/STU3\/metadata.*$
-APPOINTMENT					context_path matches ^.*\/STU3\/Appointment.*$
-APPOINTMENT005				context_path matches ^.*\/STU3\/Appointment\/48fae2df-8010-4c80-8dd0-289a9dd60ae4.*$
-APPOINTMENT013				context_path matches ^.*\/STU3\/Appointment\/1ef97d28-1e42-4e4f-981b-3e26bec1870a.*$
-APPOINTMENT014				context_path matches ^.*\/STU3\/Appointment\/0dd85bf6-653c-4531-9890-78f4691eabe2.*$
-APPOINTMENT015				context_path matches ^.*\/STU3\/Appointment\/a3b76480-cd4a-4271-aedc-10eccb17b2ed.*$
-APPOINTMENT016				context_path matches ^.*\/STU3\/Appointment\/07ef6a30-851b-47f0-8727-78200e642347.*$
-APPOINTMENT017				context_path matches ^.*\/STU3\/Appointment\/615fcfdd-6efa-4eee-aa3f-d86893d1a98a.*$
-APPOINTMENT018				context_path matches ^.*\/STU3\/Appointment\/ec104b34-adfa-40ac-9dfb-20c428397e85.*$
-APPOINTMENT019				context_path matches ^.*\/STU3\/Appointment\/6fdd6b8f-7752-445b-88a4-cb1f8efb1373.*$
-APPOINTMENT_NF				context_path matches ^.*\/STU3\/Appointment\/95e58add-0b10-4a8c-817c-2729eb0cab75.*$
+SLOT						context_path matches ^.*/STU3/Slot.*$
+METADATA					context_path matches ^.*/STU3/metadata.*$
+APPOINTMENT					context_path matches ^.*/STU3/Appointment.*$
+APPOINTMENT005				context_path matches ^.*/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4.*$
+APPOINTMENT013				context_path matches ^.*/STU3/Appointment/1ef97d28-1e42-4e4f-981b-3e26bec1870a.*$
+APPOINTMENT014				context_path matches ^.*/STU3/Appointment/0dd85bf6-653c-4531-9890-78f4691eabe2.*$
+APPOINTMENT015				context_path matches ^.*/STU3/Appointment/a3b76480-cd4a-4271-aedc-10eccb17b2ed.*$
+APPOINTMENT016				context_path matches ^.*/STU3/Appointment/07ef6a30-851b-47f0-8727-78200e642347.*$
+APPOINTMENT017				context_path matches ^.*/STU3/Appointment/615fcfdd-6efa-4eee-aa3f-d86893d1a98a.*$
+APPOINTMENT018				context_path matches ^.*/STU3/Appointment/ec104b34-adfa-40ac-9dfb-20c428397e85.*$
+APPOINTMENT019				context_path matches ^.*/STU3/Appointment/6fdd6b8f-7752-445b-88a4-cb1f8efb1373.*$
+APPOINTMENT_NF				context_path matches ^.*/STU3/Appointment/95e58add-0b10-4a8c-817c-2729eb0cab75.*$
 
 HEALTHCARESERVICE999999999		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999999.*$
 HEALTHCARESERVICE999999998		context_path matches ^.*schedule.actor%3Ahealthcareservice=999999998.*$
