@@ -54,7 +54,7 @@ RetrieveAppointment_HappyPath017_Response	TKW_ROOT/config/FHIR_111_UEC/simulator
 RetrieveAppointment_HappyPath018_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_018.xml "200 OK" 
 RetrieveAppointment_HappyPath019_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/RetrieveAppointment_HappyPath_019.xml "200 OK" 
 CancelAppointment_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CancelAppointment_HappyPath_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/48fae2df-8010-4c80-8dd0-289a9dd60ae4/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" X-Request-ID : "__XREQID__" X-Correlation-ID : "__XCORRID__" )
-Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CapabilityStatement_Response.xml "200 OK" WITH_HTTP_HEADERS ( Location : "https://clinicals.spineservices.nhs.uk/STU3/Appointment/__MESSAGEID__/_history/__VERSIONID__" Date : "__RFC822TIMESTAMP__" ETag : "W/\"__VERSIONID__\"" Last-Modified : "__TIMESTAMP__" )
+Capability_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/CapabilityStatement_Response.xml "200 OK"
 
 do_process	NONE	0
 END RESPONSES
