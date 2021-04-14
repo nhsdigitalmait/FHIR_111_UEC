@@ -13,12 +13,12 @@ STOP WHEN COMPLETE
 # tests which define an extractor cannot be reused unless all the extractor references are the same
 BEGIN TESTS
 # valid date ranges
-SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
-SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
 # happy path
-BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+xml_content+xml_accept+integrity TEXT "HTTP Response must be HTTP 201"
+BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+default_content+default_accept+integrity TEXT "HTTP Response must be HTTP 201"
 
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
@@ -80,7 +80,7 @@ IntegrityHeadersMatch CHAIN SYNC integrity_headers_match TEXT "Request httpheade
 
 ResponseWasGzip CHAIN SYNC response_has_was_gzip_header TEXT "Response was returned with a Content-encoding http header value of gzip"
 
-SFFSWithValidParameters_3_days_slots_only SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_SLOTS_ONLY__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+xml_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
+SFFSWithValidParameters_3_days_slots_only SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_SLOTS_ONLY__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 END TESTS
 
 BEGIN MESSAGES
@@ -182,6 +182,11 @@ xml_accept
 json_content
 	Content-type "application/fhir+json"
 json_accept
+	Accept "application/fhir+json"
+
+default_content
+	Content-type "application/fhir+json"
+default_accept
 	Accept "application/fhir+json"
 
 content_gzip
