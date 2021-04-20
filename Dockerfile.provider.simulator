@@ -1,4 +1,4 @@
-FROM nhsdigitalmait/tkw-x:dbfb5ea
+FROM nhsdigitalmait/tkw-x:d737cf8
 ARG USER_ID
 
 RUN useradd -rm -u $USER_ID service
