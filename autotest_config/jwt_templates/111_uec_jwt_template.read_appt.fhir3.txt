@@ -5,7 +5,7 @@
   "exp": __CURRENT_UTC_PLUS_5_MIN__,
   "iat": __CURRENT_UTC__,
   "reason_for_request": "directcare",
-  "requested_scope": "patient/patient.read",
+  "requested_scope": "patient/appointment.read",
   "requesting_device": {
     "resourceType": "Device",
     "id": "1",
