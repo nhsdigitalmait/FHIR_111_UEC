@@ -13,6 +13,6 @@
 				<display value="Reference not found"/>
 			</coding>
 		</details>
-		<diagnostics value="Any further internal debug details"/>
+		<diagnostics value="Reference not found"/>
 	</issue>
 </OperationOutcome>

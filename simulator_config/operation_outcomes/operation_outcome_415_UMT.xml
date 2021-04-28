@@ -5,7 +5,7 @@
 	</meta>
 	<issue>
 		<severity value="error"/>
-		<code value="invalid"/>
+		<code value="not-supported"/>
 		<details>
 			<coding>
 				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>

@@ -13,6 +13,6 @@
 				<display value="Message not well formed"/>
 			</coding>
 		</details>
-		<diagnostics value="__ERRORTEXT_IVP__"/>
+		<diagnostics value="The message is not well formed"/>
 	</issue>
 </OperationOutcome>

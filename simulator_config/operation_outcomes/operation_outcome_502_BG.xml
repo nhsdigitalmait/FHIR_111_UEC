@@ -1,7 +1,0 @@
-<OperationOutcome xmlns="http://hl7.org/fhir">
-	<issue>
-		<severity value="error"/>
-		<code value="transient"/>
-		<diagnostics value="Bad Gateway - A downstream server is offline."/>
-	</issue>
-</OperationOutcome>

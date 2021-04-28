@@ -1,8 +1,18 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+	</meta>
 	<issue>
 		<severity value="error"/>
-		<code value="invalid"/>
-		<diagnostics value="One or more conditions given in the request header fields evaluated to false when tested on the server"/>
+		<code value="not-supported"/>
+		<details>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
+				<code value="MISSING_OR_INVALID_HEADER"/>
+				<display value="There is a required header missing or invalid"/>
+			</coding>
+		</details>
+		<diagnostics value="an update is attempted which does not include an If-Match header"/>
 	</issue>
 </OperationOutcome>

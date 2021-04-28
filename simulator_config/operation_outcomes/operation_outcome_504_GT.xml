@@ -1,8 +1,0 @@
-<OperationOutcome xmlns="http://hl7.org/fhir">
-	<id value="__MESSAGEID__"/>
-	<issue>
-		<severity value="error"/>
-		<code value="transient"/>
-		<diagnostics value="The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request."/>
-	</issue>
-</OperationOutcome>

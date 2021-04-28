@@ -13,8 +13,6 @@ HTTP_To_MISSING_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/opera
 HTTP_Authorization_MISSING_Response			TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_Auth.xml "400 Missing Or Invalid Header"
 
 #PreExistingServerResponses
-operation_outcome_all_other_requests					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_all_other_requests.xml 404
-operation_outcome_unsupported_verb_404					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_unsupported_verb.xml 404
 Operation_Outcome_400					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_IP.xml "400 Bad Request"
 Operation_Outcome_403					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_403_AD.xml "403 Forbidden"
 Operation_Outcome_404					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_404_NRF.xml "404 Not Found"
@@ -26,8 +24,8 @@ Operation_Outcome_422_PF					TKW_ROOT/config/FHIR_111_UEC/simulator_config/opera
 Operation_Outcome_422_IP					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_IP.xml "422 Unprocessable Entity"
 Operation_Outcome_422_RNF					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_422_RNF.xml "422 Unprocessable Entity"
 Operation_Outcome_500					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_500_ISE.xml "500 Internal Server Error"
-Operation_Outcome_502					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_502_BG.xml "502 Bad Gateway"
-Operation_Outcome_504					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_504_GT.xml "504 Gateway Timeout"
+Operation_Outcome_502					class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse "502 Bad Gateway"
+Operation_Outcome_504					class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.ackextension.SendEmptyResponse "504 Gateway Timeout"
 #NHS 111 UEC Booking
 
 SearchSlots_HappyPath_Response	TKW_ROOT/config/FHIR_111_UEC/simulator_config/111_UEC_Booking/SearchSlots_HappyPath_Response.xml 200 
@@ -178,7 +176,6 @@ IF	APPOINTMENT	AND	SLOT006	THEN	Operation_Outcome_422_PF			ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT007	THEN	Operation_Outcome_422_IP			ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT008	THEN	Operation_Outcome_400				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_403				ELSE	NEXT
-IF	APPOINTMENT	AND	SLOT009	THEN	Operation_Outcome_405				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT010	THEN	Operation_Outcome_500				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT011	THEN	Operation_Outcome_415				ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT012	THEN	Operation_Outcome_502				ELSE	NEXT
@@ -235,7 +232,7 @@ IF	APPOINTMENT	AND	SLOT016 THEN	Operation_Outcome_400						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT017 THEN	Operation_Outcome_403						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT018 THEN	Operation_Outcome_500						ELSE	NEXT
 IF	APPOINTMENT	AND	SLOT019 THEN	Operation_Outcome_504						ELSE	NEXT
-IF passthrough THEN operation_outcome_unsupported_verb_404
+IF passthrough THEN Operation_Outcome_404
 END RULE
 
 BEGIN RULE
