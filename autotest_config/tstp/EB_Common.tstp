@@ -21,9 +21,19 @@ SFFSWithValidParameters_3_days_5 SEND_TKW empty_file5 TO __TO_ENDPOINT__/Slot?sc
 BookAppointment SEND_TKW book_appointment_slot5 TO __TO_ENDPOINT__/Appointment FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ PRETRANSFORM __TKWROOT__/config/FHIR_111_UEC/autotest_config/transforms/remove_appt_id.xslt APPLYPRETRANSFORMTO data SYNC httpstatuscheck201 WITH_PROPERTYSET base+webservices+post WITH_HTTPHEADERS credentials+book_appt_interactionid+JWT_book_cancel+default_content+default_accept+integrity TEXT "HTTP Response must be HTTP 201"
 
 ResponseIsOperationOutcome CHAIN SYNC operation_outcome TEXT "Response contains a root fhir:OperationOutcome element"
+OperationOutcomeSystemCodeIsSpine CHAIN SYNC operation_outcome_system_code_is_spine TEXT "OperationOutcome System code is https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"
+# OO code checks
 InvalidParameter CHAIN SYNC invalid_parameter TEXT "Response contains a root fhir:OperationOutcome reporting an INVALID_PARAMETER code"
 AccessDenied CHAIN SYNC access_denied TEXT "Response contains a root fhir:OperationOutcome reporting an ACCESS DENIED code"
 NotSupported CHAIN SYNC not_supported TEXT "Response contains a root fhir:OperationOutcome reporting an not-supported code"
+InternalServerError CHAIN SYNC internal_server_error TEXT "Response contains a root fhir:OperationOutcome reporting an INTERNAL_SERVER_ERROR code"
+UnsupportedMediaType CHAIN SYNC unsupported_media_type TEXT "Response contains a root fhir:OperationOutcome reporting an UNSUPPORTED_MEDIA_TYPE code"
+NoRecordFound CHAIN SYNC no_record_found TEXT "Response contains a root fhir:OperationOutcome reporting an NO_RECORD_FOUND code"
+ReferenceNotFound CHAIN SYNC reference_not_found TEXT "Response contains a root fhir:OperationOutcome reporting an REFERENCE_NOT_FOUND code"
+ConflictingValues CHAIN SYNC conflicting_values TEXT "Response contains a root fhir:OperationOutcome reporting an CONFLICTING_VALUES code"
+MissingOrInvalidHeader CHAIN SYNC missing_or_invalid_header TEXT "Response contains a root fhir:OperationOutcome reporting an MISSING_OR_INVALID_HEADER code"
+BadRequest CHAIN SYNC bad_request TEXT "Response contains a root fhir:OperationOutcome reporting an BAD_REQUEST code"
+
 
 ResponseIsAppointmentExtracting5 CHAIN SYNC response_is_appt_extracting5 TEXT "Response contains a root fhir:Appointment element"
 ResponseIsAppointmentExtracting20 CHAIN SYNC response_is_appt_extracting20 TEXT "Response contains a root fhir:Appointment element"
@@ -288,6 +298,7 @@ response_is_bundle_extracting20 synchronousxpath /fhir:Bundle exists EXTRACTOR s
 type_searchset synchronousxpath /fhir:Bundle/fhir:type[@value='searchset'] exists
 operation_outcome synchronousxpath /fhir:OperationOutcome exists
 
+operation_outcome_system_code_is_spine synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:system/@value matches "^https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1$"
 # 400
 invalid_parameter synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INVALID_PARAMETER$"
 bad_request synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^BAD_REQUEST$"
@@ -295,8 +306,16 @@ bad_request synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir
 # 403
 access_denied synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^ACCESS DENIED$"
 #
-# 405 wrong method
+# 405 wrong method NB issue/code not issue/details/code
 not_supported synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:code/@value matches "^not-supported$"
+
+internal_server_error synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^INTERNAL_SERVER_ERROR$"
+unsupported_media_type synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^UNSUPPORTED_MEDIA_TYPE$"
+no_record_found synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^NO_RECORD_FOUND$"
+reference_not_found synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^REFERENCE_NOT_FOUND$"
+conflicting_values synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^CONFLICTING_VALUES$"
+missing_or_invalid_header synchronousxpath /fhir:OperationOutcome/fhir:issue/fhir:details/fhir:coding/fhir:code/@value matches "^MISSING_OR_INVALID_HEADER$"
+#
 #
 # http status code checks
 #

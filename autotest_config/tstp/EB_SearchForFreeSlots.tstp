@@ -55,15 +55,15 @@ SFFSWithValidParameters_includes_slots_only TESTS SFFSWithValidParameters_3_days
 SFFSNoSlots_HappyPath TESTS SFFSNoSlotsAvailable ResponseIsBundle SearchCountIsZero
 
 # scenario 3
-SFFSInvalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome InvalidParameter
+SFFSInvalid TESTS SFFSWithInvalidQuery ResponseIsOperationOutcome OperationOutcomeSystemCodeIsSpine InvalidParameter 
 
 # scenario 4
 # SCAL P3 Invalid aud endpoint, invalid scope
-SFFSForbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome AccessDenied
+SFFSForbidden TESTS SFFSWithInvalidJWTaud ResponseIsOperationOutcome OperationOutcomeSystemCodeIsSpine AccessDenied SFFSWithInvalidJWTScope ResponseIsOperationOutcome OperationOutcomeSystemCodeIsSpine AccessDenied
 # TODO P-VDATE-INCOM-JWT-CHK-EXP Put in an expired timestamp
 #
 # scenario 6
-SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome NotSupported
+SFFSWrongMethod TESTS SFFSWithWrongMethod ResponseIsOperationOutcome OperationOutcomeSystemCodeIsSpine NotSupported BadRequest
 
 SFFSWithBusySlots TESTS SFFSWithValidParameters_search_for_busy_slots ResponseIsBundle
 #
@@ -115,7 +115,7 @@ SFFSWithValidParameters_search_for_busy_slots SEND_TKW empty_file TO __TO_ENDPOI
 SFFSNoSlotsAvailable SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_NO_SLOTS__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC ok WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 200"
 
 # scenario 3 invalid query string
-SFFSWithInvalidQuery SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_400__&startXXXXXXX=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck400 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 400 Bad Request"
+SFFSWithInvalidQuery SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_400__&startXXXXXXX=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck400 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_search_slots TEXT "HTTP Response must be HTTP 400 Bad Request"
 
 # invalid aud scenario 4
 SFFSWithInvalidJWTaud SEND_TKW empty_file TO __TO_ENDPOINT__/Slot?schedule.actor%3Ahealthcareservice=__HCS_403__&start=ge__START_SLOT_TIME__&start=le__END_SLOT_TIME__&status=free&_include=Slot%3Aschedule&_include=Schedule%3Aactor%3APractitioner&_include=Schedule%3Aactor%3APractitionerRole&_include=Schedule%3Aactor%3AHealthcareService&_include=HealthcareService.location&_include=HealthcareService.providedBy FROM __FROM_ENDPOINT__:__FROM_ENDPOINT_PORT__ SYNC httpstatuscheck403 WITH_PROPERTYSET base+webservices+get WITH_HTTPHEADERS credentials+default_accept+search_slots_interactionid+JWT_invalid_aud TEXT "HTTP Response must be HTTP 403 (SCAL Requirement P-VDATE-INCOM-JWT-AUDI-CLAIM)"
