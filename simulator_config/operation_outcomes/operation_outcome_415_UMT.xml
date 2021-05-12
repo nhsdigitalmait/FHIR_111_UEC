@@ -1,18 +1,18 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
 	<meta>
-		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+		<profile value="http://hl7.org/fhir/StructureDefinition/OperationOutcome"/>
 	</meta>
 	<issue>
 		<severity value="error"/>
 		<code value="not-supported"/>
 		<details>
 			<coding>
-				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
-				<code value="UNSUPPORTED_MEDIA_TYPE"/>
-				<display value="Unsupported Media Type"/>
+				<system value="http://hl7.org/fhir/operation-outcome"/>
+				<code value="MSG_RESOURCE_TYPE_MISMATCH"/>
+				<display value="Resource Type Mismatch"/>
 			</coding>
 		</details>
-		<diagnostics value="Unsupported Media Type"/>
+		<diagnostics value="Resource Type Mismatch"/>
 	</issue>
 </OperationOutcome>

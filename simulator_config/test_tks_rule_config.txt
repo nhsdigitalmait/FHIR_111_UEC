@@ -8,11 +8,7 @@ BEGIN RESPONSES
 #Search
 notFound_Response						TKW_ROOT/config/FHIR_111_UEC/simulator_config/successful_responses/NotFound_Trigger_NEMS.xml "200 OK"
 Conversion_Error_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_200_IVP.xml "400 Bad Request"
-HTTP_From_MISSING_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_From.xml "400 Missing Or Invalid Header"
-HTTP_To_MISSING_Response					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_To.xml "400 Missing Or Invalid Header"
-HTTP_Authorization_MISSING_Response			TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_MOIH_Auth.xml "400 Missing Or Invalid Header"
 
-#PreExistingServerResponses
 Operation_Outcome_400					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_400_IP.xml "400 Bad Request"
 Operation_Outcome_403					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_403_AD.xml "403 Forbidden"
 Operation_Outcome_404					TKW_ROOT/config/FHIR_111_UEC/simulator_config/operation_outcomes/operation_outcome_404_NRF.xml "404 Not Found"

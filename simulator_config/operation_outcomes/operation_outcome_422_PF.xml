@@ -1,18 +1,18 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
 	<meta>
-		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+		<profile value="http://hl7.org/fhir/StructureDefinition/OperationOutcome"/>
 	</meta>
 	<issue>
 		<severity value="error"/>
 		<code value="processing"/>
 		<details>
 			<coding>
-				<system value="http://hl7.org/fhir/issue-type"/>
-				<code value="processing"/>
-				<display value="Processing Failure"/>
+				<system value="http://hl7.org/fhir/operation-outcome"/>
+				<code value="MSG_RESOURCE_ID_FAIL"/>
+				<display value="unable to allocate resource id"/>
 			</coding>
 		</details>
-		<diagnostics value="Slot no longer available"/>
+		<diagnostics value="unable to allocate resource id"/>
 	</issue>
 </OperationOutcome>

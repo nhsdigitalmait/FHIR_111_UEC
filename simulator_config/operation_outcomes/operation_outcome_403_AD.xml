@@ -1,18 +1,18 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
 	<meta>
-		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+		<profile value="http://hl7.org/fhir/StructureDefinition/OperationOutcome"/>
 	</meta>
 	<issue>
 		<severity value="error"/>
 		<code value="forbidden"/>
 		<details>
 			<coding>
-				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
-				<code value="ACCESS DENIED"/>
-				<display value="Access has been denied to process this request"/>
+				<system value="http://hl7.org/fhir/operation-outcome"/>
+				<code value="MSG_BAD_FORMAT"/>
+				<display value="Bad Syntax: 'JWT must be valid'"/>
 			</coding>
 		</details>
-		<diagnostics value="Access has been denied to process this request"/>
+		<diagnostics value="Bad Syntax: 'JWT string must be valid'"/>
 	</issue>
 </OperationOutcome>

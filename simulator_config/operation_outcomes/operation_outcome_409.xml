@@ -1,18 +1,18 @@
 <OperationOutcome xmlns="http://hl7.org/fhir">
 	<id value="__MESSAGEID__"/>
 	<meta>
-		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"/>
+		<profile value="http://hl7.org/fhir/StructureDefinition/OperationOutcome"/>
 	</meta>
 	<issue>
 		<severity value="error"/>
 		<code value="invalid"/>
 		<details>
 			<coding>
-				<system value="https://fhir.nhs.uk/STU3/CodeSystem/Spine-ErrorOrWarningCode-1"/>
-				<code value="CONFLICTING_VALUES"/>
-				<display value="Conflicting values have been specified in different fields"/>
+				<system value="http://hl7.org/fhir/operation-outcome"/>
+				<code value="MSG_VERSION_AWARE_CONFLICT"/>
+				<display value="Update Conflict (server current version = 0003, client version referenced = 0001)"/>
 			</coding>
 		</details>
-		<diagnostics value="Conflicting values have been specified in different fields"/>
+		<diagnostics value="Update Conflict (server current version = 0003, client version referenced = 0001)"/>
 	</issue>
 </OperationOutcome>
