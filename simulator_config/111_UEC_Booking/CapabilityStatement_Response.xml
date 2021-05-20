@@ -12,7 +12,7 @@
    <kind value="capability"/>
    <software>
       <name value="111 UEC Booking TKW Test Harness"/>
-      <version value="0.1 Beta"/>
+      <version value="Release v1.0"/>
       <releaseDate value="2021-02-01T00:00:00+00:00"/>
    </software>
    <fhirVersion value="3.0.1"/>
@@ -107,7 +107,7 @@
             <type value="date"/>
          </searchParam>
          <searchParam>
-            <name value="end"/>
+            <name value="start"/>
             <type value="date"/>
          </searchParam>
       </resource>
