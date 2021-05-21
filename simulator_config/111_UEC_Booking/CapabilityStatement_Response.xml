@@ -106,10 +106,6 @@
             <name value="start"/>
             <type value="date"/>
          </searchParam>
-         <searchParam>
-            <name value="start"/>
-            <type value="date"/>
-         </searchParam>
       </resource>
    </rest>
 </CapabilityStatement>

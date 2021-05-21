@@ -33,5 +33,5 @@ echo "111 UEC Booking Github repository shortcode:" `git show -s --format="$PROJ
 #Update the docker ignore sim link
 ln -fs .dockerignore.provider.simulator .dockerignore
 #Build the docker image
-docker build --build-arg USER_ID=$USER_ID -f Dockerfile.provider.simulator -t nhsdigitalmait/$IMAGENAME:$TAG .
+docker build --build-arg USER_ID=$USER_ID -f Dockerfile.provider.simulator -t nhsdigitalmait/$IMAGENAME:$TAG -t nhsdigitalmait/$IMAGENAME:latest .
 echo Docker Image tagged with $TAG
