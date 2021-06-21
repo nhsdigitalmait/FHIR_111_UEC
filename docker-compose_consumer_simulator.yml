@@ -5,7 +5,7 @@
 version: "3"
 services:
   tkw_uec_consumer_simulator:
-    image: nhsdigitalmait/tkw_uec_consumer_simulator:0.6
+    image: nhsdigitalmait/tkw_uec_consumer_simulator:0.7
 
     environment:
       - TZ=Europe/London
